@@ -1,2 +1,2 @@
-echo Drew, welcome to your Mac.
+echo "Hello Drew. Welcome to your Mac."
 alias gist="cd ~/gist"
