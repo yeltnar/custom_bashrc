@@ -10,4 +10,4 @@ chmod 700 mac.bashrc
 	echo -e "$(cat ~/.bash_profile)\nif [ -f ~/.bashrc ]; then . ~/.bashrc; fi" > ~/.bash_profile
 #fi
 
-echo -e "$(pwd)/all.bashrc\n$(cat ~/.bashrc)" > ~/.bashrc 
+echo -e ". $(pwd)/all.bashrc\n$(cat ~/.bashrc)\n" > ~/.bashrc 
