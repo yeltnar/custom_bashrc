@@ -16,7 +16,8 @@ alias bashrc="vim ~/.bashrc"
 alias macrc="vim $folder/mac.bashrc "
 alias allrc="vim $folder/all.bashrc "
 alias winrc="vim $folder/win.bashrc "
-alias ubsh="olddir=$(pwd); cd $folder; git pull; cd $olddir"
 
+alias ubsh="olddir=$(pwd); cd $folder; git pull; cd $olddir"
+alias pushall="git add .; git commit; git push"
 
 echo "Loaded all.bashrc"
