@@ -9,6 +9,9 @@ chmod 700 mac.bashrc
 
 #if ! [ -f ~/.bashrc ]; then
 	touch ~/.bashrc
+#fi
+
+#if [ -f ~/.bash_profile ]; then
 	echo -e "$(cat ~/.bash_profile)\nif [ -f ~/.bashrc ]; then . ~/.bashrc; fi" > ~/.bash_profile
 #fi
 
