@@ -1,3 +1,5 @@
+#curl -s -L -O https://raw.githubusercontent.com/yeltnar/gist/master/setup.bashrc
+#chmod 700 setup.bashrc
 curl -s -L -O https://raw.githubusercontent.com/yeltnar/gist/master/all.bashrc
 chmod 700 all.bashrc
 curl -s -L -O https://raw.githubusercontent.com/yeltnar/gist/master/win.bashrc
