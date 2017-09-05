@@ -1,11 +1,16 @@
 <html>
 	<script type="text/javascript">
 		let commands = [
-			"verse" = "http://mail.notes.na.collabserv.com/verse?",
-			"join" = "https://joinjoaomgcd.appspot.com"
+			{
+				"text":"verse",
+				"location":"http://mail.notes.na.collabserv.com/verse?"
+			},
+			{
+				"text":"join",
+				"location":"chrome-extension://flejfacjooompmliegamfbpjjdlhokhj/devices.html?tab=sms&popup=1"
+			},
 		];
-	</script>
-	<script type="text/javascript">
+
 		let params = (()=>{
 			var toReturn = {};
 			let arr = (/\?(.*)/).exec(window.location.href)[1].split("&");
@@ -17,12 +22,13 @@
 		})()
 
 		for(var k=0; k<commands.length; k++){
-			if( k.text === params.text ){
-				//window.location.href = k.location;
+			if( commands[k].text === params.text ){
+				debugger;window.location.href = commands[k].location;
+				console.log(commands[k].location+":)");
 			}
 		}
 
-		alert(JSON.stringify(params));
-		//window.location.href = "https://www.google.com/search?q="+params.text;
+		console.log(params.text+":(");
+		window.location.href = "https://www.google.com/search?q="+params.text;
 	</script>
 </html>
