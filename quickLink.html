@@ -1,5 +1,11 @@
 <html>
-	<script>
+	<script type="text/javascript">
+		let commands = [
+			"verse" = "http://mail.notes.na.collabserv.com/verse?",
+			"join" = "https://joinjoaomgcd.appspot.com"
+		];
+	</script>
+	<script type="text/javascript">
 		let params = (()=>{
 			var toReturn = {};
 			let arr = (/\?(.*)/).exec(window.location.href)[1].split("&");
@@ -9,6 +15,12 @@
 			}
 			return toReturn; 
 		})()
+
+		for(var k=0; k<commands.length; k++){
+			if( k.text === params.text ){
+				window.location.href = k.location;
+			}
+		}
 
 		//alert(JSON.stringify(params));
 		window.location.href = "https://www.google.com/search?q="+params.text;
