@@ -1,5 +1,6 @@
 <html>
 	<script type="text/javascript">
+	if( window.localStorage.getItem("run") ){
 		let commands = [
 			{
 				"text":"verse",
@@ -30,5 +31,6 @@
 
 		console.log(params.text+":(");
 		window.location.href = "https://www.google.com/search?q="+params.text;
+	}
 	</script>
 </html>
