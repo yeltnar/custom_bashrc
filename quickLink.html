@@ -21,16 +21,17 @@
 			}
 			return toReturn; 
 		})()
-
+		let found = false;
 		for(var k=0; k<commands.length; k++){
 			if( commands[k].text === params.text ){
-				debugger;window.location.href = commands[k].location;
+				window.location.href = commands[k].location;
 				console.log(commands[k].location+":)");
+				found = true;
 			}
 		}
-
-		console.log(params.text+":(");
-		window.location.href = "https://www.google.com/search?q="+params.text;
+		if( found===false ){
+			window.location.href = "https://www.google.com/search?q="+params.text;
+		}
 	}
 	</script>
 </html>
