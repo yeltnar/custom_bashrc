@@ -22,4 +22,7 @@ alias ..="cd .."
 alias ubsh="olddir=$(pwd); cd $folder; git pull; cd $olddir"
 alias pushall="git add .; git commit; git push"
 
+alias pullandroidsettings="adb shell settings list system > system.txt; adb shell settings list global > global.txt; adb shell settings list secure > secure.txt"
+alias express_init="git clone https://github.com/yeltnar/express_starter.git ."
+
 echo "Loaded all.bashrc"
