@@ -5,6 +5,7 @@ else
 	if [ -f ~/gist/win.bashrc ]; then . ~/gist/win.bashrc; fi
 fi
 
+PIADDRESS=192.168.1.130
 
 alias cls="clear;pwd;ls"
 
@@ -18,6 +19,7 @@ alias macrc="vim $folder/mac.bashrc "
 alias allrc="vim $folder/all.bashrc "
 alias winrc="vim $folder/win.bashrc "
 alias ..="cd .."
+alias sshpi="ssh pi@$PIADDRESS"
 
 alias ubsh="olddir=$(pwd); cd $folder; git pull; cd $olddir"
 alias pushall="git add .; git commit; git push"
