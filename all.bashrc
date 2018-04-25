@@ -5,8 +5,6 @@ else
 	if [ -f ~/gist/win.bashrc ]; then . ~/gist/win.bashrc; fi
 fi
 
-PIADDRESS=192.168.1.130
-
 alias cls="clear;pwd;ls"
 
 alias claer="clear"
@@ -18,11 +16,13 @@ alias bashrc="vim ~/.bashrc"
 alias macrc="vim $folder/mac.bashrc "
 alias allrc="vim $folder/all.bashrc "
 alias winrc="vim $folder/win.bashrc "
-alias ..="cd .."
-alias sshpi="ssh pi@$PIADDRESS"
+alias ..="cd ..;pwd"
+alias cdmkdir="dir=$1;echo $dir;mkdir $dir; cd $dir"
+
+alias sshpi="ssh pi@raspberrypi"
 
 alias ubsh="olddir=$(pwd); cd $folder; git pull; cd $olddir"
-alias pushall="git add .; git commit; git push"
+alias pushall="git add .; git commit -m $1; git push"
 
 alias pullandroidsettings="adb shell settings list system > system.txt; adb shell settings list global > global.txt; adb shell settings list secure > secure.txt"
 alias express_init="git clone https://github.com/yeltnar/express_starter.git ."
