@@ -1,0 +1,16 @@
+code --install-extension alefragnani.project-manager
+code --install-extension christian-kohler.npm-intellisense
+code --install-extension christian-kohler.path-intellisense
+code --install-extension CoenraadS.bracket-pair-colorizer
+code --install-extension eamodio.gitlens
+code --install-extension eamodio.toggle-excluded-files
+code --install-extension eg2.vscode-npm-script
+code --install-extension formulahendry.auto-close-tag
+code --install-extension formulahendry.auto-rename-tag
+code --install-extension formulahendry.code-runner
+code --install-extension Gruntfuggly.todo-tree
+code --install-extension HookyQR.beautify
+code --install-extension ms-vscode.sublime-keybindings
+code --install-extension msjsdiag.debugger-for-chrome
+code --install-extension PKief.material-icon-theme
+code --install-extension vscodevim.vim
