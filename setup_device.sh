@@ -24,13 +24,15 @@ else
 fi
 
 
-if [ need_write ]; 
+if [ "$need_write" = true ]; 
 then 
     file_contents=$(cat ~/.bashrc)
     to_write=$(echo -e $to_write)
 
     echo "${to_write}" > ~/.bashrc
     echo "${file_contents}" >> ~/.bashrc
+
+    echo "writing to .bashrc"
 
     # echo "reloading"
     # source ~/.bashrc
