@@ -34,6 +34,7 @@ alias express_init="git clone https://github.com/yeltnar/express_starter.git ."
 alias dockerr="docker exec -it c219012c4777 /bin/bash"
 alias dockerexec=~/gist/dockerexec.sh
 
-alias control_phone="scrcpy --max-size 1024"
+alias control_phone="scrcpy --max-size 1024 &"
+alias ssh_phone="adb forward tcp:8022 tcp:8022 && ssh localhost -p 8022"
 
 echo "Loaded all.bashrc"
