@@ -5,10 +5,12 @@ else
 	if [ -f ~/gist/win.bashrc ]; then . ~/gist/win.bashrc; fi
 fi
 
-alias cls="clear;pwd;ls"
+alias clear_pwd_ls="clear;pwd;ls"
+alias cpl="clear_pwd_ls"
+# alias cls="clear_pwd_ls"
 
-alias claer="clear"
-alias clera="clear"
+# alias claer="clear"
+# alias clera="clear"
 
 alias sns="clear; sudo npm start"
 alias gist="cd ~/gist"
@@ -34,7 +36,10 @@ alias express_init="git clone https://github.com/yeltnar/express_starter.git ."
 alias dockerr="docker exec -it c219012c4777 /bin/bash"
 alias dockerexec=~/gist/dockerexec.sh
 
-alias control_phone="scrcpy --max-size 1024 &"
-alias ssh_phone="adb forward tcp:8022 tcp:8022 && ssh localhost -p 8022"
+#alias control_phone="adb_dock && scrcpy --max-size 1706 || true && adb_undock &"
+alias control_phone="adb_dock && scrcpy --max-size 1024 || true && adb_undock &"
+alias ssh_phone="adb shell am broadcast --user 0 -a net.dinglish.tasker.termux.ssh && adb forward tcp:8022 tcp:8022 && ssh localhost -p 8022"
+alias adb_dock="adb shell am broadcast --user 0 -a net.dinglish.tasker.dock"
+alias adb_undock="adb shell am broadcast --user 0 -a net.dinglish.tasker.undock"
 
 echo "Loaded all.bashrc"
