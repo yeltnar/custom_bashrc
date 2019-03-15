@@ -36,6 +36,8 @@ alias express_init="git clone https://github.com/yeltnar/express_starter.git ."
 alias dockerr="docker exec -it c219012c4777 /bin/bash"
 alias dockerexec=~/gist/dockerexec.sh
 
+alias cr="clear && history | cut -c 8- | tail -n 2 | head -n 1 | bash"
+
 #alias control_phone="adb_dock && scrcpy --max-size 1706 || true && adb_undock &"
 alias control_phone="adb_dock && scrcpy --max-size 1024 || true && adb_undock &"
 alias ssh_phone="adb shell am broadcast --user 0 -a net.dinglish.tasker.termux.ssh && adb forward tcp:8022 tcp:8022 && ssh localhost -p 8022"
