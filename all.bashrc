@@ -44,6 +44,8 @@ alias ssh_phone="adb shell am broadcast --user 0 -a net.dinglish.tasker.termux.s
 alias adb_dock="adb shell am broadcast --user 0 -a net.dinglish.tasker.dock"
 alias adb_undock="adb shell am broadcast --user 0 -a net.dinglish.tasker.undock"
 
-alias historys="cat ~/.bash_history"
+alias dhistory="history | awk '{\$1=\"\"; print}'"
+
+alias dnpm="~/gist/dnpm"
 
 echo "Loaded all.bashrc"
