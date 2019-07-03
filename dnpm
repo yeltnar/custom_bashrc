@@ -1,0 +1,9 @@
+# takes one param (the node script) and runs it without the need for 'run'
+cat package.json | jq ".scripts.$1" --raw-output | bash
+
+# export NODE_VERSION=$(cat package.json | jq ".engines.node");
+# echo $NODE_VERSION;
+
+# nvm use $NODE_VERSION
+
+# echo $(nvm --version)
