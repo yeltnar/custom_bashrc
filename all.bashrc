@@ -5,8 +5,11 @@ else
 	if [ -f ~/gist/win.bashrc ]; then . ~/gist/win.bashrc; fi
 fi
 
+alias advance_pwd="if [ `/bin/pwd` == `/bin/pwd -P` ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
+alias ddd="if [ $(/bin/pwd) == $(/bin/pwd -P) ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
+
 alias clear_pwd_ls="clear;pwd;ls"
-alias cpl="clear_pwd_ls"
+alias cpl="clear_pwd_ls" 
 # alias cls="clear_pwd_ls"
 
 # alias claer="clear"
@@ -25,7 +28,17 @@ alias lastssh="cat ~/.bash_history | grep "^ssh"| tail -n 1 > /tmp/drewsshcmd;ch
 
 alias fudge=fuck
 
-alias sshpi="ssh pi@raspberrypi"
+piip(){
+	pi_ip=$(curl "https://node.andbrant.com/database?person_id=drew&token=drew_key_here&data_location=devices.exposed_pi.public_ip_v4"| awk '{print substr($0, 2, length($0) - 2)}')
+	echo $pi_ip
+}
+
+# alias sshpi="ssh pi@raspberrypi"
+sshpi(){
+	ssh_command="-p 23 pi@$(piip)"
+	echo $ssh_command
+	ssh $ssh_command
+}
 
 alias ubsh="olddir=$(pwd); cd $folder; git pull; cd $olddir"
 alias pushall="git add .; git commit -m $1; git push"
@@ -47,5 +60,12 @@ alias adb_undock="adb shell am broadcast --user 0 -a net.dinglish.tasker.undock"
 alias dhistory="history | awk '{\$1=\"\"; print}'"
 
 alias dnpm="~/gist/dnpm"
+
+alias toupper="node ~/gist/uppercase.js"
+alias tolower="node ~/gist/lowercase.js"
+
+drew(){
+	echo "hi drew "$1;
+}
 
 echo "Loaded all.bashrc"
