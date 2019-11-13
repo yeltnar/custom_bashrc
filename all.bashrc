@@ -70,6 +70,8 @@ firefox_new(){
 	rm -rf $dir;
 	mkdir $dir;
 	echo "/home/andcbrant/.apps/firefox/firefox --profile $dir" | bash;
+	rm -rf $dir
+	echo "removed ff_profile"
 }
 
 echo "Loaded all.bashrc"
