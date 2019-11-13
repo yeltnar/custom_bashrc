@@ -64,8 +64,12 @@ alias dnpm="~/gist/dnpm"
 alias toupper="node ~/gist/uppercase.js"
 alias tolower="node ~/gist/lowercase.js"
 
-drew(){
-	echo "hi drew "$1;
+firefox_new(){
+	num=1;
+	dir="/tmp/ff_profile_$num/";
+	rm -rf $dir;
+	mkdir $dir;
+	echo "/home/andcbrant/.apps/firefox/firefox --profile $dir" | bash;
 }
 
 echo "Loaded all.bashrc"
