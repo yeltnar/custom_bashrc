@@ -57,6 +57,8 @@ alias ssh_phone="adb shell am broadcast --user 0 -a net.dinglish.tasker.termux.s
 alias adb_dock="adb shell am broadcast --user 0 -a net.dinglish.tasker.dock"
 alias adb_undock="adb shell am broadcast --user 0 -a net.dinglish.tasker.undock"
 
+alias create-react-app="npx create-react-app"
+
 alias dhistory="history | awk '{\$1=\"\"; print}'"
 
 alias dnpm="~/gist/dnpm"
@@ -69,7 +71,7 @@ firefox_new(){
 	dir="/tmp/ff_profile_$num/";
 	rm -rf $dir;
 	mkdir $dir;
-	echo "/home/andcbrant/.apps/firefox/firefox --profile $dir" | bash;
+	echo "firefox --profile $dir" | bash;
 	rm -rf $dir
 	echo "removed ff_profile"
 }
