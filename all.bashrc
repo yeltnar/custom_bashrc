@@ -29,8 +29,9 @@ alias lastssh="cat ~/.bash_history | grep "^ssh"| tail -n 1 > /tmp/drewsshcmd;ch
 alias fudge=fuck
 
 piip(){
-	pi_ip=$(curl "https://node.andbrant.com/database?person_id=$(cat ./gitignore/firebase_person_id)&token=$(cat ./gitignore/firebase_token)&data_location=devices.exposed_pi.public_ip_v4"| awk '{print substr($0, 2, length($0) - 2)}')
+	pi_ip=$(curl "https://node.andbrant.com/database?person_id=$(cat ~/gist/gitignore/firebase_person_id)&token=$(cat ~/gist/gitignore/firebase_token)&data_location=devices.exposed_pi.public_ip_v4"| awk '{print substr($0, 2, length($0) - 2)}')
 	echo $pi_ip
+	cd $pwd
 }
 
 # alias sshpi="ssh pi@raspberrypi"
