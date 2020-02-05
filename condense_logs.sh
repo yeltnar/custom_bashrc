@@ -5,7 +5,7 @@ else
     exit
 fi
 
-mkdir /media/pi/TOSHIBA EXT/phone/drew_tasker_logs/master;
-mkdir /media/pi/TOSHIBA EXT/phone/drew_tasker_logs/master/$log_type;
+mkdir "/media/pi/TOSHIBA EXT/phone/drew_tasker_logs/master";
+mkdir "/media/pi/TOSHIBA EXT/phone/drew_tasker_logs/master/$log_type";
 
 cat /media/pi/TOSHIBA\ EXT/phone/drew_tasker_logs/*/$log_type/log.csv | sort | uniq > /media/pi/TOSHIBA\ EXT/phone/drew_tasker_logs/master/$log_type/log.csv
