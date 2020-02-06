@@ -28,10 +28,27 @@ alias lastssh="cat ~/.bash_history | grep "^ssh"| tail -n 1 > /tmp/drewsshcmd;ch
 
 alias fudge=fuck
 
+firebase_person_id(){
+	cat ~/gist/gitignore/firebase_person_id
+}
+
+firebase_token(){
+	cat ~/gist/gitignore/firebase_token
+}
+
 piip(){
-	pi_ip=$(curl "https://node.andbrant.com/database?person_id=$(cat ~/gist/gitignore/firebase_person_id)&token=$(cat ~/gist/gitignore/firebase_token)&data_location=devices.exposed_pi.public_ip_v4"| awk '{print substr($0, 2, length($0) - 2)}')
+	pi_ip=$(curl "https://node.andbrant.com/database?person_id=$(firebase_person_id)&token=$(firebase_token)&data_location=devices.exposed_pi.public_ip_v4"| awk '{print substr($0, 2, length($0) - 2)}')
 	echo $pi_ip
-	cd $pwd
+}
+
+send_push(){
+	url="https://node.andbrant.com/join/api?person_id=$(firebase_person_id)&token=$(firebase_token)&deviceId=group.android&title=title goes here&text=text goes here"
+	res=$(curl "$url")
+
+	curl --location --request POST "$url"
+
+	echo "$url"
+	echo $res
 }
 
 # alias sshpi="ssh pi@raspberrypi"
