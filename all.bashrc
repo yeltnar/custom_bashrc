@@ -26,6 +26,9 @@ alias cdmkdir="dir=$1;echo $dir;mkdir $dir; cd $dir"
 alias bashhistory="cat ~/.bash_history"
 alias lastssh="cat ~/.bash_history | grep "^ssh"| tail -n 1 > /tmp/drewsshcmd;chmod 777 /tmp/drewsshcmd; /tmp/drewsshcmd;rm /tmp/drewsshcmd"
 
+# add timestamp to all history commands.  hs function is set to hide this info unless asked for
+export HISTTIMEFORMAT="(%c) "
+
 alias fudge=fuck
 
 firebase_person_id(){
