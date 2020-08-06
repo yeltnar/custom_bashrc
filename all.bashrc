@@ -65,6 +65,13 @@ sshpi(){
 	ssh $ssh_command
 }
 
+# alias sshpi="ssh pi@raspberrypi"
+sftppi(){
+	sftp_command="-P 23 pi@$(piip)"
+	echo $sftp_command
+	sftp $sftp_command
+}
+
 alias ubsh="olddir=$(pwd); cd $folder; git pull; cd $olddir"
 alias pushall="git add .; git commit -m $1; git push"
 
