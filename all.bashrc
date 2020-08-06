@@ -42,13 +42,20 @@ piip(){
 }
 
 send_push(){
-	url="https://node.andbrant.com/join/api?person_id=$(firebase_person_id)&token=$(firebase_token)&deviceId=group.android&title=title goes here&text=text goes here"
-	res=$(curl "$url")
 
-	curl --location --request POST "$url"
+	person_id=$(cat ~/gist/gitignore/firebase_person_id)
+	token=$(cat ~/gist/gitignore/firebase_token)
 
-	echo "$url"
-	echo $res
+	title=$1
+	text=$2
+
+	title=$(node -e "process.stdout.write(encodeURIComponent('$title'))")
+	text=$(node -e "process.stdout.write(encodeURIComponent('$text'))")
+
+	curl --location --request POST "node.andbrant.com/join/api?person_id=$person_id&token=$token&deviceId=group.android&title=$title&text=$text" --header 'Content-Type: application/json'
+
+	echo "";
+	echo "sent - title: $title text: $text";
 }
 
 # alias sshpi="ssh pi@raspberrypi"
