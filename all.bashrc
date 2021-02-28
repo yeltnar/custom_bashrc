@@ -6,8 +6,6 @@ else
 	if [ -f ~/gist/win.bashrc ]; then . ~/gist/win.bashrc; fi
 fi
 
-node "$folder/gitpull.js"
-
 alias advance_pwd="if [ `/bin/pwd` == `/bin/pwd -P` ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
 alias ddd="if [ $(/bin/pwd) == $(/bin/pwd -P) ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
 
@@ -119,7 +117,6 @@ firefox_new(){
 }
 
 # check if done git pull, if need to, pull
-node "$folder/gitpull.js"
-# node $folder/gitpull.js
+echo "";node "$folder/gitpull.js"
 
 echo "Loaded all.bashrc"
