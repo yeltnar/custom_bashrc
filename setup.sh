@@ -1,4 +1,5 @@
-git clone https://github.com/yeltnar/gist.git ~/gist;
+bashrc_folder="$HOME/gist"
+git clone https://github.com/yeltnar/gist.git $bashrc_folder;
 touch ~/.bashrc;
-echo ". ~/gist/setup_device.sh" >> ~/.bashrc;
-echo ". ~/gist/all.bashrc" >> ~/.bashrc;
+echo ". $bashrc_folder/setup_device.sh" >> ~/.bashrc;
+echo ". $bashrc_folder/all.bashrc" >> ~/.bashrc;
