@@ -117,6 +117,8 @@ firefox_new(){
 }
 
 # check if done git pull, if need to, pull
-node "$folder/gitpull.js" &
+if [ -t 1 ]; then
+	node "$folder/gitpull.js" &
+fi
 
 echo "Loaded all.bashrc"
