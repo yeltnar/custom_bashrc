@@ -1,9 +1,12 @@
-folder="~/gist"
+folder="$HOME/gist"
+export custom_bashrc_folder=$folder;
 if [[ `uname` == 'Darwin' ]]; then
 	if [ -f ~/gist/mac.bashrc ]; then . ~/gist/mac.bashrc; fi
 else
 	if [ -f ~/gist/win.bashrc ]; then . ~/gist/win.bashrc; fi
 fi
+
+node "$folder/gitpull.js"
 
 alias advance_pwd="if [ `/bin/pwd` == `/bin/pwd -P` ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
 alias ddd="if [ $(/bin/pwd) == $(/bin/pwd -P) ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
@@ -114,5 +117,9 @@ firefox_new(){
 	rm -rf $dir
 	echo "removed ff_profile"
 }
+
+# check if done git pull, if need to, pull
+node "$folder/gitpull.js"
+# node $folder/gitpull.js
 
 echo "Loaded all.bashrc"
