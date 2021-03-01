@@ -1,4 +1,4 @@
-bashrc_folder="$HOME/gist"
+bashrc_folder="$HOME/playin/custom_bashrc"
 export custom_bashrc_folder=$bashrc_folder;
 if [[ `uname` == 'Darwin' ]]; then
 	if [ -f $bashrc_folder/mac.bashrc ]; then . $bashrc_folder/mac.bashrc; fi
