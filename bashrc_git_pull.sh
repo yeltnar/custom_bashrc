@@ -1,0 +1,1 @@
+cd /Users/Drew/playin/custom_bashrc && git pull
