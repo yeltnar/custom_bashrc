@@ -116,10 +116,12 @@ firefox_new(){
 }
 
 # check if done git pull, if need to, pull
-if [ -n $(which crontab) ]; then
-	if [ -n $(crontab -l | grep "bashrc_git_pull.sh") ]; then
-		echo -e "\n\nConsider adding \"0 11 * * * $bashrc_folder/bashrc_git_pull.sh\" to crontab"
-	fi
+if command -v crontab &> /dev/null
+then
+	if [ -z "$(crontab -l | grep "bashrc_git_pull.sh")" ] 
+    then 
+        echo -e "\nConsider adding \"0 11 * * * $bashrc_folder/bashrc_git_pull.sh\" to crontab";
+    fi
 fi
 
 echo "Loaded all.bashrc"
