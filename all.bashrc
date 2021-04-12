@@ -115,4 +115,6 @@ firefox_new(){
 	echo "removed ff_profile"
 }
 
+set bell-style visible
+
 echo "Loaded all.bashrc"
