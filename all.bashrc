@@ -105,6 +105,10 @@ npmscripts(){
 	cat "package.json" | jq .scripts
 }
 
+tarhelp(){
+	echo -e "tar -zcvf archive-name.tar.gz source-directory-name\ntar -zxvf prog-1-jan-2005.tar.gz"
+}
+
 firefox_new(){
 	num=1;
 	dir="/tmp/ff_profile_$num/";
