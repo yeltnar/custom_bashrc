@@ -119,6 +119,10 @@ firefox_new(){
 	echo "removed ff_profile"
 }
 
+sleephelp(){
+	echo 'systemctl suspend'
+}
+
 set bell-style visible
 
 echo "Loaded all.bashrc"
