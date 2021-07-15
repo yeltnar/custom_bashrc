@@ -3,7 +3,7 @@ export custom_bashrc_folder=$bashrc_folder;
 if [[ `uname` == 'Darwin' ]]; then
 	if [ -f $bashrc_folder/mac.bashrc ]; then . $bashrc_folder/mac.bashrc; fi
 else
-	if [ -f $bashrc_folder/win.bashrc ]; then . $bashrc_folder/win.bashrc; fi
+	if [ -f $bashrc_folder/linux.bashrc ]; then . $bashrc_folder/linux.bashrc; fi
 fi
 
 alias advance_pwd="if [ `/bin/pwd` == `/bin/pwd -P` ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
