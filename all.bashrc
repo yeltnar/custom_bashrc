@@ -106,7 +106,9 @@ npmscripts(){
 }
 
 tarhelp(){
-	echo -e "tar -zcvf archive-name.tar.gz source-directory-name\ntar -zxvf prog-1-jan-2005.tar.gz"
+	echo -e "tar -zcvf archive-name.tar.gz source-directory-name"
+	echo -e "tar -zxvf prog-1-jan-2005.tar.gz"
+	echo -e "tar xf file.tar -C /path/to/directory"
 }
 
 firefox_new(){
