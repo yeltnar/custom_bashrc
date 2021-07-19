@@ -123,11 +123,14 @@ firefox_new(){
 
 push_when_build_done(){
 	clear
-	tmp=$(oc get pods | grep Running | grep build | wc -l)
+	building_pods=$(oc get pods | grep Running | grep build)
+	tmp=$(echo $building_pods | wc -l)
 	while [ $tmp -ne 0 ]; 
 	do 
-		printf "$tmp is more than 0\n"; 
-		sleep 10; 
+		building_pods=$(oc get pods | grep Running | grep build)
+		tmp=$(echo $building_pods | wc -l)
+		printf "$building_pods\n$tmp is more than 0 $(date)\n"; 
+		sleep 30; 
 	done
 	printf 'exiting\n'
 	send_push 'buid' 'is completed'
