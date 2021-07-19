@@ -124,16 +124,16 @@ firefox_new(){
 push_when_build_done(){
 	clear
 	building_pods=$(oc get pods | grep Running | grep build)
-	tmp=$(echo $building_pods | wc -l)
-	while [ $tmp -ne 0 ]; 
+	tmp=$(printf "$building_pods" | wc -l | awk '/.*/{print $1}')
+	while [ $tmp -gt 0 ]; 
 	do 
 		building_pods=$(oc get pods | grep Running | grep build)
-		tmp=$(echo $building_pods | wc -l)
+		tmp=$(printf "$building_pods" | wc -l | awk '/.*/{print $1}')
 		printf "$building_pods\n$tmp is more than 0 $(date)\n"; 
 		sleep 30; 
 	done
 	printf 'exiting\n'
-	send_push 'buid' 'is completed'
+	send_push 'build' 'is completed'
 }
 
 set bell-style visible
