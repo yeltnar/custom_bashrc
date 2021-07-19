@@ -136,6 +136,15 @@ push_when_build_done(){
 	send_push 'build' 'is completed'
 }
 
+merge_in_dev(){
+	working_branch=$(git branch | awk '/^\*/{print $2}')
+	git checkout dev &&
+	git pull &&
+	git checkout $working_branch &&
+	git merge dev
+}
+
+
 set bell-style visible
 
 echo "Loaded all.bashrc"
