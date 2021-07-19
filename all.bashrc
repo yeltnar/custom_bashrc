@@ -121,6 +121,18 @@ firefox_new(){
 	echo "removed ff_profile"
 }
 
+push_when_build_done(){
+	clear
+	tmp=$(oc get pods | grep Running | grep build | wc -l)
+	while [ $tmp -ne 0 ]; 
+	do 
+		printf "$tmp is more than 0\n"; 
+		sleep 10; 
+	done
+	printf 'exiting\n'
+	send_push 'buid' 'is completed'
+}
+
 set bell-style visible
 
 echo "Loaded all.bashrc"
