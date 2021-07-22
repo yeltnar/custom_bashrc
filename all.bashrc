@@ -135,12 +135,17 @@ push_when_build_done(){
 	send_push 'build' 'is completed'
 }
 
-merge_in_dev(){
+git_merge_in_dev(){
 	working_branch=$(git branch | awk '/^\*/{print $2}')
 	git checkout dev &&
 	git pull &&
 	git checkout $working_branch &&
 	git merge dev
+}
+git_delete_current_branch(){
+	working_branch=$(git branch | awk '/^\*/{print $2}')
+	git checkout dev &&
+	git branch -D $working_branch
 }
 
 
