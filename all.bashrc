@@ -123,6 +123,15 @@ firefox_new(){
 
 push_when_build_done(){
 	clear
+
+	oc status &> /dev/null; # redirect stdout and stderr to null file
+	
+	if [ $? -gt 0 ] # check the exit code of the last line
+	then
+		printf "Exiting... Need to login to oc\n"
+		return;
+	fi
+
 	tmp=$(oc get --all-namespaces pods | grep Running | grep build | wc -l | awk '/.*/{print $1}')
 	while [ $tmp -gt 0 ]; 
 	do 
