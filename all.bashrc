@@ -22,6 +22,7 @@ alias macrc="vim $bashrc_folder/mac.bashrc "
 alias allrc="vim $bashrc_folder/all.bashrc "
 alias winrc="vim $bashrc_folder/win.bashrc "
 alias ..="cd ..;pwd"
+alias --="cd -;pwd"
 alias cdmkdir="dir=$1;echo $dir;mkdir $dir; cd $dir"
 alias bashhistory="cat ~/.bash_history"
 alias lastssh="cat ~/.bash_history | grep "^ssh"| tail -n 1 > /tmp/drewsshcmd;chmod 777 /tmp/drewsshcmd; /tmp/drewsshcmd;rm /tmp/drewsshcmd"
@@ -144,12 +145,13 @@ push_when_build_done(){
 	send_push 'build' 'is completed'
 }
 
-git_merge_in_dev(){
+git_merge_in_main(){
+	main_branch=$(git remote show origin | awk '/HEAD/{print $3}')
 	working_branch=$(git branch | awk '/^\*/{print $2}')
-	git checkout dev &&
+	git checkout $main_branch &&
 	git pull &&
 	git checkout $working_branch &&
-	git merge dev
+	git merge $main_branch
 }
 git_delete_current_branch(){
 	working_branch=$(git branch | awk '/^\*/{print $2}')
@@ -157,6 +159,8 @@ git_delete_current_branch(){
 	git branch -D $working_branch
 }
 
+alias tmux_help="firefox https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/"
+alias vim_help="firefox https://vim.rtorr.com/"
 
 set bell-style visible
 
