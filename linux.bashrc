@@ -23,10 +23,6 @@ batterylevel(){
 
 }
 
-sleephelp(){
-        echo 'systemctl suspend'
-}
-
 restartGnome(){
 	killall -3 gnome-shell
 }
