@@ -1,0 +1,3 @@
+tar -zcvf archive-name.tar.gz source-directory-name
+tar -zxvf prog-1-jan-2005.tar.gz
+tar xf file.tar -C /path/to/directory
