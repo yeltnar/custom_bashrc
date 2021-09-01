@@ -153,12 +153,15 @@ git_delete_current_branch(){
 	git branch -D $working_branch
 }
 
-drewhelp(){
+dhelp(){
+
+	help_files_dir=drewhelp
+
 	if [ -z ${1} ]; 
 	then
-		echo "no param"
+		ls $bashrc_folder/$help_files_dir;
 	else
-		cat $bashrc_folder/drewhelp/$1;
+		cat $bashrc_folder/$help_files_dir/$1;
 	fi
 }
 
