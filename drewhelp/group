@@ -1,0 +1,15 @@
+# create group
+sudo groupadd mynewgroup
+
+# add to group
+usermod -a -G examplegroup $USER
+
+# change primary group
+usermod -g groupname $USER
+
+# View the Groups a User Account is Assigned To
+groups
+id $USER
+
+# List All Members of a Group #
+less /etc/group
