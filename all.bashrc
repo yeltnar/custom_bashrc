@@ -1,5 +1,12 @@
 bashrc_folder="$HOME/playin/custom_bashrc"
 export custom_bashrc_folder=$bashrc_folder;
+
+# check if tmux is found, and not currently tmux
+if [ ! -z "$(which tmux)" ] && [ -z "$TMUX" ]; then
+	# echo '-z which tmux'
+	exec tmux
+fi
+
 if [[ `uname` == 'Darwin' ]]; then
 	if [ -f $bashrc_folder/mac.bashrc ]; then . $bashrc_folder/mac.bashrc; fi
 else
@@ -22,7 +29,7 @@ alias macrc="vim $bashrc_folder/mac.bashrc "
 alias allrc="vim $bashrc_folder/all.bashrc "
 alias winrc="vim $bashrc_folder/win.bashrc "
 alias ..="cd ..;pwd"
-alias --="cd -;pwd"
+# alias --="cd -;pwd"
 alias cdmkdir="dir=$1;echo $dir;mkdir $dir; cd $dir"
 alias bashhistory="cat ~/.bash_history"
 alias lastssh="cat ~/.bash_history | grep "^ssh"| tail -n 1 > /tmp/drewsshcmd;chmod 777 /tmp/drewsshcmd; /tmp/drewsshcmd;rm /tmp/drewsshcmd"
