@@ -1,0 +1,9 @@
+# config dialog 
+rclone config
+
+# ls remote (after : is dir; empty is home)
+rclone lsd remote:
+
+# mount
+rclone mount remote:/srv/www-data/ /mnt/www-data
+
