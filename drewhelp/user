@@ -9,3 +9,6 @@ usermod -l login-name old-name
 
 # change user id
 usermod -u UID username
+
+# create a user
+sudo useradd username
