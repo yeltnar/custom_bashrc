@@ -3,7 +3,6 @@ export custom_bashrc_folder=$bashrc_folder;
 
 # check if tmux is found, and not currently tmux
 if [ ! -z "$(which tmux)" ] && [ -z "$TMUX" ]; then
-	# echo '-z which tmux'
 	exec tmux
 fi
 
