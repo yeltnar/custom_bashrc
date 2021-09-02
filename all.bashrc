@@ -194,7 +194,9 @@ extract () {
 	fi
 }
 
-
+# set vim as default editor 
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 alias tmux_help="firefox https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/"
 alias vim_help="firefox https://vim.rtorr.com/"
@@ -202,3 +204,5 @@ alias vim_help="firefox https://vim.rtorr.com/"
 set bell-style visible
 
 echo "Loaded all.bashrc"
+
+
