@@ -1,3 +1,34 @@
 [space] - rotate through displays 
 " - split horizontally
 % - split vertically
+
+tmux new
+:new
+:new -s session-name
+
+# attach
+tmux a
+
+# new session
+tmux kill-ses n
+tmux kill-ses -s session-name
+
+tmux kill-ses -a -t session-name
+
+# rename session
+C-b $
+
+# detach
+C-b d
+
+# list
+tmux ls
+
+# open help in browser
+firefox https://tmuxcheatsheet.com
+
+# Detach others on the session (Maximize window by detach other clients) 
+:attach -d
+
+# Session and Window Previewi
+C-b w
