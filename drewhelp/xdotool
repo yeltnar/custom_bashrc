@@ -1,0 +1,16 @@
+# type text
+xdotool type "Hello world"
+
+# press key
+xdotool key ctrl+l
+
+# close a winodw 
+xdotool selectwindow windowclose
+
+# Bring up Firefox and focus the URL bar
+xdotool search "Mozilla Firefox" windowactivate --sync key --clearmodifiers ctrl+l
+
+# Resize all visible gnome-terminal windows
+xdotool search --onlyvisible --classname "gnome-terminal" windowsize %@ 500
+500
+
