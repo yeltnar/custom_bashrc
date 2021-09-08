@@ -1,0 +1,3 @@
+# /bin/bash
+
+firefox 'https://linuxize.com/post/bash-redirect-stderr-stdout/' &
