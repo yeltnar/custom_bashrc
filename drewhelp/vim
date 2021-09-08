@@ -1,0 +1,4 @@
+# /bin/bash
+
+firefox https://vim.rtorr.com/ &
+
