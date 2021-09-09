@@ -1,3 +1,5 @@
+# groups are kept in /etc/group
+
 # create group
 sudo groupadd mynewgroup
 
