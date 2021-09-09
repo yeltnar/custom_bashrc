@@ -1,3 +1,6 @@
+# users are kept in /etc/passwd
+# encrypted passwords are kept in /etc/shadowca
+
 # To assign a new UID to user called foo, enter:
 usermod -u 2005 foo
 
@@ -12,3 +15,10 @@ usermod -u UID username
 
 # create a user
 sudo useradd username
+
+# make user sudo
+# add to sudo and(?) root groups
+
+# if previous doesn't work, 
+# add entry to `/etc/sudoers.d` or `/etc/sudoers`...keep the %
+# %yourgroup ALL=(ALL) ALL
