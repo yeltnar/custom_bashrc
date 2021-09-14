@@ -3,7 +3,7 @@ export custom_bashrc_folder=$bashrc_folder;
 
 # check if tmux is found, and not currently tmux
 if [ ! -z "$(which tmux)" ] && [ -z "$TMUX" ]; then
-	exec tmux
+	tmux && exit
 fi
 
 if [[ `uname` == 'Darwin' ]]; then
@@ -192,6 +192,10 @@ extract () {
 	else
 		echo "'$1' is not a valid file"
 	fi
+}
+
+savelastcommand(){
+	history | tail -n 2 | head -n 1 >> /tmp/history_save
 }
 
 # set vim as default editor 
