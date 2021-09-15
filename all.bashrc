@@ -23,8 +23,9 @@ alias cpl="clear_pwd_ls"
 # alias clera="clear"
 
 #alias vimbashrc="vim ~/.bashrc"
-alias vimmacrc="vim $bashrc_folder/mac.bashrc "
+alias vimallbashrc="vim $bashrc_folder/all.bashrc "
 alias vimbashrc="vim $bashrc_folder/all.bashrc "
+alias vimmacrc="vim $bashrc_folder/mac.bashrc "
 alias vimwinrc="vim $bashrc_folder/win.bashrc "
 alias vimwinrc="vim $bashrc_folder/win.bashrc "
 
