@@ -2,8 +2,8 @@ bashrc_folder="$HOME/playin/custom_bashrc"
 export custom_bashrc_folder=$bashrc_folder;
 
 # check if tmux is found, and not currently tmux
-if [ ! -z "$(which tmux)" ] && [ -z "$TMUX" ]; then
-	exec tmux
+if [ ! -z "$(which tmux)" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ]; then
+	tmux && exit
 fi
 
 if [[ `uname` == 'Darwin' ]]; then
@@ -22,11 +22,12 @@ alias cpl="clear_pwd_ls"
 # alias claer="clear"
 # alias clera="clear"
 
-alias sns="clear; sudo npm start"
-alias bashrc="vim ~/.bashrc"
-alias macrc="vim $bashrc_folder/mac.bashrc "
-alias allrc="vim $bashrc_folder/all.bashrc "
-alias winrc="vim $bashrc_folder/win.bashrc "
+#alias vimbashrc="vim ~/.bashrc"
+alias vimmacrc="vim $bashrc_folder/mac.bashrc "
+alias vimbashrc="vim $bashrc_folder/all.bashrc "
+alias vimwinrc="vim $bashrc_folder/win.bashrc "
+alias vimwinrc="vim $bashrc_folder/win.bashrc "
+
 alias ..="cd ..;pwd"
 # alias --="cd -;pwd"
 alias cdmkdir="dir=$1;echo $dir;mkdir $dir; cd $dir"
@@ -192,6 +193,21 @@ extract () {
 	else
 		echo "'$1' is not a valid file"
 	fi
+}
+
+savelastcommand(){
+	history | tail -n 2 | head -n 1 >> /tmp/history_save
+}
+
+cdbashrc(){
+	cd $bashrc_folder 
+}
+
+nebula_name=$DEVICE_NAME;
+nebula_folder="$HOME/nebula/$nebula_name/";
+sudo_start_nebula(){
+	cd "$nebula_folder";
+	sudo ../nebula -config config.yml
 }
 
 # set vim as default editor 
