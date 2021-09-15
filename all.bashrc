@@ -222,3 +222,4 @@ set bell-style visible
 echo "Loaded all.bashrc"
 
 
+#shutdown "+60"
