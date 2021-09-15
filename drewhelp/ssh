@@ -1,0 +1,13 @@
+# ssh user file
+/etc/ssh/sshd_config
+
+# restart ssh daemon 
+/sbin/service sshd restart
+
+# enable sudo
+/etc/sudoers
+
+# ssh -i to use private key
+
+# raspberry pi autostart sshd
+touch /boot/ssh 

@@ -1,3 +1,5 @@
+# groups are kept in /etc/group
+
 # create group
 sudo groupadd mynewgroup
 
@@ -13,3 +15,6 @@ id $USER
 
 # List All Members of a Group #
 less /etc/group
+
+# evaluate groups 
+newgrp docker 
