@@ -1,0 +1,7 @@
+nux processes 
+
+ctrl+z - send current to bg
+watch date & - start process and send to background
+jobs - list background jobs
+fg - bring job %0 to the foreground 
+
