@@ -22,11 +22,12 @@ alias cpl="clear_pwd_ls"
 # alias claer="clear"
 # alias clera="clear"
 
-alias sns="clear; sudo npm start"
-alias bashrc="vim ~/.bashrc"
-alias macrc="vim $bashrc_folder/mac.bashrc "
-alias allrc="vim $bashrc_folder/all.bashrc "
-alias winrc="vim $bashrc_folder/win.bashrc "
+#alias vimbashrc="vim ~/.bashrc"
+alias vimmacrc="vim $bashrc_folder/mac.bashrc "
+alias vimbashrc="vim $bashrc_folder/all.bashrc "
+alias vimwinrc="vim $bashrc_folder/win.bashrc "
+alias vimwinrc="vim $bashrc_folder/win.bashrc "
+
 alias ..="cd ..;pwd"
 # alias --="cd -;pwd"
 alias cdmkdir="dir=$1;echo $dir;mkdir $dir; cd $dir"
@@ -196,6 +197,17 @@ extract () {
 
 savelastcommand(){
 	history | tail -n 2 | head -n 1 >> /tmp/history_save
+}
+
+cdbashrc(){
+	cd $bashrc_folder 
+}
+
+nebula_name="drew-lin-lap";
+nebula_folder="$HOME/nebula/$nebula_name/";
+sudo_start_nebula(){
+	cd "$nebula_folder";
+	sudo ../nebula -config config.yml
 }
 
 # set vim as default editor 
