@@ -32,3 +32,20 @@ firefox https://tmuxcheatsheet.com
 
 # Session and Window Previewi
 C-b w
+
+# tmux redirect output to a file (or anything) (this is implicitly -O where the next is -I)
+tmux pipe-pane -t0 "cat >> /tmp/tmux.log"
+
+# same but take stdin and send to another session 
+tmux pipe-pane -I -t0 "echo echo 'hello'"
+
+# type in a pane. Either text, or command (return in this case)
+tmux send-keys -t0 "echo 'this will be typed'"
+tmux send-keys -t0 C-m
+tmux send-keys -t0 Enter
+
+# take contents from another file and output to local machine
+tmux pipe-pane -o -t0 "tail -n +2 | col -b | base64 -d > ~/output"
+tmux send-keys -t0 "base64 /some/file && read" Enter
+tmux pipe-pane -t0
+tmux send-keys -t0 Enter
