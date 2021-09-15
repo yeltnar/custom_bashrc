@@ -1,0 +1,10 @@
+setup (encrypted) disk image
+
+truncate -s 1G disk.img
+mkfs ext4 -F disk.img
+mount -o loop disk.img /tmp/mounted_disk
+
+# http://freesoftwaremagazine.com/articles/create_encrypted_disk_image_gnulinux/
+sudo cryptsetup -y luksFormat disk.img 
+sudo cryptsetup luksOpen disk.img disk_img_decrypted
+sudo mkfs.ext4 /dev/mapper/disk_img_decrypted 
