@@ -1,0 +1,95 @@
+fg - bring to foreground
+bg - something background
+jobs - list bg tasks?
+
+> cta /really/long/path/here/to/file.txt
+> cat !$
+    !$ is the last argument to the previous command. !$ is shorthand for !!:$
+
+...
+
+> history | grep "some keyword"
+> !532
+> # Crap, it needs sudo
+> sudo !!
+
+...
+
+> # 5 minutes later
+> # Uh, I think it was line 532?  I want it to print it out to verify
+> !532:p
+> Yup, that's it.  It was only a printout though, time to use it
+> !!
+> # Oh, right, sudo...
+> sudo !!
+
+...
+
+> cta /really/long/path/here/to/file.txt
+> cat !$
+
+...
+
+> cta /really/long/path/here/to/file.txt
+> # Fuck misspelled cat
+> cat !$
+> #Yeah, that's the right file.  Let me jump in that directory
+> cd !$:h
+
+...
+
+!$ - Use the last argument only from `!!`
+!:2 - Use the 2nd argument (0th index = command)
+!:1-$ - Use all the parameters.  E.g. you issued a command with 10 parameters but misspelled the command itself, use `correct-command !:1-$`
+!str - Use the most recent command that matches the string.  Useful with :p (e.g. `!vpn:p`) to ensure it is the desired instruction.
+
+...
+
+History File Manipulation:
+history -w will save your current history to the file.  Otherwise only happens on successful/normal logout.  Useful for SSH.
+history -c will clear the entire history.  Use with `-w` to save the empty file
+history -d 252 will delete line 252 from history.  Good if you accidentally issues a command with credentials.
+
+
+
+_Eric's notes_
+
+# History #
+
+System Aliases/Overrides:
+_history : default `history` reference
+history : override function.  If no variables, displays `_history`.  Otherwise performs `history | grep "$@"`.
+hs : alias for custom history
+
+Useful Examples:
+history - Display history
+history keyword - grep for keyword over history results
+! - Indicator for a "history expansion"
+!! - Execute previous history entry.  Can be used in another command, e.g. you forgot to sudo: `sudo !!`
+!!:p - Print previous history entry to shell (no execute)
+!252 - Execute command in history position 252
+
+!$ - Use the last argument only from `!!`
+!:2 - Use the 2nd argument (0th index = command)
+!:1-$ - Use all the parameters.  E.g. you issued a command with 10 parameters but misspelled the command itself, use `correct-command !:1-$`
+!str - Use the most recent command that matches the string.  Useful with :p (e.g. `!vpn:p`) to ensure it is the desired instruction.
+
+
+History File Manipulation:
+history -w will save your current history to the file.  Otherwise only happens on successful/normal logout.  Useful for SSH.
+history -c will clear the entire history.  Use with `-w` to save the empty file
+history -d 252 will delete line 252 from history.  Good if you accidentally issues a command with credentials.
+
+Items with * next to it in entry are edited.
+
+Useful examples:
+$> cat ~/code/externalapps/dwm/dwm.c
+$> cd !$:h
+$> # cd ~/code/externalapps/dwm/
+
+$> cp /some/directory/here/original.txt !#:1.bak
+$> # cp /some/directory/here/original.txt /some/directory/here/original.txt.bak
+
+Useful References:
+[7 Bash](https://opensource.com/article/19/10/bash-history-shortcuts) - Pretty decent quick list of useful tools
+[Bash History Expansion](https://sanctum.geek.nz/arabesque/bash-history-expansion/) - Looks like a thorough look at history expansion
