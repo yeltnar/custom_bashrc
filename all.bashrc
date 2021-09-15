@@ -2,7 +2,7 @@ bashrc_folder="$HOME/playin/custom_bashrc"
 export custom_bashrc_folder=$bashrc_folder;
 
 # check if tmux is found, and not currently tmux
-if [ ! -z "$(which tmux)" ] && [ -z "$TMUX" ]; then
+if [ ! -z "$(which tmux)" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ]; then
 	tmux && exit
 fi
 
