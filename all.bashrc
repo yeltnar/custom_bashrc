@@ -203,7 +203,7 @@ cdbashrc(){
 	cd $bashrc_folder 
 }
 
-nebula_name="drew-lin-lap";
+nebula_name=$DEVICE_NAME;
 nebula_folder="$HOME/nebula/$nebula_name/";
 sudo_start_nebula(){
 	cd "$nebula_folder";
