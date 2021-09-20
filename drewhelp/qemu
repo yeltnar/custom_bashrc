@@ -1,0 +1,6 @@
+# start qemu vm
+qemu-system-x86_64     -enable-kvm     -m 2048     -nic user,model=virtio     -drive file=disk1.qcow,media=disk,if=virtio
+
+# create qemu disk
+qemu-img create -f qcow2 disk1.qcow 10G
+

@@ -4,6 +4,16 @@ truncate -s 1G disk.img
 mkfs ext4 -F disk.img
 mount -o loop disk.img /tmp/mounted_disk
 
+# make btrfs mount
+truncate -s10G disk.img
+mkfs -t btrfs ./disk.img 
+sudo mount ./disk.img /tmp/mounted_disk/
+
+# dedup a btrfs
+jdupes -S -B -r /tmp/mounted_disk
+# verify dedup
+btrfs filesystem du /tmp/mounted_disk
+
 # http://freesoftwaremagazine.com/articles/create_encrypted_disk_image_gnulinux/
 sudo cryptsetup -y luksFormat disk.img 
 sudo cryptsetup luksOpen disk.img disk_img_decrypted
