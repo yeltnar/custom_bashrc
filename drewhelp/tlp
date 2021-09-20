@@ -4,5 +4,5 @@ https://linrunner.de/tlp/usage/tlp.html#battery-care
 # src - Changes can be saved with user and sudo permissions (e.g. /etc/default/tlp or /etc/tlp.conf) 
 # actually should use /etc/tlp.d/ 
 
-
+# when installing, just use whats in apt(-get); the kernel stuff should be solved now
 
