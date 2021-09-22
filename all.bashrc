@@ -3,7 +3,15 @@ export custom_bashrc_folder=$bashrc_folder;
 
 # check if tmux is found, and not currently tmux
 if [ ! -z "$(which tmux)" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ]; then
-	tmux && exit
+	
+	random_id="$(date "+%s-%N")";
+	new_id=$random_id
+
+	tmux new-session -d -t "$random_id" &&
+	tmux send-keys -t "$random_id" "export random_id=$random_id" C-m &&
+	tmux rename-ses -t "$random_id" "$new_id" &&
+	tmux attach-ses -t "$new_id" && 
+	exit;
 fi
 
 if [[ `uname` == 'Darwin' ]]; then
