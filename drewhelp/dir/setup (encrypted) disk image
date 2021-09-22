@@ -1,4 +1,4 @@
-setup (encrypted) disk image
+# setup (encrypted) disk image
 
 truncate -s 1G disk.img
 mkfs ext4 -F disk.img
@@ -8,6 +8,9 @@ mount -o loop disk.img /tmp/mounted_disk
 truncate -s10G disk.img
 mkfs -t btrfs ./disk.img 
 sudo mount ./disk.img /tmp/mounted_disk/
+
+# subvolume commands
+sudo btrfs subv
 
 # dedup a btrfs
 jdupes -S -B -r /tmp/mounted_disk
