@@ -3,3 +3,7 @@ https://gist.github.com/etes/aa76a6e9c80579872e5f
 
 # downloaded version of the above 
 custom_bashrc/drewhelp/dir/pi_mount_usb.md
+
+# for raspberry pi - replace the uuid
+UUID=7E5407095406C3BD /media/pi/TOSHIBA\040EXT ntfs-3g async,big_writes,noatime,nodiratime,nofail,uid=1000,gid=1000,umask=007 0 0
+
