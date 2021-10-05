@@ -219,7 +219,7 @@ codebashrc(){
 dshutdown(){
 	printf "This will shutdown after the specified number of seconds, printing each second.\n";
 	print_countdown $1;
-	[ -z "$1" ] || echo 'shutdown now';
+	[ -z "$1" ] ||shutdown now;
 }
 
 print_countdown(){
