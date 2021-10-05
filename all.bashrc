@@ -212,6 +212,38 @@ cdbashrc(){
 	cd $bashrc_folder 
 }
 
+codebashrc(){
+	code  $bashrc_folder/all.bashrc;
+}
+
+dshutdown(){
+	printf "This will shutdown after the specified number of seconds, printing each second.\n";
+	print_countdown $1;
+	[ -z "$1" ] || echo 'shutdown now';
+}
+
+print_countdown(){
+    if [ -z "$1" ] 
+    then
+        echo 'no shutdown_time provided ';
+    else
+		countdown_time="$1"; 
+		printf "change this from node to bash\n";
+		node -e "let c=$countdown_time;\
+		let f=()=>{\
+			console.log(c);\
+			if(c===0){\
+				clearInterval(id);\
+			}\
+			c--;\
+		};\
+		f();\
+		let id=setInterval(f,1000);";
+    fi
+
+
+}
+
 nebula_name=$DEVICE_NAME;
 nebula_folder="$HOME/nebula/$nebula_name/";
 sudo_start_nebula(){
