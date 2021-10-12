@@ -1,0 +1,12 @@
+# copy to XA_PRIMARY
+echo "to the x clipboard" | xclip
+
+# copy to XA_CLIPBOARD, the one you're thinking of 
+echo "to the x clipboard" | xclip -sel clipboard
+
+# paste to the terminal from XA_PRIMARY
+xclip -o
+
+# paste to the terminal from XA_CLIPBOARD, the one you're thinking of
+xclip -o -sel clipboard
+

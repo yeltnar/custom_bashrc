@@ -1,0 +1,4 @@
+# make btrfs mount
+truncate -s10G disk.img
+mkfs -t btrfs ./disk.img 
+sudo mount ./disk.img /tmp/mounted_disk/
