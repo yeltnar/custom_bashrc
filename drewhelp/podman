@@ -1,0 +1,6 @@
+# generate k8s yaml from running pod
+podman generate kube {container}
+
+#
+podman play kube {yaml}
+
