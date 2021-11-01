@@ -1,0 +1,21 @@
+# sudo umount /tmp/overlay
+
+# rm -rf /tmp/lower; rm -rf /tmp/upper; rm -rf /tmp/workdir; rm -rf /tmp/overlay
+# mkdir /tmp/lower; mkdir /tmp/upper; mkdir /tmp/workdir; mkdir /tmp/overlay
+
+sudo mount -t overlay overlay -olowerdir=/tmp/lower,upperdir=/tmp/upper,workdir=/tmp/workdir /tmp/overlay
+echo "lower" > /tmp/lower/lower.txt
+cat /tmp/overlay/lower.txt 
+echo "from upper..."
+cat /tmp/upper/lower.txt
+echo "overlay" > /tmp/overlay/lower.txt 
+echo "from lower..."
+cat /tmp/lower/lower.txt 
+echo "from overlay..."
+cat /tmp/overlay/lower.txt 
+echo "from upper..."
+cat /tmp/upper/lower.txt
+
+rm /tmp/lower/lower.txt 
+rm /tmp/overlay/lower.txt 
+
