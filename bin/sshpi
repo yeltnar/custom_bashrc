@@ -1,0 +1,3 @@
+ssh_command="-p 23 pi@$(piip)"
+echo $ssh_command
+ssh $ssh_command

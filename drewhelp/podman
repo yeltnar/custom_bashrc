@@ -4,3 +4,8 @@ podman generate kube {container}
 #
 podman play kube {yaml}
 
+# podman-unshare - Run a command inside of a modified user namespace
+podman unshare chown 27:27 /path/to/dir
+
+# look at selinux for more
+

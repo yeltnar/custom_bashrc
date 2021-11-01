@@ -1,0 +1,3 @@
+sftp_command="-P 23 pi@$(piip)"
+echo $sftp_command
+sftp $sftp_command
