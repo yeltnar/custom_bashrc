@@ -1,0 +1,13 @@
+person_id=$(cat $bashrc_folder/gitignore/firebase_person_id)
+token=$(cat $bashrc_folder/gitignore/firebase_token)
+
+title=$1
+text=$2
+
+title=$(node -e "process.stdout.write(encodeURIComponent('$title'))")
+text=$(node -e "process.stdout.write(encodeURIComponent('$text'))")
+
+curl --location --request POST "node.andbrant.com/join/api?person_id=$person_id&token=$token&deviceId=group.android&title=$title&text=$text" --header 'Content-Type: application/json'
+
+echo "";
+echo "sent - title: $title text: $text";

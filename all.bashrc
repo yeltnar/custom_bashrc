@@ -1,5 +1,6 @@
-bashrc_folder="$HOME/playin/custom_bashrc"
-export custom_bashrc_folder=$bashrc_folder;
+export bashrc_folder="$HOME/playin/custom_bashrc"
+
+PATH="$PATH:$bashrc_folder/bin"
 
 # check if tmux is found, and not currently tmux
 if [ ! -z "$(which tmux)" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ]; then
@@ -47,53 +48,6 @@ alias lastssh="cat ~/.bash_history | grep "^ssh"| tail -n 1 > /tmp/drewsshcmd;ch
 export HISTTIMEFORMAT="(%c) "
 
 alias fudge=fuck
-
-firebase_person_id(){
-	cat $bashrc_folder/gitignore/firebase_person_id
-}
-
-firebase_token(){
-	cat $bashrc_folder/gitignore/firebase_token
-}
-
-piip(){
-	pi_ip=$(curl "https://node.andbrant.com/database?person_id=$(firebase_person_id)&token=$(firebase_token)&data_location=devices.exposed_pi.public_ip_v4"| awk '{print substr($0, 2, length($0) - 2)}')
-	echo $pi_ip
-}
-
-send_push(){
-
-	person_id=$(cat $bashrc_folder/gitignore/firebase_person_id)
-	token=$(cat $bashrc_folder/gitignore/firebase_token)
-
-	title=$1
-	text=$2
-
-	title=$(node -e "process.stdout.write(encodeURIComponent('$title'))")
-	text=$(node -e "process.stdout.write(encodeURIComponent('$text'))")
-
-	curl --location --request POST "node.andbrant.com/join/api?person_id=$person_id&token=$token&deviceId=group.android&title=$title&text=$text" --header 'Content-Type: application/json'
-
-	echo "";
-	echo "sent - title: $title text: $text";
-}
-
-# alias sshpi="ssh pi@raspberrypi"
-sshpi(){
-	ssh_command="-p 23 pi@$(piip)"
-	echo $ssh_command
-	ssh $ssh_command
-}
-
-# alias sshpi="ssh pi@raspberrypi"
-sftppi(){
-	sftp_command="-P 23 pi@$(piip)"
-	echo $sftp_command
-	sftp $sftp_command
-}
-
-alias ubsh="olddir=$(pwd); cd $bashrc_folder; git pull; cd $olddir"
-alias pushall="git add .; git commit -m $1; git push"
 
 alias pullandroidsettings="adb shell settings list system > system.txt; adb shell settings list global > global.txt; adb shell settings list secure > secure.txt"
 alias express_init="git clone https://github.com/yeltnar/express_starter.git ."
@@ -254,6 +208,8 @@ sudo_start_nebula(){
 # set vim as default editor 
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+alias kc=kubectl;
 
 alias tmux_help="firefox https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/"
 alias vim_help="firefox https://vim.rtorr.com/"
