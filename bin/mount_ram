@@ -1,0 +1,2 @@
+mkdir -p /tmp/memory
+rclone mount --allow-other :memory:/ /tmp/memory
