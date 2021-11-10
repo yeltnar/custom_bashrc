@@ -1,3 +1,4 @@
 curl https://digitalocean.andbrant.com
 echo ""
 ifconfig | awk '/192/{print $2}'
+ifconfig | awk '/10\.10\.10/{print $2}'
