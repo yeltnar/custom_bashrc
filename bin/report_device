@@ -1,0 +1,50 @@
+#!/bin/bash
+
+get_token(){
+	cat $bashrc_folder/gitignore/homeassistant_token
+}
+
+get_device(){
+	cat $bashrc_folder/gitignore/homeassistant_device_name
+}
+
+pub_ip=$(curl https://digitalocean.andbrant.com);
+lan_ip=$(ifconfig | awk '/192/{print $2}');
+nebula_ip=$(ifconfig | awk '/10\.10\.10/{print $2}');
+
+ \"attributes\":{\
+       \"public_ip\":\"$pub_ip\",\
+       \"lan_ip\":\"$lan_ip\",\
+       \"nebula_ip\":\"$nebula_ip\",\
+       \"time_stamp\":\"$time_stamp\"\
+  }\
+
+time_stamp="$(date +%s)";
+
+data="{
+    \"state\":\"$pub_ip\",
+    \"attributes\":{
+       \"time_stamp\":\"$time_stamp\"
+  }\
+}"
+# new lines with the double quotes seemed to break it 
+curl --location --request POST "http://homeassistant:8123/api/states/$(get_device).pub_ip" --header "Authorization: Bearer $(get_token)" --header 'Content-Type: application/json' --data-raw "$data"
+
+data="{\
+    \"state\":\"$lan_ip\",
+    \"attributes\":{
+       \"time_stamp\":\"$time_stamp\"
+  }\
+}"
+# new lines with the double quotes seemed to break it 
+curl --location --request POST "http://homeassistant:8123/api/states/$(get_device).lan_ip" --header "Authorization: Bearer $(get_token)" --header 'Content-Type: application/json' --data-raw "$data"
+
+data="{\
+    \"state\":\"$nebula_ip\",
+    \"attributes\":{
+       \"time_stamp\":\"$time_stamp\"
+  }\
+}"
+# new lines with the double quotes seemed to break it 
+curl --location --request POST "http://homeassistant:8123/api/states/$(get_device).nebula_ip" --header "Authorization: Bearer $(get_token)" --header 'Content-Type: application/json' --data-raw "$data"
+
