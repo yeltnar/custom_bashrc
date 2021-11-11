@@ -1,0 +1,10 @@
+
+
+curl --location --request POST 'http://homeassistant:8123/api/services/media_player/media_play' \
+--header "Authorization: Bearer $(homeassistant_token)" \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "entity_id": "media_player.chromecast_ultra"
+}'
+
+
