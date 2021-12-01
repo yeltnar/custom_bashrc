@@ -1,0 +1,3 @@
+working_branch=$(git branch | awk '/^\*/{print $2}')
+git checkout dev &&
+git branch -D $working_branch
