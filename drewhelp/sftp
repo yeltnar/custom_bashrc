@@ -1,1 +1,5 @@
+# upload to remote
 sftp {user}@{host}:{remote_dir} <<< $'put {local_file_path}'
+
+# download from remote
+sftp {user}@{host}:{remoteFileName} {localFileName}
