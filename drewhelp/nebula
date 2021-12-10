@@ -6,3 +6,19 @@ https://theorangeone.net/posts/nebula-intro/
 
 # another config helper... this has systemd stuff
 https://eliseomartelli.it/networking/2020/05/01/nebula/
+
+# sign cert example
+rm pixel6* ; ../nebula-cert sign -name "pixel6" -ip 10.0.0.2/26 -out-qr qr.ping -in-pub ./Share.data 
+
+# how to do phone
+# click Certificate
+# Share Public Key (can send with any method... its a public key)
+# run the following line to sign pixel6 with ip address 10.0.0.2 (capped at 26 devices) with the file Share.data containing the shared contetent from the app. The output qr code can be later scanned with the app
+# `../nebula-cert sign -name "pixel6" -ip 10.0.0.2/26 -out-qr qr.ping -in-pub ./Share.data` 
+# open the generated qr code and scan with phone, save
+# go to CA, and enter file with any of the methods, save
+# Hosts, Add a new entry
+# enter Lighthouse IP, turn on Lighthouse switch
+# enter ip address or dns name of lighthouse
+# enter lighthouse's port, save
+#
