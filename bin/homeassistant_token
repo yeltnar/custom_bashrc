@@ -1,0 +1,2 @@
+cat $bashrc_folder/gitignore/homeassistant_token
+
