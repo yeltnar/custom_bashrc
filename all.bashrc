@@ -156,7 +156,8 @@ alias vim_help="firefox https://vim.rtorr.com/"
 
 set bell-style visible
 
-echo "Loaded all.bashrc"
+vim="nvim"
 
+echo "Loaded all.bashrc"
 
 #shutdown "+60"

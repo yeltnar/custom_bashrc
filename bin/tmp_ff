@@ -1,0 +1,4 @@
+killall firefox
+rm -rf /tmp/ffp
+cp -r ~/.mozilla/firefox/firefox_profile /tmp/ffp 
+firefox --profile /tmp/ffp
