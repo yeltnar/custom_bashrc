@@ -1,0 +1,8 @@
+curl --location --request POST 'http://homeassistant:8123/api/services/scene/turn_on' \
+--header "Authorization: Bearer $(homeassistant_token)" \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "entity_id": "scene.sleep"
+}'
+
+
