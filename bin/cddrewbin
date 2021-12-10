@@ -1,1 +1,1 @@
-echo dothis
+cd $bashrc_folder"/bin"
