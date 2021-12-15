@@ -1,4 +1,4 @@
-curl --location --request POST 'http://homeassistant:8123/api/services/light/turn_off' \
+curl --location --request POST "http://$(homeassistant_host)/api/services/light/turn_off" \
 --header "Authorization: Bearer $(homeassistant_token)" \
 --header 'Content-Type: application/json' \
 --data-raw '{

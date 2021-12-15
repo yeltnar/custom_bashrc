@@ -1,8 +1,14 @@
+if [ -z $1 ]
+then
+    printf "need to provide scene\n"
+    exit -1
+fi
+
+echo "sceen is $1"
+
 curl --location --request POST "http://$(homeassistant_host)/api/services/scene/turn_on" \
 --header "Authorization: Bearer $(homeassistant_token)" \
 --header 'Content-Type: application/json' \
---data-raw '{
-    "entity_id": "scene.sleep"
-}'
-
-
+--data-raw "{
+    \"entity_id\": \"scene.$1\"
+}"
