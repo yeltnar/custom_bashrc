@@ -24,13 +24,6 @@ fi
 alias advance_pwd="if [ `/bin/pwd` == `/bin/pwd -P` ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
 alias ddd="if [ $(/bin/pwd) == $(/bin/pwd -P) ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
 
-alias clear_pwd_ls="clear;pwd;ls"
-alias cpl="clear_pwd_ls" 
-# alias cls="clear_pwd_ls"
-
-# alias claer="clear"
-# alias clera="clear"
-
 #alias vimbashrc="vim ~/.bashrc"
 alias vimallbashrc="vim $bashrc_folder/all.bashrc "
 alias vimbashrc="vim $bashrc_folder/all.bashrc "
@@ -72,10 +65,6 @@ alias dnpm="$bashrc_folder/dnpm"
 alias toupper="node $bashrc_folder/uppercase.js"
 alias tolower="node $bashrc_folder/lowercase.js"
 
-npmscripts(){
-	cat "package.json" | jq .scripts
-}
-
 firefox_new(){
 	num=1;
 	dir="/tmp/ff_profile_$num/";
@@ -107,55 +96,6 @@ push_when_build_done(){
 	printf "tmp...\n$tmp"
 	printf 'exiting\n'
 	send_push 'build' 'is completed'
-}
-
-git_merge_in_main(){
-	main_branch=$(git remote show origin | awk '/HEAD/{print $3}')
-	working_branch=$(git branch | awk '/^\*/{print $2}')
-	git checkout $main_branch &&
-	git pull &&
-	git checkout $working_branch &&
-	git merge $main_branch
-}
-git_delete_current_branch(){
-	working_branch=$(git branch | awk '/^\*/{print $2}')
-	git checkout dev &&
-	git branch -D $working_branch
-}
-
-dhelp(){
-
-	help_files_dir=drewhelp
-
-	if [ -z ${1} ]; 
-	then
-		ls $bashrc_folder/$help_files_dir;
-	else
-		cat $bashrc_folder/$help_files_dir/$1;
-	fi
-}
-
-#   extract:  Extract most know archives with one command
-#   ---------------------------------------------------------
-extract () {
-	if [ -f $1 ] ; then
-	case $1 in
-		*.tar.bz2)   tar vxjf $1     ;;
-		*.tar.gz)    tar vxzf $1     ;;
-		*.bz2)       bunzip2 $1     ;;
-		*.rar)       unrar e $1     ;;
-		*.gz)        gunzip $1      ;;
-		*.tar)       tar vxf $1      ;;
-		*.tbz2)      tar vxjf $1     ;;
-		*.tgz)       tar vxzf $1     ;;
-		*.zip)       unzip $1       ;;
-		*.Z)         uncompress $1  ;;
-		*.7z)        7z x $1        ;;
-		*)     echo "'$1' cannot be extracted via extract()" ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
 }
 
 savelastcommand(){

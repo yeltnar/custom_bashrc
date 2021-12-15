@@ -1,3 +1,3 @@
-curl --location --request GET 'http://homeassistant:8123/api/states/media_player.chromecast_ultra' \
+curl --location --request GET "http://$(homeassistant_host)/api/states/media_player.chromecast_ultra" \
 --header "Authorization: Bearer $(homeassistant_token)" \
 --header 'Content-Type: application/json'
