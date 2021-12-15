@@ -1,0 +1,1 @@
+docker run -v $1:/usr/share/caddy -p $2:80 caddy:latest
