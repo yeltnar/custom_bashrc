@@ -1,0 +1,1 @@
+rsync -v -a --delete --log-file="$log_dir/$(date).log" -e 'ssh -p 23' pi@$(piip):'/media/pi/TOSHIBA\ EXT/*' /media/pi/TOSHIBA\ EXT/exposed_pi/
