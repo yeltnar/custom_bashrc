@@ -21,4 +21,22 @@ rm pixel6* ; ../nebula-cert sign -name "pixel6" -ip 10.0.0.2/24 -out-qr qr.ping 
 # enter Lighthouse IP, turn on Lighthouse switch
 # enter ip address or dns name of lighthouse
 # enter lighthouse's port, save
-#
+
+
+# put this for systemd in # /etc/systemd/system/drew-nebula.service
+
+[Unit]
+Description=Nebula Service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+WorkingDirectory=/home/pi/nebula/exposed-pi
+ExecStart=/home/pi/nebula/nebula -config ./config.yml
+
+[Install]
+WantedBy=multi-user.target
+
