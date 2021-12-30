@@ -1,0 +1,11 @@
+export BW_SESSION="$(cat $bashrc_folder/gitignore/BW_SESSION)"
+
+if [[ -z "$1" || -z "$2" ]]; then
+	printf "need device and ip type\n"
+	printf '$1 is the device name, $2 is the ip type (lan, nebula, pub)\n'
+	exit
+fi
+
+
+bw get item --organizationid device-status "$1" | jq -r .notes | jq ".$2_ip" -r
+
