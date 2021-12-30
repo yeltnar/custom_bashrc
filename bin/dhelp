@@ -4,5 +4,5 @@ if [ -z ${1} ];
 then
     ls $bashrc_folder/$help_files_dir;
 else
-    cat $bashrc_folder/$help_files_dir/$1;
+    less $bashrc_folder/$help_files_dir/$1;
 fi
