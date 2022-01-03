@@ -7,6 +7,22 @@ lan_ip="$(ifconfig | awk '/192\.168/{print $2}' | tr '\n' ' ')";
 nebula_ip=$(ifconfig | awk '/10\.10\.10/{print $2}');
 git_branch=$(git rev-parse HEAD)
 
+printf "last time it was"
+cat $bashrc_folder/gitignore/last_bw_ip_json | jq
+old_pub_ip=$(cat $bashrc_folder/gitignore/last_bw_ip_json | jq -r .pub_ip)
+old_lan_ip=$(cat $bashrc_folder/gitignore/last_bw_ip_json | jq -r .lan_ip)
+old_nebula_ip=$(cat $bashrc_folder/gitignore/last_bw_ip_json | jq -r .nebula_ip)
+
+if [ "$old_pub_ip" = "$pub_ip" ] && [ "$lan_ip" = "$old_lan_ip" ] && [ "$nebula_ip" = "$old_nebula_ip" ] && [ "$FORCE_UPLOAD" != "TRUE" ];   
+then
+	echo "$old_pub_ip"
+	echo "$old_lan_ip"
+	echo "$old_nebula_ip"
+	printf "getting not enough change\n"
+	printf "TODO make this allow for no change being made\n"
+	exit
+fi
+
 date="$(date)"
 
 new_content="{ \
@@ -17,7 +33,7 @@ new_content="{ \
     \"git_branch\":\"$git_branch\" \
 }"
 
-echo $new_content | jq
+#echo "$new_content" | jq
 
 note_name="$(cat $bashrc_folder/gitignore/note_name)";
 email="$(cat $bashrc_folder/gitignore/email)"
@@ -25,6 +41,10 @@ passwordfile="$bashrc_folder/gitignore/passwordfile"
 organizationid="$(cat $bashrc_folder/gitignore/organizationid)"
 
 export BW_SESSION="$(cat $bashrc_folder/gitignore/BW_SESSION)"
+
+printf "$new_content" | jq > $bashrc_folder/gitignore/last_bw_ip_json
+printf "this time it was"
+cat $bashrc_folder/gitignore/last_bw_ip_json | jq
 
 json=$(bw get item $note_name --organizationid $organizationid) 
 
