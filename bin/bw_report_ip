@@ -14,6 +14,7 @@ old_lan_ip=$(cat $bashrc_folder/gitignore/last_bw_ip_json | jq -r .lan_ip)
 old_nebula_ip=$(cat $bashrc_folder/gitignore/last_bw_ip_json | jq -r .nebula_ip)
 
 if [ "$old_pub_ip" = "$pub_ip" ] && [ "$lan_ip" = "$old_lan_ip" ] && [ "$nebula_ip" = "$old_nebula_ip" ] && [ "$FORCE_UPLOAD" != "TRUE" ];   
+#if [ "$old_pub_ip" = "$pub_ip" ] && [ "$lan_ip" = "$old_lan_ip" ] && [ "$nebula_ip" = "$old_nebula_ip" ] ;   
 then
 	echo "$old_pub_ip"
 	echo "$old_lan_ip"
