@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH="/usr/local/bin:/sbin:/usr/bin:/bin:/snap/bin"
+PATH="/usr/local/bin:/sbin:/usr/bin:/bin:/snap/bin:/data/data/com.termux/files/usr/bin"
 
 passwordfile="$bashrc_folder/gitignore/passwordfile"
 outfile="$bashrc_folder/gitignore/BW_SESSION"
