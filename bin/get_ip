@@ -1,6 +1,6 @@
 export BW_SESSION="$(cat $bashrc_folder/gitignore/BW_SESSION)"
 
-printf "TODO make this use env var, and include if it should force a sync\n"
+#printf "TODO make this use env var, and include if it should force a sync\n"
 
 if [[ -z "$1" || -z "$2" ]]; then
 	printf "need device and ip type\n"
