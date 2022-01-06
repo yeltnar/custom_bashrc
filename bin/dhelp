@@ -1,8 +1,13 @@
 help_files_dir=drewhelp
 
+echo $1
+
 if [ -z ${1} ]; 
 then
     ls $bashrc_folder/$help_files_dir;
+elif [ "$1" == '-r' ]
+then
+    cat $bashrc_folder/$help_files_dir/$2;
 else
     less $bashrc_folder/$help_files_dir/$1;
 fi
