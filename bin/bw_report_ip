@@ -10,7 +10,7 @@ nebula_ip=$(ifconfig | awk '/10\.10\.10/{print $2}');
 git_branch=$(git rev-parse HEAD)
 
 printf "last time it was"
-cat $bashrc_folder/gitignore/last_bw_ip_json | jq
+cat $bashrc_folder/gitignore/last_bw_ip_json | jq .
 old_pub_ip="$(cat $bashrc_folder/gitignore/last_bw_ip_json | jq -r .pub_ip)"
 old_lan_ip="$(cat $bashrc_folder/gitignore/last_bw_ip_json | jq -r .lan_ip)"
 old_nebula_ip="$(cat $bashrc_folder/gitignore/last_bw_ip_json | jq -r .nebula_ip)"
@@ -47,7 +47,7 @@ export BW_SESSION="$(cat $bashrc_folder/gitignore/BW_SESSION)"
 printf "$new_content\n" > $bashrc_folder/gitignore/last_bw_ip_json 
 
 printf "this time it was"
-cat $bashrc_folder/gitignore/last_bw_ip_json | jq
+cat $bashrc_folder/gitignore/last_bw_ip_json | jq .
 
 json=$(bw get item $note_name --organizationid $organizationid) 
 
