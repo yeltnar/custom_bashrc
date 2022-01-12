@@ -156,7 +156,11 @@ alias vim_help="firefox https://vim.rtorr.com/"
 
 set bell-style visible
 
-vim="nvim"
+if [ "$(type nvim 2>&1 | awk '/ not /{print}' | wc -l)" -eq 0 ]
+then
+	EDITOR=nvim
+	VISUAL=nvim
+fi
 
 echo "Loaded all.bashrc"
 
