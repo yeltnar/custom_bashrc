@@ -23,6 +23,7 @@ else
     echo "GROUP_NAME is set to '$GROUP_NAME'"; 
 fi
 
+echo "hostname is '$(hostname)'"
 
 if [ "$need_write" = true ]; 
 then 
