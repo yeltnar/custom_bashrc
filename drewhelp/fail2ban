@@ -1,0 +1,6 @@
+# currently banned IPs and status 
+fail2ban-client status sshd
+
+# unban 
+# fail2ban-client set YOURJAILNAMEHERE unbanip IPADDRESSHERE
+fail2ban-client set sshd unbanip $IP_ADDRESS
