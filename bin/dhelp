@@ -1,7 +1,5 @@
 help_files_dir=drewhelp
 
-echo $1
-
 if [ -z ${1} ]; 
 then
     ls $bashrc_folder/$help_files_dir;
