@@ -1,0 +1,22 @@
+name="rm"
+ip_address="1.2.3.4/24"
+ca_crt_location="$HOME/nebula/ca.crt"
+ca_key_location="$HOME/nebula/ca.key"
+nebula_cert_location="$HOME/nebula/nebula-cert"
+work_dir="/tmp/nebula_cert_creation"
+
+mkdir -p $work_dir
+cd $work_dir 
+
+rm -rf "$name.crt"
+rm -rf "$name.key"
+
+cp $ca_crt_location .
+cp $ca_key_location .
+
+# TODO make this have tags (or whatever they're calle)
+$nebula_cert_location sign -name $name -ip "$ip_address"
+
+rm "./ca.crt"
+rm "./ca.key"
+
