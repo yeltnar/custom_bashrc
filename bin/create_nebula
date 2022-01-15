@@ -1,7 +1,10 @@
+# TODO have a 'create' and 'use' version. the 'use' should pull from bit(vault)warden
+
 name="rm"
 ip_address="1.2.3.4/24"
 ca_crt_location="$HOME/nebula/ca.crt"
 ca_key_location="$HOME/nebula/ca.key"
+# the nebula-cert program
 nebula_cert_location="$HOME/nebula/nebula-cert"
 work_dir="/tmp/nebula_cert_creation"
 
@@ -18,5 +21,7 @@ cp $ca_key_location .
 $nebula_cert_location sign -name $name -ip "$ip_address"
 
 rm "./ca.crt"
-rm "./ca.key"
+#rm "./ca.key"
 
+echo 'need to make custom config file that is sent with cert info'
+echo "$work_dir"
