@@ -6,6 +6,8 @@
 # name="rm"
 # ip_address="1.2.3.4/24"
 
+export ref_dir="$HOME/.drew_nebula"
+
 if [ "$name" == "" ]
 then
 	echo "set \$name as env variable"
@@ -20,9 +22,9 @@ then
 fi
 
 # wont change often
-ca_crt_location="$HOME/nebula/ca.crt"
-ca_key_location="$HOME/nebula/ca.key"
-nebula_cert_location="$HOME/nebula/nebula-cert" # the nebula-cert programi
+ca_crt_location="$ref_dir/ca.crt"
+ca_key_location="$ref_dir/ca.key"
+nebula_cert_location="$ref_dir/nebula-cert" # the nebula-cert program
 
 # prob won't change 
 work_dir="/tmp/nebula_cert_creation"
