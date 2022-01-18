@@ -2,11 +2,11 @@
 # TODO mount ram to working folder, unmount when using bitwarden
 # TODO make ram mount optional 
 
-# will change basically every time
-# name="rm"
-# ip_address="1.2.3.4/24"
+# TODO remove
+alias bw="echo nnnnnnnnnnnnnnnnnnn $@"
 
 export ref_dir="$HOME/.drew_nebula"
+source "$ref_dir/env"
 
 if [ "$name" == "" ]
 then
@@ -21,17 +21,25 @@ then
 	exit
 fi
 
+if [ "$org_name" == "" ]
+then
+	echo "org_name for bitwarden is missing. Set it in $ref_dir/env"
+	exit
+fi
+
 # wont change often
-ca_crt_location="$ref_dir/ca.crt"
-ca_key_location="$ref_dir/ca.key"
-nebula_cert_location="$ref_dir/nebula-cert" # the nebula-cert program
+# ca_crt_location="$ref_dir/ca.crt"
+# ca_key_location="$ref_dir/ca.key"
+# nebula_cert_location="$ref_dir/nebula-cert" # the nebula-cert program
 
 # prob won't change 
-work_dir="/tmp/nebula_cert_creation"
+# work_dir="/tmp/nebula_cert_creation"
+
+echo $work_dir
 
 # make sure we have a clear dir
-rm -rf $work_dir
-mkdir -p $work_dir
+rm -rf "$work_dir"
+mkdir -p "$work_dir"
 
 # mount in ram so the secrets are short lived; save pid
 rclone mount :memory: $work_dir & sleep 5 && export rclone_memory_mount=$!
@@ -67,13 +75,19 @@ echo "starting sync"
 bw sync
 echo "sync done"
 
-org_name="tmp_org_id"
 org_id="$(bw list organizations --search $org_name | jq .[0].id -r)" # assumes the first hit is what is desired 
 
 # TODO create org if it doesn't exsist
 
-col_name="Default Collection"
-col_id="$(bw list collections --search $col_name | jq .[0].id -r)" # assumes the first hit is what is desired 
+# col_name="Default Collection"
+
+# org where the cert for the client should be located
+# assumes the first hit is what is desired 
+col_id="$(bw list collections --search $col_name | jq .[0].id -r)" 
+
+# org that has ca information 
+# assumes the first hit is what is desired 
+ca_col_id=$(bw list collections --search "$ca_col_name" | jq .[0].id -r) 
 
 # TODO create collection if it doesn't exsist
 
@@ -85,10 +99,14 @@ addEntry (){
         #cat $f
         file_contents="$(cat $f)"
 	
-	echo "creating \'$note_name\'with org id of $org_id"
-	
-	search_json="$(bw list items --search "$note_name" | jq .[-1])"
+	echo "creating $note_name with org id of $org_id"
+
+	echo "searching for $note_name within $org_name" 
+
+	search_json=$(bw list items --organizationid "$org_id" --search "$note_name" | jq .[-1])
 	source_json=""
+
+	echo 2
 
 	if [[ "$search_json" != "null" ]]
 	then
@@ -102,7 +120,7 @@ addEntry (){
 
         	new_item=$(echo "$new_item" | bw encode)
 
-		bw edit item "$item_id" "$new_item" #> /dev/null # don't print cert
+		bw edit item "$item_id" "$new_item" > /dev/null # don't print cert
 		# exit
 	else
 		echo "need to make note with name $note_name"
@@ -112,7 +130,7 @@ addEntry (){
 
         	new_item=$(echo "$new_item" | bw encode)
 
-		printf "$new_item" | bw create item #> /dev/null # don't print cert 
+		printf "$new_item" | bw create item > /dev/null # don't print cert 
         fi
 
 	
@@ -130,5 +148,6 @@ note_name="$name nebula key" f="./$name.key" addEntry
 # 
 # end of uploading to bitwarden
 
+# kill $rclone_memory_mount && echo "memory location unmounted" || echo "memory location not unmounted"
 kill $rclone_memory_mount && echo "memory location unmounted" || echo "memory location not unmounted"
 
