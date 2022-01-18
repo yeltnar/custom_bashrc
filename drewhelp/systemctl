@@ -1,4 +1,5 @@
 # start/stop etc
 https://phoenixnap.com/kb/start-stop-restart-linux-services
 
+journalctl -u drew-nebula -b --no-pager > logdump/nebula
 
