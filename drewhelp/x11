@@ -1,0 +1,4 @@
+# This will start up gnome-session on display :1 and run it on virtual console 8 (Ctrl+Alt+F8).
+#startx gnome-session -- :1 vt6
+startx lightdm -- :1 
+
