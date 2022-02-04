@@ -20,7 +20,7 @@ then
 	echo "$old_pub_ip"
 	echo "$old_lan_ip"
 	echo "$old_nebula_ip"
-	printf "getting not enough change\n"
+	printf "getting not enough change. to force use 'FORCE_UPLOAD=TRUE'\n"
 	printf "TODO make this allow for no change being made\n"
 	exit
 fi
