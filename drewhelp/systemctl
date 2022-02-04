@@ -1,6 +1,9 @@
 # start/stop etc
 https://phoenixnap.com/kb/start-stop-restart-linux-services
 
+# /etc/systemd/system/drew-nebula
+
+
 # --no-pager doesnt do the `less` thing
 # # -b is since the last boot
 journalctl -u drew-nebula -b --no-pager > logdump/nebula
