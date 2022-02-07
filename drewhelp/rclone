@@ -7,3 +7,6 @@ rclone lsd remote:
 # mount
 rclone mount remote:/srv/www-data/ /mnt/www-data
 
+# locate config file
+rclone config file
+
