@@ -1,6 +1,18 @@
 # start/stop etc
 https://phoenixnap.com/kb/start-stop-restart-linux-services
 
+# where to put 
+/lib/systemd/system/
+
+# reload systemd
+systemctl daemon-reload
+
+# enable
+systemctl enable nebula.service
+
+# start
+systemctl start nebula.service
+
 # --no-pager doesnt do the `less` thing
 # # -b is since the last boot
 journalctl -u drew-nebula -b --no-pager > logdump/nebula
