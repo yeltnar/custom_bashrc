@@ -3,6 +3,7 @@ https://phoenixnap.com/kb/start-stop-restart-linux-services
 
 # where to put 
 /lib/systemd/system/
+# /etc/systemd/system/drew-nebula
 
 # reload systemd
 systemctl daemon-reload
