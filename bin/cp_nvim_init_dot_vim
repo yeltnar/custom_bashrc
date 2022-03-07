@@ -1,0 +1,1 @@
+mkdir -p $HOME/.config/nvim; cp $bashrc_folder/init.vim $HOME/.config/nvim
