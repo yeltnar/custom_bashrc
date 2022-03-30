@@ -1,0 +1,27 @@
+firefox_profile_folder="$HOME/playin/firefox_profile"
+new_ffp="/tmp/tffp"
+
+sudo rm -rf $new_ffp
+mkdir $new_ffp
+
+sudo cp -r "$firefox_profile_folder/places.sqlite" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/favicons.sqlite" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/*.jsonlz4" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/cookies.sqlite" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/formhistory.sqlite" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/logins.json" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/cert9.db" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/persdict.dat" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/permissions.sqlite" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/sessionstore.jsonlz4" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/addonStartup.json.lz4" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/addons.json" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/extensions" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/extensions.ini" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/extensions.json" "$new_ffp"
+# sudo cp -r "$firefox_profile_folder/gm_scripts" "$new_ffp"
+
+bookmark_file=$(ls -t "$firefox_profile_folder/bookmarkbackups/" | head -n 1)
+sudo cp -r "$firefox_profile_folder/bookmarkbackups/"$bookmark_file "$new_ffp"
+
+firefox --profile "$new_ffp"
