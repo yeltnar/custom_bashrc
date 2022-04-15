@@ -1,0 +1,9 @@
+join_apikey=$(cat $bashrc_folder/gitignore/join_apikey)
+
+read clipboard_txt
+
+clipboard_txt=$(node -e "console.log(encodeURIComponent(\`$clipboard_txt\`))")
+
+curl --location "https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=$join_apikey&clipboard=$clipboard_txt&deviceId=group.android"
+
+echo "set phone clipboard";
