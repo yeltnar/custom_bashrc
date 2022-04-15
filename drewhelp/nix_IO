@@ -1,0 +1,2 @@
+date | cat < echo
+date | cat /dev/stdin < echo 
