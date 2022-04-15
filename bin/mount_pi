@@ -1,1 +1,1 @@
-rclone mount --vfs-cache-mode full exposed-pi:/media/pi /tmp/pi
+rclone mount --vfs-cache-mode full --allow-other exposed-pi:/media/pi /tmp/pi
