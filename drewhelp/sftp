@@ -3,3 +3,7 @@ sftp {user}@{host}:{remote_dir} <<< $'put {local_file_path}'
 
 # download from remote
 sftp {user}@{host}:{remoteFileName} {localFileName}
+
+# non standard port -o ssh_option
+sftp -oPort=port_number host_name
+
