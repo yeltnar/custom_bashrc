@@ -1,1 +1,3 @@
+umount /tmp/pi
+mkdir -p /tmp/pi
 rclone mount --vfs-cache-mode full --allow-other exposed-pi:/media/pi /tmp/pi
