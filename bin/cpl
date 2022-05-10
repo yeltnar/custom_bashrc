@@ -1,4 +1,4 @@
 clear ;
 pwd ;
-git status 2>/dev/null | head -n 2 | tail -n 1 ;
+# git status 2>/dev/null | head -n 2 | tail -n 1 ;
 ls "$@";
