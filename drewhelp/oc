@@ -1,2 +1,3 @@
-internal cluster link
+# internal cluster link
 ${app_name}.${project_name}.svc.cluster.local
+mq-ibm-mq.cp4i # servicename.namespace
