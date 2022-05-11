@@ -1,8 +1,9 @@
-firefox_profile_folder="$HOME/playin/firefox_profile"
+# firefox_profile_folder="$HOME/playin/firefox_profile"
+firefox_profile_folder="/tmp/fftest/clean_ffp"
 new_ffp="/tmp/tffp"
 
-sudo rm -rf $new_ffp
-mkdir $new_ffp
+sudo rm -rf "$new_ffp"
+mkdir -p "$new_ffp/bookmarkbackups/"
 
 sudo cp -r "$firefox_profile_folder/places.sqlite" "$new_ffp"
 sudo cp -r "$firefox_profile_folder/favicons.sqlite" "$new_ffp"
@@ -16,12 +17,25 @@ sudo cp -r "$firefox_profile_folder/permissions.sqlite" "$new_ffp"
 sudo cp -r "$firefox_profile_folder/sessionstore.jsonlz4" "$new_ffp"
 sudo cp -r "$firefox_profile_folder/addonStartup.json.lz4" "$new_ffp"
 sudo cp -r "$firefox_profile_folder/addons.json" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/browser-extension-data" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/blocklist-addons.json" "$new_ffp"
 sudo cp -r "$firefox_profile_folder/extensions" "$new_ffp"
 sudo cp -r "$firefox_profile_folder/extensions.ini" "$new_ffp"
 sudo cp -r "$firefox_profile_folder/extensions.json" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/containers.json" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/sessionstore-backups" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/storage.sqlite" "$new_ffp"
+sudo cp -r "$firefox_profile_folder/storage" "$new_ffp"
 # sudo cp -r "$firefox_profile_folder/gm_scripts" "$new_ffp"
 
 bookmark_file=$(ls -t "$firefox_profile_folder/bookmarkbackups/" | head -n 1)
-sudo cp -r "$firefox_profile_folder/bookmarkbackups/"$bookmark_file "$new_ffp"
+sudo cp -r "$firefox_profile_folder/bookmarkbackups/$bookmark_file" "$new_ffp/bookmarkbackups/"
+
+sudo chown -R $(whoami) "$new_ffp"
+
+# cd "$new_ffp"
+# git init
+# git add . 
+# git commit -m "f"
 
 firefox --profile "$new_ffp"
