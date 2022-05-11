@@ -1,0 +1,10 @@
+# file location # source https://www.cyberciti.biz/faq/where-is-the-crontab-file/
+
+# mac
+/usr/lib/cron/tabs/
+/usr/lib/cron/tabs/vivek
+
+# debian
+/var/spool/cron/crontabs/
+/var/spool/cron/crontabs/vivek
+
