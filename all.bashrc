@@ -160,7 +160,12 @@ if [ "$(type nvim 2>&1 | awk '/ not /{print}' | wc -l)" -eq 0 ]
 then
 	EDITOR=nvim
 	VISUAL=nvim
+	alias vim=nvim
 fi
+
+XDG_CONFIG_HOME="$bashrc_folder/alacritty/alacritty.yml"
+
+#set -o vi
 
 echo "Loaded all.bashrc"
 
