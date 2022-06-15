@@ -1,0 +1,7 @@
+# listen
+netcat -l $PORT
+
+# connect to upd for udp
+netcat -u host $PORT
+
+
