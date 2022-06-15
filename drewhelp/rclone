@@ -5,8 +5,11 @@ rclone config
 rclone lsd remote:
 
 # mount
-rclone mount remote:/srv/www-data/ /mnt/www-data
+rclone mount --vfs-cache-mode full --allow-other remote:/srv/www-data/ /mnt/www-data
 
 # locate config file
 rclone config file
+
+# default dir for caching
+~/.cache/rclone
 
