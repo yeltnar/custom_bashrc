@@ -167,6 +167,10 @@ XDG_CONFIG_HOME="$bashrc_folder/alacritty/alacritty.yml"
 
 #set -o vi
 
+# change this to modify the user info
+# PS1="\h:\W \u\$"
+PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \$\[\033[00m\] "
+
 echo "Loaded all.bashrc"
 
 #shutdown "+60"
