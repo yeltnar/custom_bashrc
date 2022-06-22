@@ -16,9 +16,22 @@ usermod -u UID username
 # create a user
 sudo useradd username
 
+# create a group
+sudo groupadd groupname
+
+# change user primary group
+sudo usermod -g groupname username
+
+# add user to secondary group
+sudo usermod -a -G groupname username
+
 # make user sudo
 # add to sudo and(?) root groups
 
 # if previous doesn't work, 
 # add entry to `/etc/sudoers.d` or `/etc/sudoers`...keep the %
 # %yourgroup ALL=(ALL) ALL
+
+passwd vivek
+## OR ##
+sudo passwd vivek
