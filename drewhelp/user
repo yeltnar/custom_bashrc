@@ -24,6 +24,8 @@ sudo usermod -g groupname username
 
 # add user to secondary group
 sudo usermod -a -G groupname username
+sudo usermod -a -G root username # root for most
+sudo usermod -a -G wheel username # root for rhel and fam
 
 # make user sudo
 # add to sudo and(?) root groups
