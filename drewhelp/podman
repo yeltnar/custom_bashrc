@@ -1,3 +1,5 @@
+# make sure to use `:Z` after -v flag so it can be read in the container (lower case z means used by all containers)
+
 # generate k8s yaml from running pod
 podman generate kube {container}
 
