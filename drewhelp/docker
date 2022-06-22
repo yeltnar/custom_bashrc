@@ -1,0 +1,4 @@
+# export image as tar
+# docker save
+docker save IMGTAG > img.tar
+docker save --output img.tar IMGTAG
