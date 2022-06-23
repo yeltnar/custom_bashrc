@@ -12,7 +12,13 @@ podman unshare chown 27:27 /path/to/dir
 # look at selinux for more
 
 # selinux notes
+podman run -v $PWD/folder:/folder:Z # for making permissions good in the container 
 add se linux permissions for the running selinux
 httpd needs to be set up to allow access to files like the default files are
 make sure fs user is good 
+
+# generate systemd to restart pod with reboot 
+podman generate systemd \
+--new --name toms-mongo \
+> /etc/systemd/system/toms-mongo.service
 
