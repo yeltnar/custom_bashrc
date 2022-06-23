@@ -169,7 +169,21 @@ XDG_CONFIG_HOME="$bashrc_folder/alacritty/alacritty.yml"
 
 # change this to modify the user info
 # PS1="\h:\W \u\$"
-PS1="\[\033[01;93m\]\u@\h\[\033[00m\]:\[\033[01;96m\]\w \$\[\033[00m\] "
+PS1_GIT=""
+PS1='\[\033[01;93m\]\u@\h\[\033[00m\]:\[\033[01;96m\]\w\$\[\033[00m\] ${PS1_GIT}\[\033[01;96m\]\n∟> \$\[\033[00m\] '
+PS2="\[\033[01;96m\] > \[\033[00m\]  "
+
+prompt_command() {
+  # $? is 0 if git dir, otherwise false
+  if git status > /dev/null 2>&1; then
+    local GIT_STATUS=$(git status | grep 'On branch' | cut -b 10-)
+    export PS1_GIT="${GIT_STATUS}"
+  else
+    export PS1_GIT=""	
+  fi
+
+}
+PROMPT_COMMAND=prompt_command
 
 echo "Loaded all.bashrc"
 
