@@ -2,7 +2,7 @@ help_files_dir=drewhelp
 
 if [ -z ${1} ]; 
 then
-    ls $bashrc_folder/$help_files_dir;
+    cat "$bashrc_folder/$help_files_dir/$(ls $bashrc_folder/$help_files_dir | fzf)"
 elif [ "$1" == '-r' ]
 then
     cat $bashrc_folder/$help_files_dir/$2;
