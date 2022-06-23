@@ -169,19 +169,27 @@ XDG_CONFIG_HOME="$bashrc_folder/alacritty/alacritty.yml"
 
 # change this to modify the user info
 # PS1="\h:\W \u\$"
+PS_YELLOW="\[\033[01;93m\]"
+PS_LIGHT_BLUE="\[\033[01;96m\]"
+PS_COLOR_RESET="\[\033[00m\]"
+PS_USER="\u"
+PS_HOSTNAME="\h"
+PS_PWD="\w"
 PS1_GIT=""
-PS1='\[\033[01;93m\]\u@\h\[\033[00m\]:\[\033[01;96m\]\w\$\[\033[00m\] ${PS1_GIT}\[\033[01;96m\]\n∟> \$\[\033[00m\] '
-PS2="\[\033[01;96m\] > \[\033[00m\]  "
+PS1="${PS_YELLOW}${PS_USER}@${PS_HOSTNAME}${PS_COLOR_RESET}:\
+${PS_LIGHT_BLUE}${PS_PWD}${PS_COLOR_RESET} \
+\${PS1_GIT}\n\
+${PS_LIGHT_BLUE}∟> \$${PS_COLOR_RESET} "
+PS2="${PS_LIGHT_BLUE} > ${PS_COLOR_RESET}  "
 
 prompt_command() {
   # $? is 0 if git dir, otherwise false
   if git status > /dev/null 2>&1; then
-    local GIT_STATUS=$(git status | grep 'On branch' | cut -b 10-)
+    local GIT_STATUS=$(git status | grep 'On branch' | cut -b 11-)
     export PS1_GIT="${GIT_STATUS}"
   else
     export PS1_GIT=""	
   fi
-
 }
 PROMPT_COMMAND=prompt_command
 
