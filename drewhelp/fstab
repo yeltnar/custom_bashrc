@@ -7,3 +7,6 @@ custom_bashrc/drewhelp/dir/pi_mount_usb.md
 # for raspberry pi - replace the uuid
 UUID=7E5407095406C3BD /media/pi/TOSHIBA\040EXT ntfs-3g async,big_writes,noatime,nodiratime,nofail,uid=1000,gid=1000,umask=007 0 0
 
+# test # -a Mount all filesystems (of the given types) mentioned in fstab.
+mount -a
+
