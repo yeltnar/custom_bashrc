@@ -1,0 +1,5 @@
+# resize
+ffmpeg -i input.jpg -vf scale=320:240 output_320x240.png
+
+# trim runtime 
+ffmpeg -i input.mp4 -ss 01:19:27 -to 02:18:51 -c:v copy -c:a copy output.mp4
