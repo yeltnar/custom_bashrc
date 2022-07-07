@@ -1,5 +1,7 @@
 export bashrc_folder="$HOME/playin/custom_bashrc"
 
+source "$bashrc_folder/lib/PS_colors"
+
 PATH="$PATH:$bashrc_folder/bin"
 
 # check if tmux is found, and not currently tmux
@@ -169,10 +171,10 @@ XDG_CONFIG_HOME="$bashrc_folder/alacritty/alacritty.yml"
 
 # change this to modify the user info
 # PS1="\h:\W \u\$"
-PS_YELLOW="\[\033[01;93m\]"
-PS_LIGHT_BLUE="\[\033[01;96m\]"
-PS_WHITE="\[\033[97m\]"
-PS_COLOR_RESET="\[\033[00m\]"
+#PS_YELLOW="\[\033[01;93m\]"
+#PS_LIGHT_BLUE="\[\033[01;96m\]"
+#PS_WHITE="\[\033[97m\]"
+#PS_COLOR_RESET="\[\033[00m\]"
 PS_USER="\u"
 PS_HOSTNAME="\h"
 PS_PWD="\w"

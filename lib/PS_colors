@@ -1,0 +1,7 @@
+PS_YELLOW="\[\033[01;93m\]"
+PS_LIGHT_BLUE="\[\033[01;96m\]"                              
+PS_WHITE="\[\033[97m\]"                       
+PS_COLOR_RESET="\[\033[00m\]"
+
+
+
