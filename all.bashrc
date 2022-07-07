@@ -171,6 +171,7 @@ XDG_CONFIG_HOME="$bashrc_folder/alacritty/alacritty.yml"
 # PS1="\h:\W \u\$"
 PS_YELLOW="\[\033[01;93m\]"
 PS_LIGHT_BLUE="\[\033[01;96m\]"
+PS_WHITE="\[\033[97m\]"
 PS_COLOR_RESET="\[\033[00m\]"
 PS_USER="\u"
 PS_HOSTNAME="\h"
@@ -178,7 +179,7 @@ PS_PWD="\w"
 PS1_GIT=""
 PS1="${PS_YELLOW}${PS_USER}@${PS_HOSTNAME}${PS_COLOR_RESET}:\
 ${PS_LIGHT_BLUE}${PS_PWD}${PS_COLOR_RESET} \
-\${PS1_GIT}\n\
+${PS_WHITE}\${PS1_GIT}${PS_COLOR_RESET}\n\
 ${PS_LIGHT_BLUE}∟> \$${PS_COLOR_RESET} "
 PS2="${PS_LIGHT_BLUE} > ${PS_COLOR_RESET}  "
 
