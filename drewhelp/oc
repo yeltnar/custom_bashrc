@@ -1,3 +1,7 @@
 # internal cluster link
 ${app_name}.${project_name}.svc.cluster.local
 mq-ibm-mq.cp4i # servicename.namespace
+
+# get ssh access to a node
+# run chroot /host to get host access
+oc debug node/ocpinstall-kw4ff-master-0i
