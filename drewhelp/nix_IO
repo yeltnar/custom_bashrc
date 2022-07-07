@@ -1,2 +1,6 @@
 date | cat < echo
-date | cat /dev/stdin < echo 
+date | cat /dev/stdin < echo
+
+# send std error to stdout
+echo "asdf" 2>&1 
+
