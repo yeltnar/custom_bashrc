@@ -93,3 +93,11 @@ $> # cp /some/directory/here/original.txt /some/directory/here/original.txt.bak
 Useful References:
 [7 Bash](https://opensource.com/article/19/10/bash-history-shortcuts) - Pretty decent quick list of useful tools
 [Bash History Expansion](https://sanctum.geek.nz/arabesque/bash-history-expansion/) - Looks like a thorough look at history expansion
+
+
+# while loop
+while [ condition ]
+do
+	echo "command"
+done
+
