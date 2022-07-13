@@ -1,0 +1,8 @@
+# while loop
+if [ -z "$@" ]
+then
+	ssh "$(cat ~/.ssh/config | awk '/host /{print $2}' | fzf)"
+else
+	echo "ssh is not empty"
+	ssh "$@"
+fi
