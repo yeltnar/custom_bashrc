@@ -11,3 +11,29 @@
 
 # raspberry pi autostart sshd
 touch /boot/ssh 
+
+# add ssh key to non-mac
+ssh-add -k ~/.ssh/
+
+# add ssh key to mac
+ssh-add --apple-use-keychain ~/.ssh/
+
+# directory permissions
+mkdir -p ~/.ssh && chmod 700 ~/.ssh
+
+# ssh config file
+touch ~/.ssh/config
+chmod 600 ~/.ssh/config
+
+# ssh config file contents
+Host hostname1
+    SSH_OPTION value
+    SSH_OPTION value
+
+Host dev
+    HostName dev.example.com
+    User john
+    Port 2322
+
+
+
