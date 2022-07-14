@@ -1,0 +1,18 @@
+# open port
+sudo ufw allow $PORT
+
+# open udp only port
+sudo ufw allow $PORT/udp
+
+# allow ip address 
+sudo ufw allow from 1.2.3.4
+
+# allow subnet
+sudo ufw allow from 1.2.3.0/24
+
+# To allow connections on a specific port from an IP address:
+sudo ufw allow from 1.2.3.4 to any port 22
+
+# restart 
+sudo ufw enable
+sudo ufw disable
