@@ -1,0 +1,7 @@
+if [ -z "$@" ]
+then
+	sftp "$(cat ~/.ssh/config | awk '/host /{print $2}' | fzf)"
+else
+	echo "sftp is not empty"
+	sftp "$@"
+fi
