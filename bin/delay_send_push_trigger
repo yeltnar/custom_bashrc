@@ -1,0 +1,8 @@
+export bashrc_folder=/Users/Drew/playin/custom_bashrc
+
+if [ -f /tmp/sendpush ]; then
+   send_push auto "$(cat /tmp/sendpush)"
+   rm /tmp/sendpush
+fi
+
+
