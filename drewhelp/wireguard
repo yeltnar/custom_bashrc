@@ -27,3 +27,7 @@ AllowedIPs = 10.0.0.2/32
 
 # start wireguard 
 sudo wg-quick up wg0
+
+# show wireguard connection information 
+sudo wg show
+
