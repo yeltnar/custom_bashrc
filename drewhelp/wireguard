@@ -1,3 +1,6 @@
+# how to page
+https://serverspace.us/support/help/how-to-install-wireguard-vpn-client-on-ubuntu-linux/
+
 # create key pair
 wg genkey | tee private.key | wg pubkey > public.key
 
