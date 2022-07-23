@@ -1,0 +1,29 @@
+# create key pair
+wg genkey | tee private.key | wg pubkey > public.key
+
+# create configuration file
+sudo vim /etc/wireguard/wg0.conf
+
+# contents of config file
+[Interface]
+
+PrivateKey = <contents-of-client-privatekey>
+
+Address = 10.0.0.1/24
+
+PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+
+ListenPort = 51820
+
+[Peer]
+
+PublicKey = <contents-of-server-publickey>
+
+AllowedIPs = 10.0.0.2/32
+
+
+
+# start wireguard 
+sudo wg-quick up wg0
