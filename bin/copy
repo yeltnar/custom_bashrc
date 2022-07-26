@@ -1,0 +1,7 @@
+read pipe_in
+
+if [ $(sw_vers | grep macOS | wc -l) -gt 0 ]; then
+	printf "$pipe_in" | pbcopy
+else
+	printf "$pipe_in" | xclip -sel clipboard
+fi
