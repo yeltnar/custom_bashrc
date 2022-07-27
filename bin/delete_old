@@ -1,0 +1,20 @@
+if [ -z $DIR ] || [ -z $MAX_SIZE ]; then
+    echo "Must provide DIR, MAX_SIZE (in kb)"
+    exit
+fi
+
+# size in kb
+# MAX_SIZE=16
+
+# DIR="mess"
+
+# print size in kb
+current_size="$(du -kc $DIR | tail -n 1 | awk '{print $1}')";
+
+while [ $current_size -gt $MAX_SIZE ] && [ -s $DIR ]; do
+    echo "$current_size | $MAX_SIZE"
+    to_remove=$(ls -t $DIR | tail -n 1);
+    echo "rm $DIR/$to_remove";
+    rm "$DIR/$to_remove";
+    current_size="$(du -kc $DIR | tail -n 1 | awk '{print $1}')";
+done
