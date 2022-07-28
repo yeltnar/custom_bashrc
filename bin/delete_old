@@ -6,7 +6,7 @@ fi
 # print size in kb
 current_size="$(du -kc $DIR | tail -n 1 | awk '{print $1}')";
 
-printf "$(date) - $DIR - $MAX_SIZE"
+printf "$(date) - $DIR - $MAX_SIZE\n"
 
 while [ $current_size -gt $MAX_SIZE ] && [ -s $DIR ]; do
     echo "$current_size | $MAX_SIZE"
