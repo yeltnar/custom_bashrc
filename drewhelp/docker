@@ -3,4 +3,14 @@
 docker save IMGTAG > img.tar
 docker save --output img.tar IMGTAG
 
-docker load -i f.tar 
+docker load -i f.tar
+
+# does some of the cleaning 
+# -f forces (no prompt)
+docker image prune -fa --filter "until=72h"
+docker container prune --filter "until=72h"
+
+# does them all 
+# -f forces (no prompt)
+docker system prune -f --filter "until=72h"
+
