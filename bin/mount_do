@@ -1,11 +1,12 @@
-umount /tmp/pi
-mkdir -p /tmp/pi
+umount /tmp/do
+mkdir -p /tmp/do
 # rclone mount --vfs-cache-mode full --allow-other exposed-pi:/media/pi /tmp/pi
 
 rclone mount \
 --vfs-cache-mode full \
 --allow-other \
---sftp-host exposed.lan \
---sftp-user pi \
-:sftp:/ \
-/tmp/pi
+--sftp-key-use-agent \
+--sftp-host do.andbrant.com \
+--sftp-user root \
+:sftp:/root \
+/tmp/do
