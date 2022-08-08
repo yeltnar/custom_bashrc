@@ -167,6 +167,23 @@ XDG_CONFIG_HOME="$bashrc_folder/alacritty/alacritty.yml"
 
 #set -o vi
 
+
+
+# Set history to ignore consecutive duplicate commands and commands that start with a space
+export HISTCONTROL=ignoreboth
+_clean_history() {
+  # history -n has to be there before history -w to read from
+  # .bash_history the commands saved from any other terminal,
+  history -n            # Read in entries that are not in current history
+  history -w            # Write history, trigger erasedups
+  #history -a            # Append history; does not trigger erasedups
+  history -c            # Clear current history
+  history -r            # Read history from $HISTFILE
+}
+PROMPT_COMMAND="_clean_history; $PROMPT_COMMAND"
+
+
+
 # change this to modify the user info
 # PS1="\h:\W \u\$"
 PS_YELLOW="\[\033[01;93m\]"
