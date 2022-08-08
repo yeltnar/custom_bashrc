@@ -1,0 +1,1 @@
+ps aux | grep $random_id | head -n1 | awk '{print "kill " $2}'
