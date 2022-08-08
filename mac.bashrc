@@ -4,6 +4,7 @@ alias corpus="cd /Users/Drew/Documents/GISC\ Project/cigsdev_corpus_v1/; sudo np
 alias mvp="cd /Users/Drew/Documents/GISC\ Project/cigsdev_mvp_v1/; sudo npm start;" 
 
 alias brave="/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser"
+alias lapce="/Applications/Lapce.app/Contents/MacOS/lapce"
 alias gimp="/Applications/GIMP.app/Contents/MacOS/GIMP"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 
