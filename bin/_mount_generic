@@ -1,0 +1,12 @@
+umount "$local_dir"
+mkdir -p "$local_dir"
+
+rclone mount \
+-vv \
+--vfs-cache-mode full \
+--allow-other \
+--sftp-key-use-agent \
+--sftp-host "$host" \
+--sftp-user "$user" \
+:sftp:"$remote_dir" \
+"$local_dir"

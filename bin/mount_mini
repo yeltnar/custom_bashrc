@@ -1,0 +1,7 @@
+export host="mini.lan"
+export user="drew"
+export remote_dir="/"
+export local_dir="/tmp/mini"
+
+_mount_generic
+
