@@ -20,12 +20,13 @@ if [[ `uname` == 'Darwin' ]]; then
 else
 	if [ -f $bashrc_folder/linux.bashrc ]; then . $bashrc_folder/linux.bashrc; fi
 fi
-
-if [ $SHLVL -eq 2 && -n "$TMUX" ]; then
-	session_info
-elif [ $SHLVL -eq 1 ]; then
-	session_info
+echo a
+if [ "$SHLVL" -eq 2 ] && [ -n "$TMUX" ]; then
+	session_info;
+elif [ "$SHLVL" -eq 1 ]; then
+	session_info;
 fi
+echo b
 
 alias advance_pwd="if [ `/bin/pwd` == `/bin/pwd -P` ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
 alias ddd="if [ $(/bin/pwd) == $(/bin/pwd -P) ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
