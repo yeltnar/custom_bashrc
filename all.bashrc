@@ -165,16 +165,14 @@ set bell-style visible
 
 if [ "$(type nvim 2>&1 | awk '/ not /{print}' | wc -l)" -eq 0 ]
 then
-	EDITOR=nvim
-	VISUAL=nvim
+	export EDITOR=nvim
+	export VISUAL=nvim
 	alias vim=nvim
 fi
 
 XDG_CONFIG_HOME="$bashrc_folder/alacritty/alacritty.yml"
 
 #set -o vi
-
-
 
 # Set history to ignore consecutive duplicate commands and commands that start with a space
 export HISTCONTROL=ignoreboth
@@ -219,5 +217,15 @@ prompt_command() {
 PROMPT_COMMAND=prompt_command
 
 echo "Loaded all.bashrc"
+
+if [ -n "$(which nvim)" ] && [ ! -e ~/.config/nvim/init.vim ]; then
+	echo "neovim is installed but ~/.config/nvim/init.vim isn't found. Copy the default?";
+	read -p "Copy nvim config? (y/n) " cp_nvim;
+	if [ "$cp_nvim" == "y" ]; then
+		echo "Copying the init.vim file"
+		mkdir -p ~/.config/nvim/;
+		cp "$bashrc_folder/init.vim" ~/.config/nvim/init.vim;
+	fi
+fi
 
 #shutdown "+60"
