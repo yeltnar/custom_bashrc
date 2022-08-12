@@ -1,0 +1,2 @@
+# runs until it changes
+watch -g 'ssh mini'

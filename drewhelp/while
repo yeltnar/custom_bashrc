@@ -1,0 +1,7 @@
+azstatus="unknown"
+while [ "$azstatus" != "success" ]
+do
+  azstatus=`az storage blob show --container-name vhd --name "rhcos.vhd" --account-name ${STORAGE_ACCOUNT} --account-key $ACCOUNT_KEY -o tsv --query properties.copy.status`
+  echo $azstatus
+  sleep 5
+done
