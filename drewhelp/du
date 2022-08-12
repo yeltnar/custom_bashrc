@@ -1,0 +1,2 @@
+# print in KB the size of the Download dir
+du -k -d 1 ~/Downloads/
