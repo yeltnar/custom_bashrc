@@ -1,0 +1,7 @@
+curl --location --request POST "http://$(homeassistant_host)/api/services/light/turn_on" \
+--header "Authorization: Bearer $(homeassistant_token)" \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "entity_id": "light.hue_ambiance_lamp_2",
+    "color_temp": 350
+}'
