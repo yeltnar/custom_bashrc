@@ -1,0 +1,18 @@
+# put this in /etc/bash_completion.d/SCRIPT_NAME
+# then reload the bash session
+
+_script()
+{
+  _script_commands=$(COMMAND_TO_GENERATE_LIST)
+
+  local cur
+  COMPREPLY=()
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  COMPREPLY=( $(compgen -W "${_script_commands}" -- ${cur}) )
+
+  return 0
+}
+complete -o nospace -F _script SCRIPT_NAME
+
+# source: https://askubuntu.com/questions/68175/how-to-create-script-with-auto-complete
+
