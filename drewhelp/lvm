@@ -7,3 +7,24 @@ https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Cluster_Logical_Volume_Manager/LV_c
 # partiton a disk
 https://phoenixnap.com/kb/linux-create-partition
 
+# recover from failure
+# I have had luck changing the mount to be linear, then back to raid1
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/logical_volume_manager_administration/mirrorrecover
+
+# create partition with fdisk
+
+# add partition to vg 
+vgextend $VG_NAME $PARTITION_FILE_LOCATION
+
+https://www.thegeekdiary.com/centos-rhel-how-to-add-physical-volume-pv-to-a-volume-group-vg-in-lvm/
+
+# remove old PV from VG
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/logical_volume_manager_administration/disk_remove_ex
+
+# remove missing PVs
+sudo vgreduce tvg --removemissing --force
+
+# convert to linear
+sudo lvconvert --type raid1 /dev/tvg/tlv /dev/sdb1 /dev/sdc1
+
+lvconvert --type raid1 /dev/vg/groupfs /dev/sdb1 /dev/sdc1
