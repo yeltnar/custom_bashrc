@@ -1,4 +1,5 @@
 # put this in /etc/bash_completion.d/SCRIPT_NAME
+# (or /usr/local/etc/bash_completion.d/ for mac)
 # then reload the bash session
 
 _script()
