@@ -1,0 +1,2 @@
+# remove result awk
+ps aux | awk '/ffmpeg/{print $0}' | awk '!/awk/'
