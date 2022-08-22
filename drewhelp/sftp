@@ -6,4 +6,5 @@ sftp {user}@{host}:{remoteFileName} {localFileName}
 
 # non standard port -o ssh_option
 sftp -oPort=port_number host_name
+sftp -o "Port 2222" foo@localhost
 
