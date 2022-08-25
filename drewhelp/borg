@@ -1,0 +1,11 @@
+REPO_LOCATION="./repo"
+ENCRYPTION="repokey"
+
+borg init $REPO_LOCATION --encryption=$ENCRYPTION
+
+mkdir src
+
+borg create --stats --progress --compression lz4 $PWD/repo::bk1  $PWD/src
+
+echo "test123" > $PWD/src/f.txt
+
