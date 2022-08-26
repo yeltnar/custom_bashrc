@@ -1,2 +1,2 @@
-rsync -v -a -e 'ssh -p 22' ~/paystubs/ pi@"exposed.lan":"/media/pi/TOSHIBA\ EXT/paystubs"
+rsync -v -a -e 'ssh -p 22' ~/paystubs/ drew@"mini.lan":"/mnt/toshiba_ext/hold_on_to/paystubs"
 
