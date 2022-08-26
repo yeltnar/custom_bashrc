@@ -1,11 +1,40 @@
-REPO_LOCATION="./repo"
+export BORG_REPO="$PWD/repo"
 ENCRYPTION="repokey"
+export BORG_PASSPHRASE='1234abcd'
 
-borg init $REPO_LOCATION --encryption=$ENCRYPTION
+borg init $BORG_REPO --encryption=$ENCRYPTION
 
 mkdir src
 
+# explicit repo
+# `$PWD/src` is what is to be backuped
 borg create --stats --progress --compression lz4 $PWD/repo::bk1  $PWD/src
 
+# `$PWD/src` is what is to be backuped
+# repo from env var (set up above)
+borg create --stats --progress --compression lz4 ::{user}-{now}  $PWD/src
+
 echo "test123" > $PWD/src/f.txt
+
+# show info
+borg info :: --last 1
+
+# rename
+borg rename ::specialbackup backup-block-device
+
+# check repo
+borg check -v ::
+
+# prune dry run # remove --dry-run to actually execute
+borg prune --list --keep-last 1 --dry-run
+
+# see what changed betweeen backups
+borg diff ::backup1 backup2
+
+# export 
+borg export-tar --progress ::backup2 backup.tar.gz
+
+# mount
+borg mount :: /tmp/mount                                                    
+borg umount                                                
 
