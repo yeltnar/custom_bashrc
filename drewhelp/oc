@@ -1,6 +1,8 @@
 # internal cluster link
 ${app_name}.${project_name}.svc.cluster.local
-mq-ibm-mq.cp4i # servicename.namespace
+
+# servicename.namespace
+mq-ibm-mq.cp4i 
 
 # get ssh access to a node
 # run chroot /host to get host access

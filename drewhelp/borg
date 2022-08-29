@@ -28,6 +28,9 @@ borg check -v ::
 # prune dry run # remove --dry-run to actually execute
 borg prune --list --keep-last 1 --dry-run
 
+# prune, keeping specified amount # src -> https://borgbackup.readthedocs.io/en/stable/usage/prune.html
+borg prune --dry-run --list --keep-daily=7 --keep-weekly="5" --keep-monthly="12" --keep-yearly="2"
+
 # see what changed betweeen backups
 borg diff ::backup1 backup2
 
@@ -37,4 +40,6 @@ borg export-tar --progress ::backup2 backup.tar.gz
 # mount
 borg mount :: /tmp/mount                                                    
 borg umount                                                
+
+
 
