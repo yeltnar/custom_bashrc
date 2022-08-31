@@ -13,4 +13,5 @@ while [ $current_size -gt $MAX_SIZE ] && [ -s $DIR ]; do
     to_remove="$(ls -lt $DIR | awk '!/^d/{print}' | awk '!/^total/' | awk '{print $NF}' | tail -n 1)";
     echo "rm $DIR/$to_remove";
     rm "$DIR/$to_remove";
-    current_size="$(du -kc $DIR | tail -n 1 | awk '{print $
+    current_size="$(du -kc $DIR | tail -n 1 | awk '{print $1}')";
+done
