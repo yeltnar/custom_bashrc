@@ -10,7 +10,7 @@ export BORG_PASSPHRASE=$( bw get item $PASSWORD_ID | jq -r .login.password )
 
 SRC_DIR="/mnt/toshiba_ext/hold_on_to/"
 
-export BORG_REPO="/mnt/my_passport/toshiba_ext.borg"
+export BORG_REPO="drew@mini:/mnt/my_passport/toshiba_ext.borg"
 ENCRYPTION="repokey"
 
 init(){
