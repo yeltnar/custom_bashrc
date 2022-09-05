@@ -108,10 +108,6 @@ savelastcommand(){
 	history | tail -n 2 | head -n 1 >> /tmp/history_save
 }
 
-cdbashrc(){
-	cd $bashrc_folder 
-}
-
 codebashrc(){
 	code  $bashrc_folder/all.bashrc;
 }
