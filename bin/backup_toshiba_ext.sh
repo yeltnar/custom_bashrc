@@ -1,17 +1,7 @@
-if [ "" = "$1" ]; then
-    echo "no function provided. Try init, backup, prune, list, or testing"
-    exit
-fi
-
-export BW_SESSION="$(cat $bashrc_folder/gitignore/BW_SESSION)"
-export PASSWORD_ID=$(cat $bashrc_folder/gitignore/borg_pw_id)
-
-export BORG_PASSPHRASE=$( bw get item $PASSWORD_ID | jq -r .login.password )
-
-SRC_DIR="/mnt/toshiba_ext/hold_on_to/"
-
-export BORG_REPO="drew@mini:/mnt/my_passport/toshiba_ext.borg"
-ENCRYPTION="repokey"
+listFunctions(){
+	declare -F | awk '{print $NF}'
+	exit
+}
 
 init(){
 	borg init $BORG_REPO --encryption=$ENCRYPTION
@@ -59,13 +49,25 @@ list(){
 	borg list
 }
 
-listFunctions(){
-	declare -F | awk '{print $NF}'
-}
 
-if [ "" != "$1" ]; then
+
+if [ "$(echo $1 | grep 'listFunctions' | wc -l)" = "1" ]; then
+    $1
+elif [ "" != "$1" ]; then
+
+   export BW_SESSION="$(cat $bashrc_folder/gitignore/BW_SESSION)"
+   export PASSWORD_ID=$(cat $bashrc_folder/gitignore/borg_pw_id)
+
+   export BORG_PASSPHRASE=$( bw get item $PASSWORD_ID | jq -r .login.password )
+
+   SRC_DIR="/mnt/toshiba_ext/hold_on_to/"
+
+   export BORG_REPO="drew@mini:/mnt/my_passport/toshiba_ext.borg"
+   ENCRYPTION="repokey"
+
     $1
 else
-    echo "no function provided. Try init, backup, prune, list, or testing"
+	echo "no function provided. Try:"
+	listFunctions
 fi
 
