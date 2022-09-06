@@ -59,6 +59,10 @@ list(){
 	borg list
 }
 
+listFunctions(){
+	declare -F | awk '{print $NF}'
+}
+
 if [ "" != "$1" ]; then
     $1
 else
