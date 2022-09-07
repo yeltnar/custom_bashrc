@@ -40,6 +40,15 @@ alias vimwinrc="vim $bashrc_folder/win.bashrc "
 alias ..="cd ..;pwd"
 # alias --="cd -;pwd"
 alias cdmkdir="dir=$1;echo $dir;mkdir $dir; cd $dir"
+
+cdbashrc(){
+	cd $bashrc_folder
+	if [ "" != "$1" ]; then
+		cd "$1";
+	fi
+}
+
+
 alias bashhistory="cat ~/.bash_history"
 alias lastssh="cat ~/.bash_history | grep "^ssh"| tail -n 1 > /tmp/drewsshcmd;chmod 777 /tmp/drewsshcmd; /tmp/drewsshcmd;rm /tmp/drewsshcmd"
 
@@ -106,10 +115,6 @@ push_when_build_done(){
 
 savelastcommand(){
 	history | tail -n 2 | head -n 1 >> /tmp/history_save
-}
-
-cdbashrc(){
-	cd $bashrc_folder 
 }
 
 codebashrc(){
