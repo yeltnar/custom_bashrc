@@ -14,4 +14,4 @@ rsync -v -a --delete \
 -e "ssh -p $remote_ssh_port" \
 "$remote_user"@"$remote_host":"$remote_dir" \
 $local_dir/ 2>&1 > \
-$log_stdout_file
+$log_out_folder/$log_stdout_file
