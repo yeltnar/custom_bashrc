@@ -1,0 +1,2 @@
+ansible-playbook -Ki inventory.yml nebula-playbook.yml | tee ansible-nebula.log
+
