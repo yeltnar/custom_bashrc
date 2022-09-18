@@ -4,8 +4,11 @@
 
 _script()
 {
-  _script_commands=$(cat ~/.ssh/config | grep -ie 'host [A-Za-z]' | awk '{print $2}')
+  # _script_commands=$(cat ~/.ssh/config | grep -ie 'host [A-Za-z]' | awk '{print $2}')
+  _script_commands=$(backup_toshiba_ext.sh listFunctions)
 
+  echo "${_script_commands}" > /tmp/rm.log
+  
   local cur
   COMPREPLY=()
   cur="${COMP_WORDS[COMP_CWORD]}"
@@ -13,7 +16,7 @@ _script()
 
   return 0
 }
-complete -o nospace -F _script ssh
+complete -o nospace -F _script backup_toshiba_ext.sh
 
 # source: https://askubuntu.com/questions/68175/how-to-create-script-with-auto-complete
 

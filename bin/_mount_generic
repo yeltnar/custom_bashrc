@@ -1,5 +1,5 @@
-umount "$local_dir"
 mkdir -p "$local_dir"
+umount "$local_dir"
 
 rclone mount \
 -vv \
