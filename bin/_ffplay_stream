@@ -1,0 +1,1 @@
+ffplay -i $protocol://$user:$password@$address:$port/$route
