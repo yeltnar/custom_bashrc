@@ -1,7 +1,7 @@
 echo "tmux_random_id is $tmux_random_id";
 
 
-tmux_pid=$( ps aux | grep $tmux_random_id | grep 'attach-ses' | awk '!/grep/{print $2}' )
+tmux_pid=$( ps aux | grep $tmux_random_id | grep 'new-ses' | awk '!/grep/{print $2}' )
 
 echo "sleeping for 5 sec"
 sleep 5 &&
