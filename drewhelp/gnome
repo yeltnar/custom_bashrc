@@ -1,0 +1,4 @@
+dconf dump /org/gnome/ > gnome-backup 
+dconf reset -f /org/gnome/ 
+dconf load /org/gnome/ < gnome-backup_default_drew_manual
+dconf load /org/gnome/ < ~/playin/custom_bashrc/gnome-settings 

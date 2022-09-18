@@ -209,6 +209,11 @@ ${PS_WHITE}\${PS1_GIT}${PS_COLOR_RESET}\n\
 ${PS_LIGHT_BLUE}∟> \$${PS_COLOR_RESET} "
 PS2="${PS_LIGHT_BLUE} > ${PS_COLOR_RESET}  "
 
+for f in $(ls $bashrc_folder/autocomplete); do
+  echo "sourcing " "$bashrc_folder/autocomplete/$f"
+  "$bashrc_folder/autocomplete/$f"
+done
+
 prompt_command() {
   # $? is 0 if git dir, otherwise false
   if git status > /dev/null 2>&1; then
