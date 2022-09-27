@@ -1,0 +1,14 @@
+calculation=$1
+title=$2
+msg=$3
+
+sleep_duration="$(node -e 'console.log(60*60*24)')"
+
+echo $calculation;
+echo $title
+echo $msg
+
+echo "sleeping for $sleep_duration seconds"
+
+sleep "$sleep_duration" && send_push "$title" "$msg"
+
