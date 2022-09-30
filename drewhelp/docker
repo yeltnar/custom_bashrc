@@ -15,5 +15,5 @@ docker container prune --filter "until=72h"
 docker system prune -f --filter "until=72h"
 
 # access host from inside container
-docker.host.internal
+host.docker.internal
 
