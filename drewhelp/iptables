@@ -1,0 +1,5 @@
+# src - https://stackoverflow.com/questions/54091002/docker-how-to-redirect-a-ip-within-a-container-to-another-ip
+
+iptables -t nat -A PREROUTING -d 57.55.10.210 -j DNAT --to-destination 192.168.38.13
+iptables -t nat -A POSTROUTING -s 192.168.38.13 -j SNAT --to-source 57.55.10.210
+
