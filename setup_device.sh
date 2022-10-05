@@ -6,7 +6,7 @@ then
     echo "DEVICE_NAME is unset"; 
     read -p "Enter DEVICE_NAME: " DEVICE_NAME
     echo "DEVICE_NAME=$DEVICE_NAME"
-    to_write="${to_write}DEVICE_NAME=${DEVICE_NAME}\n"
+    to_write="${to_write}export DEVICE_NAME=${DEVICE_NAME}\n"
     need_write=true;
 else 
     echo "DEVICE_NAME is set to '$DEVICE_NAME'"; 
@@ -17,7 +17,7 @@ then
     echo "GROUP_NAME is unset"; 
     read -p "Enter GROUP_NAME: " GROUP_NAME
     echo "GROUP_NAME=$GROUP_NAME"
-    to_write="${to_write}GROUP_NAME=${GROUP_NAME}\n"
+    to_write="${to_write}export GROUP_NAME=${GROUP_NAME}\n"
     need_write=true;
 else 
     echo "GROUP_NAME is set to '$GROUP_NAME'"; 
