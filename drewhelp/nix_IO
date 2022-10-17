@@ -7,3 +7,6 @@ echo "asdf" 2>&1
 # color info
 https://misc.flogisoft.com/bash/tip_colors_and_formatting
 
+# use this to strip out non-printable chars 
+cat bad.txt | col -b
+
