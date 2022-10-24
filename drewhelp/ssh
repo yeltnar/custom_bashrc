@@ -21,6 +21,9 @@ ssh-add --apple-use-keychain ~/.ssh/
 # directory permissions
 mkdir -p ~/.ssh && chmod 700 ~/.ssh
 
+# ssh exposing the remote port locally 
+ssh -L 8123:localhost:8123 user@server.lan
+
 # ssh config file
 touch ~/.ssh/config
 chmod 600 ~/.ssh/config
@@ -34,6 +37,4 @@ Host dev
     HostName dev.example.com
     User john
     Port 2322
-
-
 
