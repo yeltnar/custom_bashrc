@@ -1,3 +1,7 @@
+# get location of path program
+command -v whoami
+which whoami
+
 fg - bring to foreground
 bg - something background
 jobs - list bg tasks?
