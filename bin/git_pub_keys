@@ -1,0 +1,10 @@
+
+if [ -n $git_user ]; then
+    printf "enter username\n"
+    read git_user
+fi
+
+echo $git_user
+
+curl https://github.com/$git_user.keys | tee /tmp/git_pub_keys
+
