@@ -43,6 +43,6 @@ new_content="{ \
     \"device_name\":\"$device_name\" \
 }"
 
-echo $ntfy_endpoint
+# echo $ntfy_endpoint
 
 curl -d "$new_content" $ntfy_endpoint/device_status;
