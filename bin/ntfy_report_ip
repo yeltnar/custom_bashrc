@@ -21,6 +21,8 @@ nebula_ip=$(ifconfig | awk '/10\.10\.10/{print $2}');
 git_branch=$(git rev-parse HEAD)
 
 last_file="$bashrc_folder/gitignore/last_ntfy_ip_json"
+    
+device_name="$GROUP_NAME-$DEVICE_NAME"
 
 if [ -e $last_file ]; then
     printf "last time it was"
@@ -28,7 +30,6 @@ if [ -e $last_file ]; then
     old_pub_ip="$(cat $last_file | jq -r .pub_ip)"
     old_lan_ip="$(cat $last_file | jq -r .lan_ip)"
     old_nebula_ip="$(cat $last_file | jq -r .nebula_ip)"
-    device_name="$GROUP_NAME-$DEVICE_NAME"
 fi
 
 date="$(date)"
