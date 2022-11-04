@@ -45,12 +45,12 @@ new_content="{ \
 
 # echo $ntfy_endpoint
 
+fail_file="/tmp/ntfy_report_failure"
 report_failure(){
-    fail_file="/tmp/ntfy_report_failure"
     if [ ! -e $fail_file ]; then
-        curl -d 'error with device report' https://ntfy.sh/drewtest123;
+        curl -d "error with device report: $device_name" https://ntfy.sh/drewtest123;
     fi
     touch $fail_file
 }
 
-curl -d "$new_content" $ntfy_endpoint/device_status || report_failure
+curl -d "$new_content" $ntfy_endpoint/device_status && rm -rf $fail_file || report_failure
