@@ -28,6 +28,9 @@ ssh -L 8123:localhost:8123 user@server.lan
 touch ~/.ssh/config
 chmod 600 ~/.ssh/config
 
+# public github keys
+curl https://github.com/yeltnar.keys
+
 # ssh config file contents
 Host hostname1
     SSH_OPTION value
