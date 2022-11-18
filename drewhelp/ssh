@@ -24,6 +24,11 @@ mkdir -p ~/.ssh && chmod 700 ~/.ssh
 # ssh exposing the remote port locally 
 ssh -L 8123:localhost:8123 user@server.lan
 
+# ssh exposing localport on remote machine. 
+# this will only be remotly accessable when accessing from first IP address
+# /etc/ssh/sshd_config[.d/x.conf] must have GatewayPorts [yes|clientspecified] yes is all; clientspecified is syntax below 
+ssh -R 10.10.10.1:9494:localhost:8123 user@site.com
+
 # ssh config file
 touch ~/.ssh/config
 chmod 600 ~/.ssh/config
