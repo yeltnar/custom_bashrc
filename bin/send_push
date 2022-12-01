@@ -1,1 +1,1 @@
-send_push_join $@
+send_push_join "$1" "$2" "$3"
