@@ -3,6 +3,13 @@ version=$(curl https://grapheneos.org/releases 2>/dev/null | gawk 'match($0,/ori
 
 cd $file_location
 
+if [[ $PWD =~ "grapheneos_version_check" ]]; then
+    printf "dir seems good\n"
+else
+    printf "wrong directory\n";
+    exit
+fi
+
 if [ -e "$version" ]; then
 	echo "$version already found";
 else
