@@ -1,0 +1,12 @@
+join_api_key="$(cat $bashrc_folder/gitignore/join_api_key)"
+
+title=$1
+text=$2
+
+curl -X POST \
+-d "{\"title\":\"$title\",\"text\":\"$text\"}" \
+--header 'content-type: application/json' \
+--url "https://joinjoaomgcd.appspot.com/_ah/api/messaging/v1/sendPush?apikey=$join_api_key&deviceId=group.android"
+
+echo "";
+echo "sent - title: $title text: $text";
