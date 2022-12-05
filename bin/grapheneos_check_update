@@ -1,5 +1,5 @@
 file_location="$HOME/.config/grapheneos_version_check"
-version=$(curl https://grapheneos.org/releases 2>/dev/null | gawk 'match($0,/oriole-factory-([0-9]+)\.zip/,a){print a[1]}')
+version=$(curl https://releases.grapheneos.org/oriole-stable 2>/dev/null | awk '{print $1}')
 
 mkdir -p $file_location
 cd $file_location
