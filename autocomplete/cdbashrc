@@ -2,7 +2,9 @@
 # (or /usr/local/etc/bash_completion.d/ for mac)
 # then reload the bash session
 
-_script()
+main(){
+
+_script_cdbashrc()
 {
   _script_commands=$(ls $bashrc_folder)
 
@@ -13,7 +15,11 @@ _script()
 
   return 0
 }
-complete -o nospace -F _script cdbashrc 
+complete -o nospace -F _script_cdbashrc cdbashrc 
+
+}
+
+main
 
 # source: https://askubuntu.com/questions/68175/how-to-create-script-with-auto-complete
 

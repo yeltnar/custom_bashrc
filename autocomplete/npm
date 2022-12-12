@@ -2,7 +2,7 @@
 # (or /usr/local/etc/bash_completion.d/ for mac)
 # then reload the bash session
 
-_script()
+_script_npm()
 {
   _script_commands=$(cat package.json | jq .scripts | jq -r 'keys[]')
 
@@ -13,7 +13,7 @@ _script()
 
   return 0
 }
-complete -o nospace -F _script npm
+complete -o nospace -F _script_npm npm
 
 # source: https://askubuntu.com/questions/68175/how-to-create-script-with-auto-complete
 
