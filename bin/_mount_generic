@@ -1,8 +1,9 @@
 mkdir -p "$local_dir"
 umount "$local_dir"
 
+# add --vv for more info
+
 rclone mount \
--vv \
 --vfs-cache-mode full \
 --allow-other \
 --sftp-key-use-agent \

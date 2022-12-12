@@ -3,4 +3,4 @@ then
 	CONTAINER_RUNTIME="podman"
 fi
 
-$CONTAINER_RUNTIME run -v $1:/usr/share/caddy -p $2:80 caddy:latest
+$CONTAINER_RUNTIME run -v $1:/usr/share/caddy -p $2:80 docker.io/library/caddy:latest

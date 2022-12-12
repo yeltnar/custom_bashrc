@@ -1,0 +1,3 @@
+curl --location --request GET "http://$(homeassistant_host)/api/states/media_player.office_speaker" \
+--header "Authorization: Bearer $(homeassistant_token)" \
+--header 'Content-Type: application/json'

@@ -1,0 +1,7 @@
+export host="drew-lin-lap.lan"
+export user="drew"
+export remote_dir="/"
+export local_dir="/tmp/drew-lin-lap"
+
+_mount_generic
+

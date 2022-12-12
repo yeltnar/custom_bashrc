@@ -26,4 +26,5 @@ INTEGER1 -lt INTEGER2 	INTEGER1 is numerically less than INTEGER2
 -w FILE 		FILE exists and the write permission is granted.
 -x FILE 		FILE exists and the execute permission is granted.
 
+"$string" == *"sub str"* # check if sub string is in string
 
