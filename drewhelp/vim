@@ -2,7 +2,10 @@
 
 firefox https://vim.rtorr.com/ &
 
-# ignore case
+# force case (capital C) 
+/ignorecase\C
+
+# ignore case (lowercase c)
 /ignorecase\c
 
 
