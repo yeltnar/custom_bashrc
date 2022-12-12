@@ -1,0 +1,8 @@
+cd $bashrc_folder/bin/vercomp_node
+
+if [ ! -d 'node_modules' ]; then
+	npm install > /dev/null 2>&1
+fi
+
+node app.js "$1" "$2";
+

@@ -1,3 +1,15 @@
+INSTALLED_VERSION=$(rclone --version | head -n 1 | awk -F 'v' '{print $2}')
+NEEDED_VERSION="1.59.1"
+
+good_version=$(vercomp "$INSTALLED_VERSION" "$NEEDED_VERSION")
+
+if [ "$good_version" = "semver needs to be installed" ]; then
+	echo 'semver needs to be installed';
+elif [ ! "$good_version" = "true" ]; then
+	echo "->$good_version<-";
+	echo 'need to verify the rclone version is up to date';
+fi
+
 mkdir -p "$local_dir"
 umount "$local_dir"
 
@@ -11,3 +23,4 @@ rclone mount \
 --sftp-user "$user" \
 :sftp:"$remote_dir" \
 "$local_dir"
+
