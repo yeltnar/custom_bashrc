@@ -2,7 +2,7 @@
 # (or /usr/local/etc/bash_completion.d/ for mac)
 # then reload the bash session
 
-_script()
+_script_backup_toshiba_ext()
 {
   # _script_commands=$(cat ~/.ssh/config | grep -ie 'host [A-Za-z]' | awk '{print $2}')
   _script_commands=$(backup_toshiba_ext.sh listFunctions)
@@ -16,7 +16,7 @@ _script()
 
   return 0
 }
-complete -o nospace -F _script backup_toshiba_ext.sh
+complete -o nospace -F _script_backup_toshiba_ext backup_toshiba_ext.sh
 
 # source: https://askubuntu.com/questions/68175/how-to-create-script-with-auto-complete
 
