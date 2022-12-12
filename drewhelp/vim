@@ -2,3 +2,7 @@
 
 firefox https://vim.rtorr.com/ &
 
+# ignore case
+/ignorecase\c
+
+
