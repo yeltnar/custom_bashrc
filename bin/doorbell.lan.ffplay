@@ -1,0 +1,2 @@
+source $bashrc_folder/gitignore/doorbell.lan.src &&
+_ffplay_stream
