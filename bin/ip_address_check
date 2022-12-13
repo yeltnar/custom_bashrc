@@ -17,11 +17,12 @@ if [ -e "$address" ]; then
 else
 	echo "$address not found";
 
-	for file in $(ls)
-	do
-		echo "rm $file"
-		rm $file
-	done
+	# ADD THIS BACK TO ONLY KEEP MOST RECENT IP ADDRESS
+	#for file in $(ls)
+	#do
+	#	echo "rm $file"
+	#	rm $file
+	#done
 
 	send_push "IP address changed" "...yeah..."
 
