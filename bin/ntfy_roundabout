@@ -77,11 +77,20 @@ listFunctions(){
 	exit
 }
 
+# TODO remove
+termux-notification(){
+    echo $@;
+}
+
 notify_network_error(){
     termux-notification -t "Check private notifications" -c "There was a network error"
 }
 
 checkNetwork(){
+
+    res=$(curl --connect-timeout 1 $ntfy_private_server > /dev/null 2>&1 && echo "1" || echo "-1")
+    echo $res;
+}
 
 if [ "" != "$1" ]; then
     $1 $@
