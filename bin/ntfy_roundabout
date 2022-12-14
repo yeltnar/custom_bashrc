@@ -1,0 +1,84 @@
+# TODO remove
+if [ "$(command -v termux-notification)" = "" ]; then
+    echo 'Using termux-notification stub'
+    termux-notification(){
+        echo '---'
+        echo $1
+        echo $2
+        echo '---'
+    }
+fi
+
+DIR_TO_PROCESS="$bashrc_folder/gitignore/to_process";
+mkdir -p "$DIR_TO_PROCESS";
+BASE_URL=$(cat $bashrc_folder/gitignore/ntfy_roundabout_url)
+
+if [ "$BASE_URL" = "" ]; then
+    echo 'issue loading base url';
+    exit;
+fi
+
+createNotification(){
+
+    if [ "" = "$2" ]; then
+        echo 'No hidden ntfy refernece defined';
+        echo "$2"
+        return;
+    fi
+
+    id=$2
+    
+    json=$(curl $BASE_URL$id 2> /dev/null | jq .);
+    title=$(echo $json | jq -r .title);
+    message=$(echo $json | jq -r .message);
+
+    if [ "null" = "$title" ]; then
+        title="Title";
+    fi
+
+    termux-notification "$title" "$message";
+}
+
+createNotificationsFromDir(){
+    mkdir -p "$DIR_TO_PROCESS";
+
+    for f in $(ls $DIR_TO_PROCESS); do
+        # uuidgen
+        FILE_TO_PROCESS=$DIR_TO_PROCESS/$f
+        url=$(cat $FILE_TO_PROCESS);
+        
+        json=$(curl $BASE_URL$url 2> /dev/null | jq .);
+        title=$(echo $json | jq -r .title);
+        message=$(echo $json | jq -r .message);
+
+        if [ "null" = "$title" ]; then
+            title="Title";
+        fi
+
+        termux-notification "$title" "$message";
+    done
+}
+
+updateNotifications(){
+    if [ "" = "$2" ]; then
+        echo 'No hidden ntfy refernece defined';
+        echo "$2"
+        return;
+    fi
+
+    cd $DIR_TO_PROCESS;
+
+    echo $2 > $(uuidgen)    
+}
+
+listFunctions(){
+	declare -F | awk '{print $NF}'
+	exit
+}
+
+if [ "" != "$1" ]; then
+    $1 $@
+else
+	echo "no function provided. Try:"
+	listFunctions
+fi
