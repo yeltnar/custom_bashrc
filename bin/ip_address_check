@@ -24,7 +24,7 @@ else
 	#	rm $file
 	#done
 
-	send_push "IP address changed" "...yeah..."
+	send_push "IP address changed" "or the report failed"
 
 	touch $address
 fi
