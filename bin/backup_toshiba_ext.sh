@@ -5,7 +5,10 @@ listFunctions(){
 
 init(){
 	borg init $BORG_REPO --encryption=$ENCRYPTION
+}
 
+export_key(){
+	borg key export $BORG_REPO 
 }
 
 backup(){
@@ -32,6 +35,7 @@ check(){
 
 check_report(){
 	echo 'tail -f /tmp/borg_check_report.log'
+	rm -rf /tmp/borg_check_report.log
 	check_res=$(check 2>&1 | tee /tmp/borg_check_report.log)
 	no_prob_num=$(echo -e "$check_res" | grep -i 'no problems found' | wc -l)
 	if [ 2 -eq $no_prob_num ]; then
@@ -49,6 +53,16 @@ list(){
 	borg list
 }
 
+
+unmount(){
+	mount_point="/tmp/borgmount"
+	borg umount $mount_point
+}
+mount(){
+	mount_point="/tmp/borgmount"
+	mkdir -p $mount_point
+	borg mount :: $mount_point
+}
 
 
 if [ "$(echo $1 | grep 'listFunctions' | wc -l)" = "1" ]; then
@@ -68,7 +82,7 @@ elif [ "" != "$1" ]; then
 
    SRC_DIR="/mnt/toshiba_ext/hold_on_to/"
 
-   export BORG_REPO="drew@mini:/mnt/my_passport/toshiba_ext.borg"
+   export BORG_REPO="toshiba_backup:/mnt/my_passport/toshiba_ext.borg"
    ENCRYPTION="repokey"
 
     $1
