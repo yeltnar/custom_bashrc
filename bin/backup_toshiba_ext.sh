@@ -60,6 +60,12 @@ elif [ "" != "$1" ]; then
 
    export BORG_PASSPHRASE=$( bw get item $PASSWORD_ID | jq -r .login.password )
 
+   if [ -z ]; then
+	echo $BORG_PASSPHRASE
+	echo 'backup did not finish; no borg passphrase';
+	exit -1;
+   fi
+
    SRC_DIR="/mnt/toshiba_ext/hold_on_to/"
 
    export BORG_REPO="drew@mini:/mnt/my_passport/toshiba_ext.borg"
