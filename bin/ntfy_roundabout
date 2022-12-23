@@ -1,6 +1,8 @@
 DIR_TO_PROCESS="$bashrc_folder/gitignore/to_process";
 mkdir -p "$DIR_TO_PROCESS";
 BASE_URL=$(cat $bashrc_folder/gitignore/ntfy_roundabout_url)
+
+# this is mainly for checking if it can be reached
 ntfy_private_server=$(cat $bashrc_folder/gitignore/ntfy_private_server)
 
 if [ "$BASE_URL" = "" ]; then
@@ -16,16 +18,17 @@ createNotification(){
         return;
     fi
 
+    id=$2
+    
     network_check=$(checkNetwork)
 
     if [ ! "$network_check" = "1" ]; then
-        printf $2 > "$DIR_TO_PROCESS/$(uuidgen)";
+        printf $2 > "$DIR_TO_PROCESS/$id";
         notify_network_error;
         return;
     fi
 
-    id=$2
-    
+echo "$BASE_URL$id"
     json=$(curl $BASE_URL$id 2> /dev/null | jq .);
     title=$(echo $json | jq -r .title);
     message=$(echo $json | jq -r .message);
@@ -33,6 +36,7 @@ createNotification(){
     if [ "null" = "$title" ]; then
         title="Title";
     fi
+echo "$json"
 
     termux-notification -t "$title" -c "$message";
 }
@@ -69,17 +73,12 @@ updateNotifications(){
 
     cd $DIR_TO_PROCESS;
 
-    echo $2 > $(uuidgen)    
+    echo $2 > $2    
 }
 
 listFunctions(){
 	declare -F | awk '{print $NF}'
 	exit
-}
-
-# TODO remove
-termux-notification(){
-    echo $@;
 }
 
 notify_network_error(){
