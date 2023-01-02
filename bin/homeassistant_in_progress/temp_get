@@ -1,0 +1,5 @@
+curl --location \
+--request GET \
+"http://$(homeassistant_host)/api/states/sensor.lumi_lumi_weather_temperature" \
+--header "Authorization: Bearer $(homeassistant_token)" \
+--header 'Content-Type: application/json'
