@@ -1,0 +1,50 @@
+  light.new_light_name
+    state off
+  light.right_living_room_light
+    state off
+  light.right_workout_room_lamp
+    state off
+  light.hue_filament_bulb_2
+    state off
+  light.hue_filament_bulb_1
+    state off
+  light.hue_white_lamp_1
+    state off
+  light.hue_ambiance_lamp_1
+    state off
+  light.hue_white_lamp_4
+    state off
+  light.hue_ambiance_lamp_2
+    state off
+  light.left_living_room_lamp
+    state off
+  light.plug_1
+    state off
+  light.plug_2
+    state off
+  light.ceiling_light_1
+    state off
+  light.hue_white_lamp_5
+    state off
+  light.left_workout_room_lamp
+    state off
+  light.hue_light_1
+    state off
+  light.hue_light_1_2
+    state off
+  light.on_off_plug_1
+    state off
+  light.on_off_plug_1_2
+    state off
+  light.no_where
+    state off
+  light.hall
+    state off
+  light.kitchen
+    state off
+  light.front_yard
+    state off
+  light.other
+    state off
+  light.on_off_plug_1_3
+    state off
