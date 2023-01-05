@@ -8,4 +8,13 @@ firefox https://vim.rtorr.com/ &
 # ignore case (lowercase c)
 /ignorecase\c
 
+##### FIND AND REPLACE #####
+# The general form of the substitute command is as follows:
+:[range]s/{pattern}/{string}/[flags] [count]
+# replace foo with bar
+:s/foo/bar/
+# end with g to replace all occurrences in the line
+:s/foo/bar/g
+# %s for all lines
+:%s/foo/bar/g
 
