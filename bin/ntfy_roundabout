@@ -1,0 +1,99 @@
+DIR_TO_PROCESS="$bashrc_folder/gitignore/to_process";
+mkdir -p "$DIR_TO_PROCESS";
+BASE_URL=$(cat $bashrc_folder/gitignore/ntfy_roundabout_url)
+
+# this is mainly for checking if it can be reached
+ntfy_private_server=$(cat $bashrc_folder/gitignore/ntfy_private_server)
+
+if [ "$BASE_URL" = "" ]; then
+    echo 'issue loading base url';
+    exit;
+fi
+
+createNotification(){
+
+    if [ "" = "$2" ]; then
+        echo 'No hidden ntfy refernece defined';
+        echo "$2";
+        return;
+    fi
+
+    id=$2
+    
+    network_check=$(checkNetwork)
+
+    if [ ! "$network_check" = "1" ]; then
+        printf $2 > "$DIR_TO_PROCESS/$id";
+        notify_network_error;
+        return;
+    fi
+
+echo "$BASE_URL$id"
+    json=$(curl $BASE_URL$id 2> /dev/null | jq .);
+    title=$(echo $json | jq -r .title);
+    message=$(echo $json | jq -r .message);
+
+    if [ "null" = "$title" ]; then
+        title="Title";
+    fi
+echo "$json"
+
+    termux-notification -t "$title" -c "$message";
+}
+
+createNotificationsFromDir(){
+
+    if [ ! "$(checkNetwork)" = "1" ]; then
+        notify_network_error;
+        return;
+    fi
+
+    for f in $(ls $DIR_TO_PROCESS); do
+        FILE_TO_PROCESS=$DIR_TO_PROCESS/$f
+        id=$(cat $FILE_TO_PROCESS);
+        
+        json=$(curl $BASE_URL$id 2> /dev/null | jq .);
+        title=$(echo $json | jq -r .title);
+        message=$(echo $json | jq -r .message);
+
+        if [ "null" = "$title" ]; then
+            title="Title";
+        fi
+
+        termux-notification -t "$title" -c "$message" && rm $FILE_TO_PROCESS;
+    done
+}
+
+updateNotifications(){
+    if [ "" = "$2" ]; then
+        echo 'No hidden ntfy refernece defined';
+        echo "$2"
+        return;
+    fi
+
+    cd $DIR_TO_PROCESS;
+
+    echo $2 > $2    
+}
+
+listFunctions(){
+	declare -F | awk '{print $NF}'
+	exit
+}
+
+notify_network_error(){
+    termux-notification -t "Check private notifications" -c "There was a network error"
+}
+
+checkNetwork(){
+
+    res=$(curl --connect-timeout 1 $ntfy_private_server > /dev/null 2>&1 && echo "1" || echo "-1")
+    echo $res;
+}
+
+if [ "" != "$1" ]; then
+    $1 $@
+else
+	echo "no function provided. Try:"
+	listFunctions
+fi

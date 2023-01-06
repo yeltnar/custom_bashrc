@@ -1,6 +1,7 @@
 export bashrc_folder="$HOME/playin/custom_bashrc"
 
 PATH="$PATH:$bashrc_folder/bin"
+PATH="$PATH:$bashrc_folder/bin/homeassistant"
 
 # check if tmux is found, and not currently tmux
 if [ ! -z "$(which tmux)" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ]; then
