@@ -10,6 +10,10 @@ elif [ ! "$good_version" = "true" ]; then
 	echo 'need to verify the rclone version is up to date';
 fi
 
+if [ -z "$port" ]; then
+    export port=22
+fi
+
 mkdir -p "$local_dir"
 umount "$local_dir"
 
@@ -21,6 +25,7 @@ rclone mount \
 --sftp-key-use-agent \
 --sftp-host "$host" \
 --sftp-user "$user" \
+--sftp-port "$port" \
 :sftp:"$remote_dir" \
 "$local_dir"
 
