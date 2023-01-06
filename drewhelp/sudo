@@ -1,0 +1,10 @@
+# to allow root with no password
+# (maybe do this with a text editor) 
+# visudo
+
+# run all programs
+drew ALL=(ALL) NOPASSWORD:ALL
+
+# to run ‘/bin/kill’ and ‘systemctl’ commands without a password
+vivek ALL = NOPASSWD: /bin/systemctl restart httpd.service, /bin/kill
+

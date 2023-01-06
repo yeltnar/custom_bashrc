@@ -1,0 +1,3 @@
+curl --location --request GET "http://$(homeassistant_host)/$1" \
+--header "Authorization: Bearer $(homeassistant_token)" \
+--header 'Content-Type: application/json'

@@ -1,0 +1,31 @@
+last_folder='ip_addr_check'
+file_location="$HOME/.config/$last_folder"
+address=$(curl https://do.andbrant.com)
+
+mkdir -p $file_location
+cd $file_location
+
+if [[ $PWD =~ "$last_folder" ]]; then
+    printf "dir seems good\n"
+else
+    printf "wrong directory\n";
+    exit
+fi
+
+if [ -e "$address" ]; then
+	echo "$address already found";
+else
+	echo "$address not found";
+
+	# ADD THIS BACK TO ONLY KEEP MOST RECENT IP ADDRESS
+	#for file in $(ls)
+	#do
+	#	echo "rm $file"
+	#	rm $file
+	#done
+
+	send_push "IP address changed" "or the report failed"
+
+	touch $address
+fi
+
