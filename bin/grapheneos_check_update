@@ -1,29 +1,5 @@
-file_location="$HOME/.config/grapheneos_version_check"
-version=$(curl https://releases.grapheneos.org/oriole-stable 2>/dev/null | awk '{print $1}')
+export update_type="grapheneos_version_check"
+export update_stream="oriole-stable"
+export update_message="New GrapheneOS version"
 
-mkdir -p $file_location
-cd $file_location
-
-if [[ $PWD =~ "grapheneos_version_check" ]]; then
-    printf "dir seems good\n"
-else
-    printf "wrong directory\n";
-    exit
-fi
-
-if [ -e "$version" ]; then
-	echo "$version already found";
-else
-	echo "$version not found";
-
-	for file in $(ls)
-	do
-		echo "rm $file"
-		rm $file
-	done
-
-	send_push "New GrapheneOS version" "$version"
-
-	touch $version
-fi
-
+_generic_grapheneos_check_update

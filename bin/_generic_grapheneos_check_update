@@ -1,0 +1,43 @@
+if [ -z "$update_type" ]; then
+    echo "\$update_type is not defined; exiting"
+    exit
+fi
+if [ -z "$update_stream" ]; then
+    echo "\$update_stream is not defined; exiting"    
+    exit
+fi
+if [ -z "$update_message" ]; then
+    echo "\$update_message is not defined; exiting"    
+    exit
+fi
+
+
+file_location="$HOME/.config/$update_type"
+version=$(curl https://releases.grapheneos.org/$update_stream 2>/dev/null | awk '{print $1}')
+
+mkdir -p $file_location
+cd $file_location
+
+if [[ $PWD =~ "$update_type" ]]; then
+    printf "dir seems good\n"
+else
+    printf "wrong directory\n";
+    exit
+fi
+
+if [ -e "$version" ]; then
+	echo "$version already found";
+else
+	echo "$version not found";
+
+	for file in $(ls)
+	do
+		echo "rm $file"
+		rm $file
+	done
+
+	send_push "$update_message" "$version"
+
+	touch $version
+fi
+
