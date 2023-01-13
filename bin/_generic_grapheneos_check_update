@@ -15,7 +15,10 @@ fi
 file_location="$HOME/.config/$update_type"
 version=$(curl https://releases.grapheneos.org/$update_stream 2>/dev/null | awk '{print $1}')
 
+move_location="$file_location/old"
+
 mkdir -p $file_location
+mkdir -p "$move_location"
 cd $file_location
 
 if [[ $PWD =~ "$update_type" ]]; then
@@ -29,11 +32,12 @@ if [ -e "$version" ]; then
 	echo "$version already found";
 else
 	echo "$version not found";
+    mkdir -p "$move_location"
 
 	for file in $(ls)
 	do
-		echo "rm $file"
-		rm $file
+		echo "mv $file"
+		mv "$file" "$move_location"
 	done
 
 	send_push "$update_message" "$version"
