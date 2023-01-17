@@ -2,7 +2,7 @@
 
 cd $bashrc_folder
 
-PATH="/usr/local/bin:/sbin:/usr/bin:/bin:/snap/bin:/data/data/com.termux/files/usr/bin"
+PATH="$PATH:/usr/local/bin:/sbin:/usr/bin:/bin:/snap/bin:/data/data/com.termux/files/usr/bin"
 
 pub_ip=$(curl https://digitalocean.andbrant.com);
 lan_ip="$(ifconfig | awk '/192\.168/{print $2}' | tr '\n' ' ')";
@@ -42,14 +42,12 @@ email="$(cat $bashrc_folder/gitignore/email)"
 passwordfile="$bashrc_folder/gitignore/passwordfile"
 organizationid="$(cat $bashrc_folder/gitignore/organizationid)"
 
-export BW_SESSION="$(cat $bashrc_folder/gitignore/BW_SESSION)"
-
 printf "$new_content\n" > $bashrc_folder/gitignore/last_bw_ip_json 
 
 printf "this time it was"
 cat $bashrc_folder/gitignore/last_bw_ip_json | jq .
 
-json=$(bw get item $note_name --organizationid $organizationid) 
+json=$(bw_autologin get item $note_name --organizationid $organizationid) 
 
 #echo $json | jq
 
@@ -58,6 +56,6 @@ revisionDate=$(echo $json | jq .revisionDate -r)
 
 json=$(echo $json | jq --arg new_content "$new_content" '.notes =  $new_content')
 
-echo $json | base64 | bw edit item $item_id --organizationid $organizationid | jq .revisionDate
+echo $json | base64 | bw_autologin edit item $item_id --organizationid $organizationid | jq .revisionDate
 
 echo "upload done"

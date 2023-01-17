@@ -1,0 +1,18 @@
+setSessionId(){
+    export BW_SESSION="$(cat $bashrc_folder/gitignore/BW_SESSION)";
+}
+
+setSessionId
+
+if [ -z $BW_SESSION ]; then
+   bw_sign_in && setSessionId || echo 'error with sign in';
+fi
+
+# TODO check if can actually use session; ie need to refresh
+
+secondTry(){
+   bw_sign_in && setSessionId && bw $@
+}
+
+bw $@ || secondTry 
+
