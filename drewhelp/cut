@@ -1,0 +1,6 @@
+# remove first 10 chars
+crontab -l | cut -c10- 
+
+# mor help
+# https://www.geeksforgeeks.org/cut-command-linux-examples/
+
