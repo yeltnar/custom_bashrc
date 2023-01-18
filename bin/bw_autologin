@@ -5,14 +5,22 @@ setSessionId(){
 setSessionId
 
 if [ -z $BW_SESSION ]; then
-   bw_sign_in && setSessionId || echo 'error with sign in';
+   echo 'BW_SESSION undefined; trying to sign in now' >&2
+   bw_sign_in && setSessionId || echo 'error with sign in'; >&2
+else
+   echo 'BW_SESSION set' >&2
 fi
 
 # TODO check if can actually use session; ie need to refresh
 
 secondTry(){
-   bw_sign_in && setSessionId && bw $@
+   bw_sign_in >&2 && setSessionId >&2 && bw $@
 }
 
+# if it expires, it prompts for password; need to avoid this 
+
+bw status | jq >&2
+
+export BW_SESSION=$BW_SESSION
 bw $@ || secondTry 
 
