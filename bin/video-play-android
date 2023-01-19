@@ -1,0 +1,12 @@
+vid="$1"
+
+if [ -z "$vid" ]; then
+    echo 'no content provided'
+    exit; 
+fi
+
+
+echo "$vid"
+
+termux-open --content-type video "$vid"
+
