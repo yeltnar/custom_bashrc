@@ -63,9 +63,12 @@ mount(){
 	borg mount :: $mount_point
 }
 
+# checks if provided function is in the lit of functions
 if [ "$(echo $1 | grep 'listFunctions' | wc -l)" = "1" ]; then
     $1
 elif [ "" != "$1" ]; then
+
+   export BORG_PASSPHRASE=$( bw_autologin get item $PASSWORD_ID | jq -r .login.password ) 
 
    if [ -z "$BORG_PASSPHRASE" ]; then
 	echo $BORG_PASSPHRASE;
