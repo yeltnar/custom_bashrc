@@ -2,6 +2,8 @@
 
 cd $bashrc_folder
 
+PATH="$PATH:$bashrc_folder/bin"
+
 PATH="$PATH:/usr/local/bin:/sbin:/usr/bin:/bin:/snap/bin:/data/data/com.termux/files/usr/bin"
 
 pub_ip=$(curl https://digitalocean.andbrant.com);
