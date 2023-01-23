@@ -5,8 +5,5 @@ if [ -z "$vid" ]; then
     exit; 
 fi
 
-
-echo "$vid"
-
 termux-open --content-type video "$vid"
 
