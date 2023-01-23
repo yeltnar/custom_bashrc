@@ -1,1 +1,7 @@
-ffplay -i $protocol://$user:$password@$address:$port/$route
+if [ "$OSTYPE" === "linux-android" ]; then
+    video_play_android -i "$protocol://$user:$password@$address:$port/$route"
+else
+    ffplay -i $protocol://$user:$password@$address:$port/$route
+fi
+
+
