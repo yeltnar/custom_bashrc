@@ -1,0 +1,7 @@
+:80 {
+    tls internal
+    root * /hot
+    file_server * {
+            browse
+    }
+}
