@@ -3,6 +3,10 @@ listFunctions(){
 	exit
 }
 
+_send_push(){
+	send_push "$1" "$2 SRC_DIR=$SRC_DIR";
+}
+
 init(){
 	borg init $BORG_REPO --encryption=$ENCRYPTION
 }
@@ -37,9 +41,9 @@ check_report(){
 	check_res=$(check 2>&1 | tee /tmp/borg_check_report.log)
 	no_prob_num=$(echo -e "$check_res" | grep -i 'no problems found' | wc -l)
 	if [ 2 -eq $no_prob_num ]; then
-		send_push 'Borg report' "No problems found SRC_DIR=$SRC_DIR";
+		_send_push 'Borg report' "No problems found"; 
 	else
-		send_push 'Borg report' "Problems ARE found!!! SRC_DIR=$SRC_DIR";
+		_send_push 'Borg report' "Problems ARE found!!!";
 	fi
 	echo $no_prob_num
 	echo "$check_res"
@@ -73,7 +77,7 @@ elif [ "" != "$1" ]; then
    if [ -z "$BORG_PASSPHRASE" ]; then
 	echo $BORG_PASSPHRASE;
 	echo 'backup did not finish; no borg passphrase';
-	send_push 'Borg report' "BORG_PASSPHRASE empty SRC_DIR=$SRC_DIR";
+	_send_push 'Borg report' "BORG_PASSPHRASE empty";
 	exit -1;
    fi
 
