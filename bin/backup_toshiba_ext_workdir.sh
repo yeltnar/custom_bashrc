@@ -3,6 +3,8 @@ export PASSWORD_ID=$(cat $bashrc_folder/gitignore/borg_pw_id)
 
 export SRC_DIR="/mnt/toshiba_ext/working_dir_backup/"
 
+export BORG_NAME="ext workdir";
+
 export BORG_REPO="toshiba_backup:/mnt/my_passport/working_dir.borg"
 export ENCRYPTION="repokey"
 
