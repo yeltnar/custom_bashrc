@@ -4,7 +4,12 @@ listFunctions(){
 }
 
 _send_push(){
-	send_push "$1" "$2 SRC_DIR=$SRC_DIR";
+
+	if [ -z "$BORG_NAME" ]; then
+		BORG_NAME="SRC_DIR=$SRC_DIR";
+	fi
+
+	send_push "$1" "$2 $BORG_NAME"; 
 }
 
 init(){
