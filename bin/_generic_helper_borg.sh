@@ -32,6 +32,14 @@ prune(){
 	borg prune -v --list --keep-daily=7 --keep-weekly="5" --keep-monthly="12" --keep-yearly="2"
 }
 
+backup_prune(){
+	backup && prune;
+}
+
+backup_prune_push(){
+	backup_prune && _send_push "backup_prune" "good" || _send_push "backup_prune" "not so good"
+}
+
 check(){
 	date
 	echo "check"
