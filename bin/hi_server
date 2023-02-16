@@ -1,0 +1,6 @@
+if [ -z $CONTAINER_RUNTIME ]
+then
+	CONTAINER_RUNTIME="podman"
+fi
+
+$CONTAINER_RUNTIME run -v $bashrc_folder/files/hi_server_Caddyfile:/etc/caddy/Caddyfile -p $1:80 docker.io/library/caddy:latest
