@@ -1,0 +1,7 @@
+https://do.andbrant.com:9999 {
+	respond "hi"
+}
+
+:80 {
+	respond "hi"
+}
