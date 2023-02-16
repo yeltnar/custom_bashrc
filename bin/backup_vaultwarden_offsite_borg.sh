@@ -4,6 +4,8 @@ export PASSWORD_ID=$(cat $bashrc_folder/gitignore/borg_pw_id)
 export SRC_DIR="/mnt/toshiba_ext/working_dir_backup/"
 export SRC_DIR="/mnt/toshiba_ext/working_dir_backup/vaultwarden_start/vaultwarden_start"
 
+export BORG_NAME="vaultwarden offsite";
+
 export BORG_REPO="root@do.andbrant.com:/root/borg_upload/vaultwarden.borg"
 export ENCRYPTION="repokey"
 
