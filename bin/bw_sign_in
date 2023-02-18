@@ -6,8 +6,8 @@ passwordfile="$bashrc_folder/gitignore/passwordfile"
 outfile="$bashrc_folder/gitignore/BW_SESSION"
 email="$(cat $bashrc_folder/gitignore/email)"
 
-bw logout # do I need this?
+bw logout >&2 # do I need this?
 bw login $email --passwordfile "$passwordfile" --raw > "$outfile"  
 
-printf "$outfile\n"
+printf "$outfile\n" >&2
 
