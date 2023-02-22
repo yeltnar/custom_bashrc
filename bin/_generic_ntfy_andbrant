@@ -1,0 +1,3 @@
+export bearer_token=$(cat ~/playin/custom_bashrc/gitignore/ntfy_token);
+export ntfy_endpoint=$(cat ~/playin/custom_bashrc/gitignore/ntfy_endpoint);
+_generic_ntfy
