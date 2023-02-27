@@ -22,3 +22,7 @@ podman generate systemd \
 --new --name toms-mongo \
 > /etc/systemd/system/toms-mongo.service
 
+# copy images from one user to another
+sudo podman save myimage | sudo -u myuser podman load` # copy
+sudo podman rmi myimage # if a "move" is desired
+
