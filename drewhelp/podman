@@ -26,3 +26,6 @@ podman generate systemd \
 sudo podman save myimage | sudo -u myuser podman load` # copy
 sudo podman rmi myimage # if a "move" is desired
 
+# ignore self signed registry 
+--tls-verify=false
+
