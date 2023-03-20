@@ -1,0 +1,2 @@
+# kill app
+adb shell am force-stop com.my.app.id

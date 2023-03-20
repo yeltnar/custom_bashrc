@@ -1,0 +1,25 @@
+# use -q to be more quiet, or -v for verbose  
+
+
+gpg --gen-key
+
+gpg  --list-keys
+
+# create output file to send
+echo "hi" |gpg --output out.gpg --encrypt --recipient gpg@andbrant.com 
+
+# decrypt output file
+cat out.gpg | gpg --decrypt
+
+# pipe encrypt and decrypt
+echo "hi" | gpg --encrypt --recipient gpg@andbrant.com | gpg --decrypt 
+
+# pipe encrypt and decrypt with provided password (raw text possible too)
+echo "hi" | gpg --encrypt --recipient gpg@andbrant.com --symmetric --batch --no-tty --passphrase-file ./pass | gpg --batch --passphrase-file ./pass --decrypt --no-tty 
+
+# delete key
+gpg --delete-key drew
+
+# delete private key
+gpg --delete-secret-key drew
+
