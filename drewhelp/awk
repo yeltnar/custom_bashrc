@@ -1,2 +1,9 @@
 # remove result awk
 ps aux | awk '/ffmpeg/{print $0}' | awk '!/awk/'
+
+# print single quote
+ls | awk '{print "\047"$0"\047"}'
+
+# awk variables 
+awk -v q="'" '{print q $0 q}' input
+
