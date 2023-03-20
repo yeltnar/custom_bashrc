@@ -3,4 +3,19 @@ then
 	CONTAINER_RUNTIME="podman"
 fi
 
-$CONTAINER_RUNTIME run -v $bashrc_folder/files/Caddyfile:/etc/caddy/Caddyfile -v $1:/hot -p $2:80 docker.io/library/caddy:latest
+if [ -z $CADDYFILE ]
+then
+	CADDYFILE="$bashrc_folder/files/Caddyfile"	
+fi
+
+if [ -z $PORT ]
+then
+	PORT="9999"
+fi
+
+if [ -z $SERVE_DIR ]
+then
+	SERVE_DIR=$PWD
+fi
+
+$CONTAINER_RUNTIME run -v $CADDYFILE:/etc/caddy/Caddyfile -v "$SERVE_DIR:/hot" -p "$PORT:80" docker.io/library/caddy:latest
