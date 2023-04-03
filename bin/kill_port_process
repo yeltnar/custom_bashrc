@@ -1,0 +1,9 @@
+PORT=$1; 
+
+if [ -z "$1" ]; then
+	echo 'port not provided as first parameter...exiting';
+	exit
+fi
+
+process=$(sudo lsof -i:$PORT | awk '!/^COMMAND/' | awk '{print $2}')
+kill "$process"
