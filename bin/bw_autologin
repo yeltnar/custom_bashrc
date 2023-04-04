@@ -1,3 +1,31 @@
+lock_dir="$bashrc_folder/gitignore";
+lock_file_name=".BW_SESSION.lock"
+lock_file="$lock_dir/$lock_file_name"
+
+run_id="$$"
+
+getCurrentLock(){
+   # get the top lock file, or current process
+   to_return=$(cat "$lock_file" | head -n1) || echo $(echo "$run_id");
+
+   # if the file is empty, return current
+   if [ -z $to_return ]; then
+      to_return="$run_id";
+   fi
+
+   echo $to_return;
+}
+
+echo "$run_id" >> "$lock_file";
+
+# wait for the current process to be top of list 
+file_locked=$(getCurrentLock);
+while [ "$file_locked" != "$run_id" ]
+do
+	file_locked=$(getCurrentLock);
+	sleep 2;
+done
+
 setSessionId(){
     export BW_SESSION="$(cat $bashrc_folder/gitignore/BW_SESSION)";
 }
@@ -24,3 +52,7 @@ bw status | jq >&2
 export BW_SESSION=$BW_SESSION
 bw $@ || secondTry 
 
+# this needs to be last 
+# take out the current process id, and replace the lock list
+cat "$lock_file"  | grep -v "$$" > "/tmp/$run_id-new_lock_list";
+mv "/tmp/$run_id-new_lock_list" "$lock_file"
