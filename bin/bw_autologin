@@ -4,6 +4,17 @@ lock_file="$lock_dir/$lock_file_name"
 
 run_id="$$"
 
+lock_held='true'
+releaseLock(){
+   if [ "$lock_held" = 'true'  ]; then
+      # this needs to be last 
+      # take out the current process id, and replace the lock list
+      cat "$lock_file"  | grep -v "$$" > "/tmp/$run_id-new_lock_list";
+      mv "/tmp/$run_id-new_lock_list" "$lock_file"
+      lock_held='false'
+   fi
+}
+
 getCurrentLock(){
    # get the top lock file, or current process
    to_return=$(cat "$lock_file" | head -n1) || echo $(echo "$run_id");
@@ -17,6 +28,9 @@ getCurrentLock(){
 }
 
 echo "$run_id" >> "$lock_file";
+
+# don't hold lock for more than 5 min... hope this works with bash
+sleep 300 && releaseLock &
 
 # wait for the current process to be top of list 
 file_locked=$(getCurrentLock);
@@ -52,7 +66,4 @@ bw status | jq >&2
 export BW_SESSION=$BW_SESSION
 bw $@ || secondTry 
 
-# this needs to be last 
-# take out the current process id, and replace the lock list
-cat "$lock_file"  | grep -v "$$" > "/tmp/$run_id-new_lock_list";
-mv "/tmp/$run_id-new_lock_list" "$lock_file"
+releaseLock
