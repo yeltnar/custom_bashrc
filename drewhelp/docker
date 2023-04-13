@@ -20,3 +20,6 @@ host.docker.internal
 # block outgoing traffic
 https://medium.com/@havloujian.joachim/advanced-docker-networking-outgoing-ip-921fc3090b09
 
+# export container as image; prints new image sha256
+docker commit $docker_ref
+
