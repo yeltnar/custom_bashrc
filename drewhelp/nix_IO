@@ -10,3 +10,6 @@ https://misc.flogisoft.com/bash/tip_colors_and_formatting
 # use this to strip out non-printable chars 
 cat bad.txt | col -b
 
+# send string to stdin 
+ cat <<< "asdf"
+
