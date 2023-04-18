@@ -1,6 +1,0 @@
-tcpdump
-use for watching network traffic (wireshark depends on this)
-
-# openwrt docs
-https://openwrt.org/docs/guide-user/firewall/misc/tcpdump_wireshark
-

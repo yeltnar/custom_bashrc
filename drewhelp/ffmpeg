@@ -19,3 +19,6 @@ ffmpeg -i in.mp4 -filter:v "crop=out_w:out_h:x:y" out.mp4
 # mute 
 ffmpeg -i in.mp4 -c copy -an out.mp4
 
+# pull out all the frames 
+ffmpeg -i "$INPUT_FILE" frames/out-%03d.jpg
+
