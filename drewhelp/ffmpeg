@@ -22,3 +22,6 @@ ffmpeg -i in.mp4 -c copy -an out.mp4
 # pull out all the frames 
 ffmpeg -i "$INPUT_FILE" frames/out-%03d.jpg
 
+# overwrite exsisting file
+ffmpeg -y -i input.flac output.mp3
+
