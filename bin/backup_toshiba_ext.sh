@@ -7,7 +7,8 @@ export SRC_DIR="/mnt/toshiba_ext/hold_on_to/";
 
 export BORG_NAME="ext hold_on_to";
 
-export BORG_REPO="toshiba_backup:/mnt/my_passport/toshiba_ext.borg"
+# toshiba_backup is an entry in ~/.ssh/config
+export BORG_REPO="toshiba_backup:/mnt/2t_toshiba/toshiba_ext.borg"
 export ENCRYPTION="repokey"
 
 _generic_helper_borg.sh "$1" "$2" "$3"
