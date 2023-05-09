@@ -1,0 +1,8 @@
+# host on any ssh server
+https://www.inmotionhosting.com/support/website/git/git-server/
+
+# TLDR ^ 
+# on remote, make git dir
+mkdir /path/to/dir/remote.git
+# on host, add remote, use as anything else
+git remote add local_git user@host:/path/to/dir/remote.git
