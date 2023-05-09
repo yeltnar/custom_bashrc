@@ -4,5 +4,7 @@ https://www.inmotionhosting.com/support/website/git/git-server/
 # TLDR ^ 
 # on remote, make git dir
 mkdir /path/to/dir/remote.git
+# init git same dir
+cd /path/to/dir/remote.git; git init
 # on host, add remote, use as anything else
 git remote add local_git user@host:/path/to/dir/remote.git
