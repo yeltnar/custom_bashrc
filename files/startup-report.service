@@ -1,0 +1,11 @@
+[Unit]
+Description=Send up notification
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Environment='bashrc_folder=/home/pi/playin/custom_bashrc'
+ExecStart=bash -c '/home/pi/playin/custom_bashrc/bin/send_push_join backup-pi started 2>&1 | tee /tmp/startup-report'
+
+[Install]
+WantedBy=multi-user.target 
