@@ -1,0 +1,17 @@
+# host on any ssh server
+https://www.inmotionhosting.com/support/website/git/git-server/
+
+# TLDR ^ 
+# on remote, make git dir
+mkdir /path/to/dir/remote.git
+# init git same dir
+cd /path/to/dir/remote.git; git init --bare 
+# on host, add remote, use as anything else
+git remote add local_git user@host:/path/to/dir/remote.git
+
+
+# set up git hooks
+https://stackoverflow.com/a/50508775
+# TLDR... 
+# within remote, put in the hooks dir, and make sure it has the execute permission
+# file should be named after the hook: pre-receive, update, post-receive

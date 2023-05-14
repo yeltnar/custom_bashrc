@@ -1,4 +1,4 @@
-lock_dir="$bashrc_folder/gitignore";
+lock_dir="/tmp/";
 lock_file_name=".BW_SESSION.lock"
 lock_file="$lock_dir/$lock_file_name"
 
@@ -15,6 +15,10 @@ releaseLock(){
    fi
 }
 
+addToLockList(){
+   echo "$run_id" >> "$lock_file";
+}
+
 getCurrentLock(){
    # get the top lock file, or current process
    to_return=$(cat "$lock_file" | head -n1) || echo $(echo "$run_id");
@@ -27,43 +31,50 @@ getCurrentLock(){
    echo $to_return;
 }
 
-echo "$run_id" >> "$lock_file";
+main(){
 
-# don't hold lock for more than 5 min... hope this works with bash
-sleep 300 && releaseLock &
+   addToLockList
 
-# wait for the current process to be top of list 
-file_locked=$(getCurrentLock);
-while [ "$file_locked" != "$run_id" ]
-do
-	file_locked=$(getCurrentLock);
-	sleep 2;
-done
+   # don't hold lock for more than 5 min... hope this works with bash
+   # sleep 300 && releaseLock &
 
-setSessionId(){
-    export BW_SESSION="$(cat $bashrc_folder/gitignore/BW_SESSION)";
+   # wait for the current process to be top of list 
+   file_locked=$(getCurrentLock);
+   while [ "$file_locked" != "$run_id" ]
+   do
+      file_locked=$(getCurrentLock);
+      echo 'going to sleep...' >&2
+      sleep 2;
+   done
+
+   setSessionId(){
+      export BW_SESSION="$(cat $bashrc_folder/gitignore/BW_SESSION)";
+   }
+
+   setSessionId
+
+   if [ -z $BW_SESSION ]; then
+      echo 'BW_SESSION undefined; trying to sign in now' >&2
+      bw_sign_in && setSessionId || echo 'error with sign in'; >&2
+   else
+      echo 'BW_SESSION set' >&2
+   fi
+
+   # TODO check if can actually use session; ie need to refresh
+
+   secondTry(){
+      echo "second try" >&2
+      bw_sign_in >&2 && setSessionId >&2 && bw $@
+   }
+
+   # if it expires, it prompts for password; need to avoid this 
+
+   echo "first try" >&2
+   bw status | jq >&2
+   echo "$@" >&2
+
+   export BW_SESSION=$BW_SESSION
+   bw $@ || secondTry 
 }
 
-setSessionId
-
-if [ -z $BW_SESSION ]; then
-   echo 'BW_SESSION undefined; trying to sign in now' >&2
-   bw_sign_in && setSessionId || echo 'error with sign in'; >&2
-else
-   echo 'BW_SESSION set' >&2
-fi
-
-# TODO check if can actually use session; ie need to refresh
-
-secondTry(){
-   bw_sign_in >&2 && setSessionId >&2 && bw $@
-}
-
-# if it expires, it prompts for password; need to avoid this 
-
-bw status | jq >&2
-
-export BW_SESSION=$BW_SESSION
-bw $@ || secondTry 
-
-releaseLock
+main $@ && releaseLock || releaseLock

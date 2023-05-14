@@ -49,14 +49,22 @@ printf "$new_content\n" > $bashrc_folder/gitignore/last_bw_ip_json
 printf "this time it was"
 cat $bashrc_folder/gitignore/last_bw_ip_json | jq .
 
-json=$(bw_autologin get item $note_name --organizationid $organizationid) 
+echo 'about to get json'
+echo "note_name => $note_name"
+echo "organizationid => $organizationid"
+echo "bw_autologin get item $note_name --organizationid $organizationid 2> /dev/null"
+json=$(bw_autologin get item $note_name --organizationid $organizationid 2> /dev/null) 
+echo "$json" 
+echo 'got json' 
 
 #echo $json | jq
 
 item_id=$(echo $json | jq .id -r)
 revisionDate=$(echo $json | jq .revisionDate -r)
 
+echo 'about to get json 2' 
 json=$(echo $json | jq --arg new_content "$new_content" '.notes =  $new_content')
+echo 'got json 2' 
 
 echo $json | base64 | bw_autologin edit item $item_id --organizationid $organizationid | jq .revisionDate
 
