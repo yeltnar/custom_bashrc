@@ -1,21 +1,23 @@
-# sudo umount /tmp/overlay
+# sudo umount ./overlay
 
-# rm -rf /tmp/lower; rm -rf /tmp/upper; rm -rf /tmp/workdir; rm -rf /tmp/overlay
-# mkdir /tmp/lower; mkdir /tmp/upper; mkdir /tmp/workdir; mkdir /tmp/overlay
+rm -rf ./lower; rm -rf ./upper; rm -rf ./workdir; rm -rf ./overlay
+mkdir ./lower; mkdir ./upper; mkdir ./workdir; mkdir ./overlay
 
-sudo mount -t overlay overlay -olowerdir=/tmp/lower,upperdir=/tmp/upper,workdir=/tmp/workdir /tmp/overlay
-echo "lower" > /tmp/lower/lower.txt
-cat /tmp/overlay/lower.txt 
+sudo mount -t overlay overlay -olowerdir=./lower,upperdir=./upper,workdir=./workdir ./overlay
+echo "lower" > ./lower/lower.txt
+cat ./overlay/lower.txt 
 echo "from upper..."
-cat /tmp/upper/lower.txt
-echo "overlay" > /tmp/overlay/lower.txt 
+cat ./upper/lower.txt
+echo "overlay" > ./overlay/lower.txt 
 echo "from lower..."
-cat /tmp/lower/lower.txt 
+cat ./lower/lower.txt 
 echo "from overlay..."
-cat /tmp/overlay/lower.txt 
+cat ./overlay/lower.txt 
 echo "from upper..."
-cat /tmp/upper/lower.txt
+cat ./upper/lower.txt
+echo "from workdir..."
+cat ./workdir/lower.txt
 
-rm /tmp/lower/lower.txt 
-rm /tmp/overlay/lower.txt 
+rm ./lower/lower.txt 
+rm ./overlay/lower.txt 
 
