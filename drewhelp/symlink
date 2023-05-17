@@ -1,6 +1,9 @@
  # create symlink to a file or dir
  ln -s source_file myfile
 
-# replace symlink with new location
+# replace symlink with new file
 ln -sf /new/target /path/to/symlink
+
+# replace symlink with new directory or file 
+ln -sfn /new/target /path/to/symlink
 
