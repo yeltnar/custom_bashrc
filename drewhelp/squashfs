@@ -1,1 +1,8 @@
-https://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html
+# https://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html
+
+mkdir to_squash
+echo 'hi, from squash' >> to_squash/hi.txt
+mksquashfs ./to_squash ./to_squash.sqsh
+mkdir squash_mnt
+sudo mount to_squash.sqsh squash_mnt -t squashfs -o loop
+
