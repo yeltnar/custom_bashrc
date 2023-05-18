@@ -49,6 +49,9 @@ cdbashrc(){
 	fi
 }
 
+cdsystemctl(){
+	cd /etc/systemd/system 	 
+}
 
 alias bashhistory="cat ~/.bash_history"
 alias lastssh="cat ~/.bash_history | grep "^ssh"| tail -n 1 > /tmp/drewsshcmd;chmod 777 /tmp/drewsshcmd; /tmp/drewsshcmd;rm /tmp/drewsshcmd"
