@@ -9,7 +9,9 @@ _send_push(){
 		BORG_NAME="SRC_DIR=$SRC_DIR";
 	fi
 
-	send_push "$1" "$2 - $BORG_NAME"; 
+	export message_content="$1" 
+	export message_title="$2 - $BORG_NAME" 
+	_generic_ntfy_public
 }
 
 init(){
