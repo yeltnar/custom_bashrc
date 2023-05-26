@@ -10,6 +10,13 @@ if [ -z "$message_content" ]; then
     exit -1;
 fi
 
+message_title_header=""
+if [ -z "$message_title" ]; then
+    echo "message_title environment var not defined; not using a title";
+else
+    message_title_header="Title: $message_title"
+fi
+
 if [ -z "$ntfy_endpoint" ]; then
     echo "ntfy_endpoint environment var not defined; exiting";
     exit -1;
@@ -20,5 +27,5 @@ if [ -z "$topic" ]; then
     exit -1;
 fi
 
-curl -H "Authorization: Bearer $bearer_token" -d "$message_content" "$ntfy_endpoint/$topic"
+curl -H "Authorization: Bearer $bearer_token" -H "$message_title_header" -d "$message_content" "$ntfy_endpoint/$topic"
 
