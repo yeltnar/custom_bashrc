@@ -1,2 +1,2 @@
 jq '.data.".dockerconfigjson"'
-echo {} | jq --arg PWD "$PWD" '.workdir = "PWD"'
+echo {} | jq --arg PWD "$PWD" '.workdir = $PWD'
