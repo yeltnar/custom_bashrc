@@ -1,4 +1,4 @@
 export bearer_token=" "
-export topic=""$(cat ~/playin/custom_bashrc/gitignore/ntfy_topic_public)
+#export topic=""$(cat ~/playin/custom_bashrc/gitignore/ntfy_topic_public)
 export ntfy_endpoint="$(cat ~/playin/custom_bashrc/gitignore/ntfy_endpoint_public)"
 _generic_ntfy

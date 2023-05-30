@@ -4,14 +4,36 @@ listFunctions(){
 }
 
 _send_push(){
+	
+	export topic="`cat $bashrc_folder/gitignore/borg_ntfy_topic`"
+	export message_title="$1" 
+	export message_content="$2"
+
+	_generic_ntfy_andbrant
+	_generic_ntfy_public
+}
+
+_send_json_push(){
 
 	if [ -z "$BORG_NAME" ]; then
 		BORG_NAME="SRC_DIR=$SRC_DIR";
 	fi
 
-	export message_content="$1" 
-	export message_title="$2 - $BORG_NAME" 
-	_generic_ntfy_public
+	date=`date`
+
+	json=`echo {} | jq --arg BORG_NAME "$BORG_NAME" '.BORG_NAME = $BORG_NAME'`
+	json=`echo $json | jq --arg date "$date" '.date = $date'`
+	json=`echo $json | jq --arg msg "$2" '.msg = $msg'`
+	
+	_send_push "$1" "$json"
+}
+
+test_push(){
+	_send_push "test" "message"
+}
+
+test_json_push(){
+	_send_json_push "test" "message"
 }
 
 init(){
@@ -39,7 +61,7 @@ backup_prune(){
 }
 
 backup_prune_push(){
-	backup_prune && _send_push "backup_prune" "good" || _send_push "backup_prune" "not so good"
+	backup_prune && _send_json_push "backup_prune" "good" || _send_json_push "backup_prune" "not so good"
 }
 
 check(){
@@ -56,9 +78,9 @@ check_report(){
 	check_res=$(check 2>&1 | tee /tmp/borg_check_report.log)
 	no_prob_num=$(echo -e "$check_res" | grep -i 'no problems found' | wc -l)
 	if [ 2 -eq $no_prob_num ]; then
-		_send_push 'Borg report' "No problems found"; 
+		_send_json_push 'Borg report' "No problems found"; 
 	else
-		_send_push 'Borg report' "Problems ARE found!!!";
+		_send_json_push 'Borg report' "Problems ARE found!!!";
 	fi
 	echo $no_prob_num
 	echo "$check_res"
