@@ -1,0 +1,7 @@
+# wget to stdout
+wget -O - andbrant.com
+
+# wget to stdout with no metadata
+wget -O - andbrant.com 2> /dev/null
+
+
