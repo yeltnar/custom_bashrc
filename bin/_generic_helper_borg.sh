@@ -1,3 +1,5 @@
+start_time=`date`
+
 listFunctions(){
 	declare -F | awk '{print $NF}'
 	exit
@@ -19,10 +21,11 @@ _send_json_push(){
 		BORG_NAME="SRC_DIR=$SRC_DIR";
 	fi
 
-	date=`date`
+	end_time=`date`
 
 	json=`echo {} | jq --arg BORG_NAME "$BORG_NAME" '.BORG_NAME = $BORG_NAME'`
-	json=`echo $json | jq --arg date "$date" '.date = $date'`
+	json=`echo $json | jq --arg start_time "$start_time" '.start_time= $start_time'`
+	json=`echo $json | jq --arg end_time "$end_time" '.end_time= $end_time'`
 	json=`echo $json | jq --arg msg "$2" '.msg = $msg'`
 	
 	_send_push "$1" "$json"
