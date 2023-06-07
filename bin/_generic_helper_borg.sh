@@ -27,7 +27,7 @@ _send_json_push(){
 	json=`echo $json | jq --arg start_time "$start_time" '.start_time= $start_time'`
 	json=`echo $json | jq --arg end_time "$end_time" '.end_time= $end_time'`
 	json=`echo $json | jq --arg msg "$2" '.msg = $msg'`
-	json=`echo $json | jq --arg good "$3" '.good = $good'`
+	json=`echo $json | jq --argjson good "$3" '.good = $good'`
 	
 	_send_push "$1" "$json"
 }
