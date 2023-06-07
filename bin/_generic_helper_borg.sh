@@ -24,6 +24,7 @@ _send_json_push(){
 	json=`echo {} | jq --arg BORG_NAME "$BORG_NAME" '.BORG_NAME = $BORG_NAME'`
 	json=`echo $json | jq --arg date "$date" '.date = $date'`
 	json=`echo $json | jq --arg msg "$2" '.msg = $msg'`
+	json=`echo $json | jq --arg good "$3" '.good = $good'`
 	
 	_send_push "$1" "$json"
 }
@@ -33,7 +34,7 @@ test_push(){
 }
 
 test_json_push(){
-	_send_json_push "test" "message"
+	_send_json_push "test" "message" "true"
 }
 
 init(){
@@ -61,7 +62,7 @@ backup_prune(){
 }
 
 backup_prune_push(){
-	backup_prune && _send_json_push "backup_prune" "good" || _send_json_push "backup_prune" "not so good"
+	backup_prune && _send_json_push "backup_prune" "good" "true" || _send_json_push "backup_prune" "not so good" "false"
 }
 
 check(){
@@ -78,9 +79,9 @@ check_report(){
 	check_res=$(check 2>&1 | tee /tmp/borg_check_report.log)
 	no_prob_num=$(echo -e "$check_res" | grep -i 'no problems found' | wc -l)
 	if [ 2 -eq $no_prob_num ]; then
-		_send_json_push 'Borg report' "No problems found"; 
+		_send_json_push 'Borg report' "No problems found" "true"; 
 	else
-		_send_json_push 'Borg report' "Problems ARE found!!!";
+		_send_json_push 'Borg report' "Problems ARE found!!!" "false";
 	fi
 	echo $no_prob_num
 	echo "$check_res"
