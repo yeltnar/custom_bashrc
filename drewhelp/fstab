@@ -10,3 +10,5 @@ UUID=7E5407095406C3BD /media/pi/TOSHIBA\040EXT ntfs-3g async,big_writes,noatime,
 # test # -a Mount all filesystems (of the given types) mentioned in fstab.
 mount -a
 
+# don't prevent computer from booting (from squashfs) when drive is missing 
+/home/drew/tmp/rm/to_squash.sqsh /home/drew/tmp/rm/squash_mnt/ squashfs ro,auto,nofail 0 0 
