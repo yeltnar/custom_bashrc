@@ -1,6 +1,9 @@
 # helpful link
 https://gist.github.com/etes/aa76a6e9c80579872e5f
 
+# man page, specifically for mounting options
+https://man7.org/linux/man-pages/man5/fstab.5.html
+
 # downloaded version of the above 
 custom_bashrc/drewhelp/dir/pi_mount_usb.md
 
