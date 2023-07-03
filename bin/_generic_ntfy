@@ -1,7 +1,9 @@
 
+bearer_token_header=""
 if [ -z "$bearer_token" ]; then
-    echo "bearer_token environment var not defined; exiting";
-    exit -1;
+    echo "bearer_token env var not defined; not using"
+else
+    bearer_token_header="Authorization: Basic $bearer_token"
 fi
 
 # TODO rename this var 
@@ -17,6 +19,8 @@ else
     message_title_header="Title: $message_title"
 fi
 
+echo $ntfy_endpoint
+
 if [ -z "$ntfy_endpoint" ]; then
     echo "ntfy_endpoint environment var not defined; exiting";
     exit -1;
@@ -27,5 +31,5 @@ if [ -z "$topic" ]; then
     exit -1;
 fi
 
-curl -H "Authorization: Bearer $bearer_token" -H "$message_title_header" -d "$message_content" "$ntfy_endpoint/$topic"
+curl -H "$bearer_token_header" -H "$message_title_header" -d "$message_content" "$ntfy_endpoint/$topic"
 
