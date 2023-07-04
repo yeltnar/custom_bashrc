@@ -18,4 +18,8 @@ then
 	SERVE_DIR=$PWD
 fi
 
+echo "CONTAINER_RUNTIME: $CONTAINER_RUNTIME"
+echo "SERVE_DIR: $SERVE_DIR"
+echo "PORT: $PORT"
+
 $CONTAINER_RUNTIME run -v $CADDYFILE:/etc/caddy/Caddyfile -v "$SERVE_DIR:/hot" -p "$PORT:80" docker.io/library/caddy:latest
