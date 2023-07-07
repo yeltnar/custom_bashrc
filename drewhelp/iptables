@@ -3,3 +3,17 @@
 iptables -t nat -A PREROUTING -d 57.55.10.210 -j DNAT --to-destination 192.168.38.13
 iptables -t nat -A POSTROUTING -s 192.168.38.13 -j SNAT --to-source 57.55.10.210
 
+
+
+# from container playing
+
+https://unix.stackexchange.com/questions/11851/iptables-allow-certain-ips-and-block-all-other-connection
+
+iptables-legacy -A OUTPUT -p tcp ! -d authserver.mojang.com --dport 443 -j REJECT
+
+RUN apk add iptables && \
+iptables -A OUTPUT -p tcp ! -d authserver.mojang.com --dport 443 -j REJECT && \
+iptables -A OUTPUT -p tcp ! -d login.minecraft.net --dport 80 -j REJECT
+
+ufw default deny outgoing && ufw default deny incoming && ufw allow out to 137.184.17.41 port 443 && ufw enable
+
