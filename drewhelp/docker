@@ -23,3 +23,6 @@ https://medium.com/@havloujian.joachim/advanced-docker-networking-outgoing-ip-92
 # export container as image; prints new image sha256
 docker commit $docker_ref
 
+# full docker image registry URL
+registry.hub.docker.com/library/IMAGE:TAG
+

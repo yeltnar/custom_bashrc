@@ -29,3 +29,9 @@ sudo podman rmi myimage # if a "move" is desired
 # ignore self signed registry 
 --tls-verify=false
 
+# save image as tar
+podman save -o /tmp/image.tar
+
+# load tar as image
+podman load -i /tmp/image.tar
+
