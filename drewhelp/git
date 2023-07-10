@@ -15,3 +15,7 @@ https://stackoverflow.com/a/50508775
 # TLDR... 
 # within remote, put in the hooks dir, and make sure it has the execute permission
 # file should be named after the hook: pre-receive, update, post-receive
+
+
+# .git folder in a different directory
+git init --separate-git-dir=/path/to/dot-git-directory .
