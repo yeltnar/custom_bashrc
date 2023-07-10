@@ -19,3 +19,6 @@ https://stackoverflow.com/a/50508775
 
 # .git folder in a different directory
 git init --separate-git-dir=/path/to/dot-git-directory .
+
+# similar, but allows for two .git directories for any working path
+git --work-tree=. --git-dir=git2 status
