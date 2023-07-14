@@ -12,7 +12,7 @@ _send_push(){
 	export message_content="$2"
 
 	_generic_ntfy_andbrant
-	_generic_ntfy_public
+	#_generic_ntfy_public
 }
 
 _send_json_push(){
@@ -96,10 +96,13 @@ list(){
 	borg list
 }
 
-
 unmount(){
 	mount_point="/tmp/borgmount"
 	borg umount $mount_point
+}
+
+break_lock(){
+	borg break-lock $mount_point
 }
 
 mount(){

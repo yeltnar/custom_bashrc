@@ -3,7 +3,7 @@ bearer_token_header=""
 if [ -z "$bearer_token" ]; then
     echo "bearer_token env var not defined; not using"
 else
-    bearer_token_header="Authorization: Basic $bearer_token"
+    bearer_token_header="Authorization: Bearer $bearer_token"
 fi
 
 # TODO rename this var 
