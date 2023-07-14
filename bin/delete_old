@@ -1,3 +1,5 @@
+echo 'remember! we exepct DIR to end with a slash'
+
 if [ -z $DIR ] || [ -z $MAX_SIZE ]; then
     echo "Must provide DIR, MAX_SIZE (in kb)"
     exit
@@ -11,7 +13,7 @@ printf "$(date) - $DIR - $MAX_SIZE\n"
 while [ $current_size -gt $MAX_SIZE ] && [ -s $DIR ]; do
     echo "$current_size | $MAX_SIZE"
     to_remove="$(ls -lt $DIR | awk '!/^d/{print}' | awk '!/^total/' | awk '{print $NF}' | tail -n 1)";
-    echo "rm $DIR/$to_remove";
-    rm "$DIR/$to_remove";
+    echo "rm $DIR$to_remove";
+    rm "$DIR$to_remove";
     current_size="$(du -kc $DIR | tail -n 1 | awk '{print $1}')";
 done
