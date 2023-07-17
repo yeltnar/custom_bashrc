@@ -4,3 +4,11 @@ sudo ss -tulpn | grep LISTEN
 sudo lsof -i:22 ## see a specific port such as 22 ##
 sudo nmap -sTU -O IP-address-Here
 
+# look at active [a]ll [t]cp sockets
+ss -at
+
+# look at [a]ll [u]dp sockets
+ss -au
+
+# look at all listening sockets 
+ss -l
