@@ -1,2 +1,17 @@
 # encrypt and decrypt in one go
 echo 'rusty!herring.pitshaft' | openssl enc -aes-256-cbc -md sha512 -a -pbkdf2 -iter 100000 -salt -pass pass:'pick.your.password' | openssl enc -aes-256-cbc -md sha512 -a -d -pbkdf2 -iter 100000 -salt -pass pass:'pick.your.password'
+
+######## not inline password ########  
+
+mkdir -p workdir
+
+# openssl genrsa -out ./workdir/openssl_rsa 
+
+echo 'encrypting...'
+echo 'encrypted message' | \
+openssl enc -e -pass file:./workdir/openssl_rsa -a -iter 100000 -salt -out ./workdir/f.enc
+
+echo 'decrypting...'
+openssl enc -d -pass file:./workdir/openssl_rsa -a -iter 100000 -salt -in ./workdir/f.enc
+
+
