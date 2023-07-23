@@ -8,3 +8,7 @@ drew ALL=(ALL) NOPASSWORD:ALL
 # to run ‘/bin/kill’ and ‘systemctl’ commands without a password
 vivek ALL = NOPASSWD: /bin/systemctl restart httpd.service, /bin/kill
 
+# edit /etc/sudoers.d/$USER to enable/disable password prompt for super user access
+# prompt for password # %drew ALL=(ALL) ALL
+# don't prompt # %drew ALL=(ALL) NOPASSWD: ALL
+
