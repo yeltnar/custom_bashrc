@@ -74,7 +74,7 @@ main(){
    echo "$@" >&2
 
    export BW_SESSION=$BW_SESSION
-   bw $@ || secondTry 
+   bw $@ || secondTry $@ 
 }
 
 main $@ && releaseLock || releaseLock
