@@ -1,0 +1,23 @@
+# squash - https://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html
+# encrypted - https://gist.github.com/ansemjo/6f1cf9d9b8f7ce8f70813f52c63b74a6
+
+mkdir -p testing; cd testing;
+
+# setup input
+mkdir to_squash
+echo 'hi, from squash' >> to_squash/hi.txt
+mksquashfs ./to_squash ./image.sqfs
+
+# encrypt it 
+truncate -s +8M image.sqfs # add some padding for encryption 
+cryptsetup -q reencrypt --encrypt --type luks2 --resilience none --disable-locks --reduce-device-size 8M image.sqfs # add encryption 
+
+# mount
+mkdir squash_mnt
+sudo cryptsetup open ./image.sqfs enc_sqfs # create unencrypted device
+sudo mount -t squashfs /dev/mapper/enc_sqfs ./squash_mnt # mount unencrypted device
+
+# _to clean up_
+# sudo umount ./squash_mnt
+# sudo cryptsetup close enc_sqfs
+
