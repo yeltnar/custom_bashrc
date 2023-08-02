@@ -53,9 +53,9 @@ decrypt(){
 
 createContent(){
     mkdir -p "$input_dir";
-    echo "$date" > "$input_dir/f.txt"
+    echo `date` > "$input_dir/f.txt"
 
-    tar -C "$input_dir" -zcvf "$out_tar" "$input_dir";
+    tar -C "$input_dir" -zcvf "$out_tar" .;
     in_file="$out_tar";
 }
 
