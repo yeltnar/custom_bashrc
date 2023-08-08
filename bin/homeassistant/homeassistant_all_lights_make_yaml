@@ -7,6 +7,8 @@ homeassistant_all_devices 2>/dev/null | jq -r .[].entity_id | awk '/^light/{prin
 
 # homeassistant_all_devices 2>/dev/null | jq -r .[].entity_id
 
-comm -23 <(sort /tmp/all_devices) <(sort "$bashrc_folder/gitignore/ha_ignore_all_lights") | awk '/^light/{print "  " $1 ":\n    state: off"}'
+comm -23 <(sort /tmp/all_devices) <(sort "$bashrc_folder/gitignore/ha_ignore_all_lights") | awk '/^light/{print "  " $1 ":\n    state: off"}' > /tmp/all_lights_off
 # comm -23 <(sort /tmp/all_devices) <(sort "$bashrc_folder/gitignore/ha_ignore_all_lights")  
+
+echo -e "id: '1672473656148'\nname: All lights of\nentities:\n$(cat /tmp/all_lights_off)"
 
