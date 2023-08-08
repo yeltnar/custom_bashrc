@@ -14,4 +14,6 @@ openssl enc -e -pass file:./workdir/openssl_rsa -a -iter 100000 -salt -out ./wor
 echo 'decrypting...'
 openssl enc -d -pass file:./workdir/openssl_rsa -a -iter 100000 -salt -in ./workdir/f.enc
 
+# generate self signed cert with no password
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -sha256 -days 365 -noenc
 

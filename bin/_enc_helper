@@ -1,0 +1,119 @@
+default_env_file="./env.env";
+
+if [ -z $env_file ]; then
+	env_file=$default_env_file;
+	echo "env_file env var not found; using $env_file"
+fi
+
+source $env_file
+
+if [ -z $workdir ]; then
+	echo 'workdir env var not defined; exiting';
+	exit;
+fi
+
+out_file_dec="$out_file_dec_dir/out.tar"
+out_file="$workdir/out.enc";
+out_tar="$workdir/tar.tar.gz"
+input_dir="$workdir/input_dir"
+
+encrypt(){
+    if [ ! -e "$password_file" ];then
+        echo "password_file ($password_file) not found; exiting";
+        exit;
+    fi
+
+    if [ ! -e "$in_file" ];then
+        echo "in_file not found; exiting";
+        exit;
+    fi
+
+    mkdir -p "$workdir";
+
+    openssl enc -e -pbkdf2 -aes-256-cbc -pass file:"$password_file" -a -iter 100000 -salt -in "$in_file" -out "$out_file"
+}
+
+decrypt(){
+    if [ ! -e "$password_file" ];then
+        echo "password_file ($password_file) not found; exiting";
+        exit;
+    fi
+
+    if [ ! -e "$out_file" ];then
+        echo "out_file not found; exiting";
+        exit;
+    fi
+
+    mkdir -p "$out_file_dec_dir"
+
+    openssl enc -d -pbkdf2 -aes-256-cbc -pass file:"$password_file" -a -iter 100000 -salt -in "$out_file" -out "$out_file_dec"
+
+    echo "decrypted to $out_file_dec";
+}
+
+createContent(){
+    mkdir -p "$input_dir";
+    echo `date` > "$input_dir/f.txt"
+
+    tar -C "$input_dir" -zcvf "$out_tar" .;
+    in_file="$out_tar";
+}
+
+uploadContent(){
+    if [ -z "$ssh_user" ];then
+        echo "ssh_user ($ssh_user) not defined; exiting";
+        exit;
+    fi
+    
+    if [ -z "$ssh_remote" ];then
+        echo "ssh_remote ($ssh_remote) not defined; exiting";
+        exit;
+    fi
+    
+    if [ -z "$sftp_dir" ];then
+        echo "sftp_dir ($sftp_dir) not defined; exiting";
+        exit;
+
+    fi
+    local ssh_cmd="mkdir -p $sftp_dir/$name";
+    # local sftp_cmd_2="put $workdir/out.enc"
+    local sftp_cmd_2="put $out_file"
+
+    # this only allows the creation of one dir. ie, you can't make a parent and child director in one go
+    sftp_cmd_1="mkdir $sftp_dir/$name"
+
+    sftp $ssh_user@$ssh_remote <<< $"$sftp_cmd_1"
+    sftp $ssh_user@$ssh_remote:$sftp_dir/$name/ <<< $"$sftp_cmd_2";
+}
+
+create-encrypt(){
+
+    if [ ! -e "$password_file" ];then
+        echo "password_file $password_file not found; exiting";
+        exit;
+    fi
+
+	createContent	
+	encrypt
+}
+
+create-encrypt-upload(){
+	create-encrypt
+	uploadContent
+}
+
+listFunctions(){
+        declare -F | awk '{print $NF}'
+        exit
+}
+
+# checks if provided function is in the lit of functions
+if [ "$(echo $1 | grep 'listFunctions' | wc -l)" = "1" ]; then
+    $1
+elif [ "" != "$1" ]; then
+   $1
+else
+        echo "no function provided. Try:"
+        listFunctions
+fi
+

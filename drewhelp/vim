@@ -18,3 +18,16 @@ firefox https://vim.rtorr.com/ &
 # %s for all lines
 :%s/foo/bar/g
 
+
+# macros
+q[registry] to start recording
+
+q to stop recording
+
+@[registry] to play back recording
+@@ to play back last recording
+
+[number]@[registry] to play back recording [number] of times
+
+
+
