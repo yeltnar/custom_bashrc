@@ -1,0 +1,112 @@
+report_check_good_file="/tmp/report_check_good"
+report_check_bad_file="/tmp/report_check_bad"
+known_repos_file="/var/drew/borg_check/known_borg_repos"
+
+rm $report_check_good_file 2>/dev/null # clear old data
+rm $report_check_bad_file 2>/dev/null # clear old data
+
+touch $report_check_good_file
+
+report_sent_file="/tmp/have_sent_daily_backup_report"
+
+if [ -z "$force" ]; then
+  echo 'force not found'
+else
+  echo "force flag found; removing $report_sent_file"
+  rm $report_sent_file
+fi
+
+if [[ $(find /tmp/have_sent_daily_backup_report -mmin +1410 -print) ]]; then
+  echo "File $report_sent_file exists and is old; removing"
+  rm $report_sent_file
+fi
+
+_send_push(){
+	
+	export message_title="$1" 
+	export message_content="$2"
+
+	_generic_ntfy
+}
+
+_send_update_push(){
+    export ntfy_endpoint="$update_endpoint"
+    export topic="$update_topic"
+    export bearer_token="$update_auth"
+
+    _send_push "$1" "$2"
+}
+
+status_endpoint="https://ntfy.andbrant.com"
+status_topic="`cat $bashrc_folder/gitignore/borg_ntfy_topic`"
+export bearer_token="`cat $bashrc_folder/gitignore/ntfy_token`"
+status_auth="Authorization: Bearer $bearer_token"
+since="48h"
+
+update_endpoint="https://ntfy.sh"
+# update_topic="$status_topic"
+update_topic="drewtest123"
+update_auth=" "
+
+echo "$status_auth" "$status_endpoint/$status_topic/json?poll=1&since=$since"
+res=`curl -H "$status_auth" "$status_endpoint/$status_topic/json?poll=1&since=$since"`
+
+echo $res
+
+echo $res | jq -c | while read -r json; do
+    message=`echo $json | jq -r .message`
+    good=`echo $message | jq -r .good`
+
+    if [ -z "$good" ]; then
+        echo "skipping bad message"
+    else
+
+        BORG_NAME=`echo $message | jq -r .BORG_NAME`
+
+        # TODO write names to disk
+	mkdir -p /var/drew/borg_check
+	echo $BORG_NAME >> $known_repos_file
+
+
+        if [ $good = "true" ]; then
+            echo "$good is true - $BORG_NAME"
+            echo "$BORG_NAME" >> $report_check_good_file
+        else
+            # TODO send failures when you find them 
+            echo "$good is not true - $BORG_NAME"
+            echo "$BORG_NAME" >> $report_check_bad_file
+            _send_update_push "bad report" "$BORG_NAME"
+        fi
+    fi
+done
+
+if [ ! -e $report_sent_file ]; then
+    touch $report_sent_file;
+    good_list=`cat $report_check_good_file | sort | uniq`
+    # bad_list=`cat $report_check_bad_file | sort | uniq`
+
+    # TODO check items that are in old good list, but not in new good list ... need to make old list not lose entries ever
+    # TODO send report, if bad list has content
+
+    all_reports=`cat $known_repos_file && cat $report_check_good_file`
+    missing_reports=`echo "$all_reports" | sort | uniq -u`
+
+    echo "$all_reports" | sort | uniq -u
+
+    if [ -z "$missing_reports" ]; then
+        echo "no missing repos";
+    else
+        echo "missing reports is:$missing_reports"
+        _send_update_push "missing reports" "$missing_reports"
+    fi
+
+    _send_update_push "good reports" "$good_list"
+    # _send_update_push "bad reports" "$bad_list"
+fi
+
+# take out duplicates from known repos
+known_repos=`cat $known_repos_file | sort | uniq`
+echo "$known_repos" > $known_repos_file
+
+# rm $report_check_good_file 2>/dev/null # clear old data
+# rm $report_check_bad_file 2>/dev/null # clear old data
