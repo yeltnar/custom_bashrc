@@ -1,0 +1,2 @@
+# merge two yaml... requires mikefarah/yq v4
+yq eval-all '. as $item ireduce ({}; . * $item)' file1.yml file2.yml
