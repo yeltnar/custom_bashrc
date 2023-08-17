@@ -29,9 +29,10 @@ q to stop recording
 
 [number]@[registry] to play back recording [number] of times
 
-
 # registers
 :reg # show registers
 "xy # yank into x register... use * or + for system clipboard
 "*p # paste from system clipboard
 
+# open Read Only mode
+vim -R $FILE_NAME
