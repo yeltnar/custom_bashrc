@@ -1,2 +1,108 @@
-# encrypt and decrypt in one go
-echo 'rusty!herring.pitshaft' | openssl enc -aes-256-cbc -md sha512 -a -pbkdf2 -iter 100000 -salt -pass pass:'pick.your.password' | openssl enc -aes-256-cbc -md sha512 -a -d -pbkdf2 -iter 100000 -salt -pass pass:'pick.your.password'
+# set default values
+setDefaults(){
+    if [ -z $iter ]; then
+        iter=100000
+    fi
+    if [ -z $workdir ]; then
+        workdir='/tmp/workdir_for_enc'
+    fi
+}
+
+pass_file="$workdir/openssl_rsa"
+in_file="$workdir/in.txt"
+enc_file="$workdir/f.enc"
+out_file="$workdir/out.txt"
+
+listFunctions(){
+    # don't print helper functions
+	declare -F | awk '{print $NF}' | grep -Ev '(checkFileExist|checkInputString|setDefaults)'
+	exit
+}
+
+# check input strings are provided
+checkInputString(){
+    
+    if [ -z "$pass_file" ]; then
+        echo "\$pass_file value is empty... exiting";
+        echo "$pass_file"
+        exit;
+    fi
+    if [ -z "$in_file" ]; then
+        echo "\$in_file value is empty... exiting";
+        echo "$in_file"
+        exit;
+    fi
+    if [ -z "$enc_file" ]; then
+        echo "\$enc_file value is empty... exiting";
+        echo "$enc_file"
+        exit;
+    fi
+    if [ -z "$out_file" ]; then
+        echo "\$out_file value is empty... exiting";
+        echo "$out_file"
+        exit;
+    fi
+}
+
+# check the the file is there 
+checkFileExist(){
+    if [ -s "$pass_file" ]; then
+        echo "\$pass_file is not found... exiting";
+        echo "$pass_file"
+        exit;
+    fi
+    if [ -s "$in_file" ]; then
+        echo "\$in_file is not found... exiting";
+        echo "$in_file"
+        cat "$in_file"
+        exit;
+    fi
+    if [ -s "$enc_file" ]; then
+        echo "\$enc_file is not found... exiting";
+        echo "$enc_file"
+        exit;
+    fi
+    if [ -s "$out_file" ]; then
+        echo "\$out_file is not found... exiting";
+        echo "$out_file"
+        exit;
+    fi
+}
+
+setDefaults
+checkInputString
+# checkFileExist
+
+
+encrypt(){
+    echo 'encrypting...'
+    echo 'encrypted message' | \
+    openssl enc -e -pbkdf2 -pass "file:$pass_file" -a -iter "$iter" -salt -in "$in_file" -out "$enc_file"
+}
+
+decrypt(){
+    echo 'decrypting...'
+    openssl enc -d -pbkdf2 -pass "file:$pass_file" -a -iter "$iter" -salt -in "$enc_file" -out "$out_file"
+}
+
+test(){
+    echo $in_file
+    # date > $in_file
+    cat $in_file
+
+    encrypt
+    decrypt
+    ls -l $workdir
+    cat $workdir/out.txt
+}
+
+# checks if provided function is in the lit of functions
+if [ "$(echo $1 | grep 'listFunctions' | wc -l)" = "1" ]; then
+    $1
+elif [ "" != "$1" ]; then
+   $1
+else
+	echo "no function provided. Try:"
+	listFunctions
+fi
+
