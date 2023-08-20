@@ -8,6 +8,8 @@ setDefaults(){
     fi
 }
 
+setDefaults
+
 pass_file="$workdir/openssl_rsa"
 in_file="$workdir/in.txt"
 enc_file="$workdir/f.enc"
