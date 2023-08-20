@@ -3,17 +3,17 @@ setDefaults(){
     if [ -z $iter ]; then
         iter=100000
     fi
-    if [ -z $workdir ]; then
-        workdir='/tmp/workdir_for_enc'
-    fi
+    #if [ -z $workdir ]; then
+    #    workdir='/tmp/workdir_for_enc'
+    #fi
 }
 
 setDefaults
 
-pass_file="$workdir/openssl_rsa"
-in_file="$workdir/in.txt"
-enc_file="$workdir/f.enc"
-out_file="$workdir/out.txt"
+# pass_file="$workdir/openssl_rsa"
+# in_file="$workdir/in.txt"
+# enc_file="$workdir/f.enc"
+# out_file="$workdir/out.txt"
 
 listFunctions(){
     # don't print helper functions
@@ -29,16 +29,23 @@ checkInputString(){
         echo "$pass_file"
         exit;
     fi
-    if [ -z "$in_file" ]; then
-        echo "\$in_file value is empty... exiting";
-        echo "$in_file"
-        exit;
-    fi
     if [ -z "$enc_file" ]; then
         echo "\$enc_file value is empty... exiting";
         echo "$enc_file"
         exit;
     fi
+}
+
+checkInputStringEnc(){
+    checkInputString
+    if [ -z "$in_file" ]; then
+        echo "\$in_file value is empty... exiting";
+        echo "$in_file"
+        exit;
+    fi
+}
+checkInputStringDec(){
+    checkInputString
     if [ -z "$out_file" ]; then
         echo "\$out_file value is empty... exiting";
         echo "$out_file"
@@ -71,23 +78,40 @@ checkFileExist(){
     fi
 }
 
-setDefaults
-checkInputString
-# checkFileExist
 
 
 encrypt(){
+    setDefaults
+    checkInputStringEnc
+    # checkFileExist
+
     echo 'encrypting...'
     echo 'encrypted message' | \
     openssl enc -e -pbkdf2 -pass "file:$pass_file" -a -iter "$iter" -salt -in "$in_file" -out "$enc_file"
 }
 
 decrypt(){
+    setDefaults
+    checkInputStringDec
+    # checkFileExist
+    
     echo 'decrypting...'
     openssl enc -d -pbkdf2 -pass "file:$pass_file" -a -iter "$iter" -salt -in "$enc_file" -out "$out_file"
 }
 
 test(){
+
+    workdir='/tmp/workdir_for_enc'
+    
+    pass_file="$workdir/openssl_rsa"
+    in_file="$workdir/in.txt"
+    enc_file="$workdir/f.enc"
+    out_file="$workdir/out.txt"
+
+    mkdir "$workdir"
+    date > $in_file
+    ssh-keygen -P '' -f "$workdir/openssl_rsa"
+
     echo $in_file
     # date > $in_file
     cat $in_file
