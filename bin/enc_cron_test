@@ -1,0 +1,6 @@
+export pass_file={{item.value.local_password_file}}; 
+export in_file={{work_dir}}_orch/{{item.value.name}}/out.tar; 
+export enc_file={{work_dir}}_orch/{{item.value.name}}/out.tar.enc; 
+export out_file={{work_dir}}_orch/{{item.value.name}}/out.tar; 
+
+
