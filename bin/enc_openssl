@@ -87,7 +87,7 @@ encrypt(){
 
     echo 'encrypting...'
     echo 'encrypted message' | \
-    openssl enc -e -pbkdf2 -pass "file:$pass_file" -a -iter "$iter" -salt -in "$in_file" -out "$enc_file"
+    openssl enc -aes-256-cbc -e -pbkdf2 -pass "file:$pass_file" -a -iter "$iter" -salt -in "$in_file" -out "$enc_file"
 }
 
 decrypt(){
@@ -96,7 +96,7 @@ decrypt(){
     # checkFileExist
     
     echo 'decrypting...'
-    openssl enc -d -pbkdf2 -pass "file:$pass_file" -a -iter "$iter" -salt -in "$enc_file" -out "$out_file"
+    openssl enc -aes-256-cbc -d -pbkdf2 -pass "file:$pass_file" -a -iter "$iter" -salt -in "$enc_file" -out "$out_file"
 }
 
 test(){
