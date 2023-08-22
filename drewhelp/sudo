@@ -12,3 +12,8 @@ vivek ALL = NOPASSWD: /bin/systemctl restart httpd.service, /bin/kill
 # prompt for password # %drew ALL=(ALL) ALL
 # don't prompt # %drew ALL=(ALL) NOPASSWD: ALL
 
+# allow some root commands with no password
+# in /etc/sudoers or /etc/sudoers.d/$FILE add 
+USERNAME HOST_NAME = (root) NOPASSWORD: /path/to/file
+drew ALL= (root) NOPASSWD: /usr/bin/whoami
+
