@@ -110,21 +110,24 @@ decrypt(){
 }
 
 test(){
-  export workdir="/tmp/enc_rm"; 
+  if [ -z "$workdir" ]; then
+    export workdir="/tmp/enc_rm"; 
+  fi
+
   mkdir -p "$workdir";
   ssh-keygen -m PEM -f "$workdir/id_rsa" -N ""
   
   export FILE_TO_ENCRYPT="$workdir/f.txt"; 
   echo 'hello, there' > "$FILE_TO_ENCRYPT"
 
-  export workdir="/tmp/enc_rm"; 
+  # export workdir="/tmp/enc_rm"; 
   export FILE_TO_ENCRYPT="$workdir/f.txt"; 
   export ENCRYPTED_FILE="$workdir/out.enc"; 
   export PUB_KEY="$workdir/id_rsa.pub"; 
   export AES_KEY_ENC="$workdir/aes.pass.enc";
   encrypt
 
-  export workdir="/tmp/enc_rm"; 
+  # export workdir="/tmp/enc_rm"; 
   export DECRYPTED_FILE="$workdir/decrypted.txt"; 
   export ENCRYPTED_FILE="$workdir/out.enc"
   export PRIVKEY="$workdir/id_rsa";
