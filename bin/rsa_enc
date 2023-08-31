@@ -1,0 +1,145 @@
+#!/bin/bash
+
+# TODO add signing 
+
+validateInputEnc(){
+  # directory for temp files 
+  if [ -z "$workdir" ]; then
+    echo "\$workdir is \"$workdir\""
+    exit -1;
+  fi
+  if [ -z "$FILE_TO_ENCRYPT" ]; then
+    echo "\$FILE_TO_ENCRYPT is \"$FILE_TO_ENCRYPT\""
+    exit -1;
+  fi
+  if [ -z "$ENCRYPTED_FILE" ]; then
+    echo "\$ENCRYPTED_FILE is \"$ENCRYPTED_FILE\""
+    exit -1;
+  fi
+  if [ -z "$PUB_KEY" ]; then
+    echo "\$PUB_KEY is \"$PUB_KEY\""
+    exit -1;
+  fi
+  if [ -z "$AES_KEY_ENC" ]; then
+    echo "\$AES_KEY_ENC is \"$AES_KEY_ENC\""
+    exit -1;
+  fi
+}
+
+validateInputDec(){
+  # directory for temp files 
+  if [ -z "$workdir" ]; then
+    echo "\$workdir is \"$workdir\""
+    exit -1;
+  fi
+  if [ -z "$DECRYPTED_FILE" ]; then
+    echo "\$DECRYPTED_FILE is \"$DECRYPTED_FILE\""
+    exit -1;
+  fi
+  if [ -z "$ENCRYPTED_FILE" ]; then
+    echo "\$ENCRYPTED_FILE is \"$ENCRYPTED_FILE\""
+    exit -1;
+  fi
+  if [ -z "$AES_KEY_ENC" ]; then
+    echo "\$AES_KEY_ENC is \"$AES_KEY_ENC\""
+    exit -1;
+  fi
+  if [ -z "$PRIVKEY" ]; then
+    echo "\$PRIVKEY is \"$PRIVKEY\""
+    exit -1;
+  fi
+}
+
+listFunctions(){
+  declare -F | grep -v -e 'validateInputEnc' | grep -v -e 'validateInputDec' | awk '{print $NF}'
+	exit
+}
+
+encrypt(){
+
+  validateInputEnc
+
+  cd "$workdir"
+
+  PUBKEY="$workdir/pkcs.pkcs8" # need to convert public key to different format 
+  AES_KEY="$workdir/secret.key"
+
+  if [ ! -e $PUB_KEY ]; then
+      echo "\$PUB_KEY does not exsist - $PUB_KEY"
+      exit -1
+  fi
+  
+  # generate AES key
+  openssl rand -out "$AES_KEY" 32
+  # encrypt content with AES key
+  openssl enc -aes-256-cbc -e -pbkdf2 -pass "file:$AES_KEY" -a -iter 100000 -salt -in "${FILE_TO_ENCRYPT}" -out "${ENCRYPTED_FILE}" 
+
+  # get pub key in new format
+  ssh-keygen -e -f "${PUB_KEY}" -m PKCS8 > "${PUBKEY}"
+  # encrypt AES key with public key 
+  openssl pkeyutl -encrypt -pubin -inkey "${PUBKEY}" -in "$AES_KEY" -out "${AES_KEY_ENC}" 2>&1 | tee /tmp/{{item.value.name}}.enc.log
+
+  # delete AES key for security 
+  rm "$AES_KEY" # delete rsa secret
+  rm "${PUBKEY}" # don't hold onto the re-formatted key 
+
+}
+
+decrypt(){
+  validateInputDec
+
+  cd "$workdir"
+
+  AES_KEY="$workdir/secret.key"
+
+  PUB_ENC_KEY=$public_key_location
+
+  if [ ! -e $PUB_ENC_KEY ]; then
+      exit -1
+  fi
+
+  # decrypt AES key with private key 
+  openssl pkeyutl -decrypt -inkey "${PRIVKEY}" -in "$AES_KEY_ENC" -out "${AES_KEY}"
+
+  # decrypt content with AES key
+  openssl enc -aes-256-cbc -d -pbkdf2 -pass "file:$AES_KEY" -a -iter 100000 -salt -in "${ENCRYPTED_FILE}" -out "${DECRYPTED_FILE}"
+
+  # delete AES key for security 
+  rm "$AES_KEY" # delete rsa secret
+
+}
+
+test(){
+  export workdir="/tmp/enc_rm"; 
+  mkdir -p "$workdir";
+  ssh-keygen -m PEM -f "$workdir/id_rsa" -N ""
+  
+  export FILE_TO_ENCRYPT="$workdir/f.txt"; 
+  echo 'hello, there' > "$FILE_TO_ENCRYPT"
+
+  export workdir="/tmp/enc_rm"; 
+  export FILE_TO_ENCRYPT="$workdir/f.txt"; 
+  export ENCRYPTED_FILE="$workdir/out.enc"; 
+  export PUB_KEY="$workdir/id_rsa.pub"; 
+  export AES_KEY_ENC="$workdir/aes.pass.enc";
+  encrypt
+
+  export workdir="/tmp/enc_rm"; 
+  export DECRYPTED_FILE="$workdir/decrypted.txt"; 
+  export ENCRYPTED_FILE="$workdir/out.enc"
+  export PRIVKEY="$workdir/id_rsa";
+  export AES_KEY_ENC="$workdir/aes.pass.enc";
+  decrypt
+
+  cmp "$FILE_TO_ENCRYPT" "$DECRYPTED_FILE" && echo 'Decrypted is same as original';
+}
+
+# checks if provided function is in the lit of functions
+if [ "$(echo $1 | grep 'listFunctions' | wc -l)" = "1" ]; then
+  $1
+elif [ "" != "$1" ]; then
+  $1
+else
+	echo "no function provided. Try:"
+	listFunctions
+fi
