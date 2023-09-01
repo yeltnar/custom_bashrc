@@ -115,8 +115,7 @@ test(){
   fi
 
   mkdir -p "$workdir";
-  ssh-keygen -m PEM -f "$workdir/id_rsa" -N ""
-  
+  ssh-keygen -m PEM -f "$workdir/id_rsa" -b 4096 -N ""
   export FILE_TO_ENCRYPT="$workdir/f.txt"; 
   rm "$FILE_TO_ENCRYPT"
   echo 'hello, there' > "$FILE_TO_ENCRYPT"
