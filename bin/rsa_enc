@@ -70,14 +70,14 @@ encrypt(){
   fi
   
   # generate AES key
-  openssl rand -out "$AES_KEY" 32
+  openssl rand -out "$AES_KEY" 32 || exit -1;
   # encrypt content with AES key
-  openssl enc -aes-256-cbc -e -pbkdf2 -pass "file:$AES_KEY" -a -iter 100000 -salt -in "${FILE_TO_ENCRYPT}" -out "${ENCRYPTED_FILE}" 
+  openssl enc -aes-256-cbc -e -pbkdf2 -pass "file:$AES_KEY" -a -iter 100000 -salt -in "${FILE_TO_ENCRYPT}" -out "${ENCRYPTED_FILE}" || exit -1; 
 
   # get pub key in new format
-  ssh-keygen -e -f "${PUB_KEY}" -m PKCS8 > "${PUBKEY}"
+  ssh-keygen -e -f "${PUB_KEY}" -m PKCS8 > "${PUBKEY}" || exit -1;
   # encrypt AES key with public key 
-  openssl pkeyutl -encrypt -pubin -inkey "${PUBKEY}" -in "$AES_KEY" -out "${AES_KEY_ENC}" 2>&1 | tee /tmp/{{item.value.name}}.enc.log
+  openssl pkeyutl -encrypt -pubin -inkey "${PUBKEY}" -in "$AES_KEY" -out "${AES_KEY_ENC}" 2>&1 | tee /tmp/{{item.value.name}}.enc.log || exit -1;
 
   # delete AES key for security 
   rm "$AES_KEY" # delete rsa secret
@@ -99,10 +99,10 @@ decrypt(){
   fi
 
   # decrypt AES key with private key 
-  openssl pkeyutl -decrypt -inkey "${PRIVKEY}" -in "$AES_KEY_ENC" -out "${AES_KEY}"
+  openssl pkeyutl -decrypt -inkey "${PRIVKEY}" -in "$AES_KEY_ENC" -out "${AES_KEY}" || exit -1;
 
   # decrypt content with AES key
-  openssl enc -aes-256-cbc -d -pbkdf2 -pass "file:$AES_KEY" -a -iter 100000 -salt -in "${ENCRYPTED_FILE}" -out "${DECRYPTED_FILE}"
+  openssl enc -aes-256-cbc -d -pbkdf2 -pass "file:$AES_KEY" -a -iter 100000 -salt -in "${ENCRYPTED_FILE}" -out "${DECRYPTED_FILE}" || exit -1;
 
   # delete AES key for security 
   rm "$AES_KEY" # delete rsa secret
@@ -118,10 +118,11 @@ test(){
   ssh-keygen -m PEM -f "$workdir/id_rsa" -N ""
   
   export FILE_TO_ENCRYPT="$workdir/f.txt"; 
+  rm "$FILE_TO_ENCRYPT"
   echo 'hello, there' > "$FILE_TO_ENCRYPT"
 
   # export workdir="/tmp/enc_rm"; 
-  export FILE_TO_ENCRYPT="$workdir/f.txt"; 
+  # export FILE_TO_ENCRYPT="$workdir/f.txt"; 
   export ENCRYPTED_FILE="$workdir/out.enc"; 
   export PUB_KEY="$workdir/id_rsa.pub"; 
   export AES_KEY_ENC="$workdir/aes.pass.enc";
@@ -132,6 +133,7 @@ test(){
   export ENCRYPTED_FILE="$workdir/out.enc"
   export PRIVKEY="$workdir/id_rsa";
   export AES_KEY_ENC="$workdir/aes.pass.enc";
+  rm "$DECRYPTED_FILE"
   decrypt
 
   cmp "$FILE_TO_ENCRYPT" "$DECRYPTED_FILE" && echo 'Decrypted is same as original';
