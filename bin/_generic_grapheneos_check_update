@@ -28,7 +28,7 @@ else
     exit
 fi
 
-if [ -e "$version" ]; then
+if [[ -e "$version" || -e "old/$version" ]]; then
 	echo "$version already found";
 else
 	echo "$version not found";
