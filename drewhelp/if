@@ -28,3 +28,8 @@ INTEGER1 -lt INTEGER2 	INTEGER1 is numerically less than INTEGER2
 
 "$string" == *"sub str"* # check if sub string is in string
 
+# or
+if [[ "$fname" = "a.txt" ] || [ "$fname" = "c.txt" ]]
+if [ "$fname" = "a.txt" ] || [ "$fname" = "c.txt" ]
+
+
