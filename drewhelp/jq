@@ -1,2 +1,5 @@
 jq '.data.".dockerconfigjson"'
 echo {} | jq --arg PWD "$PWD" '.workdir = $PWD'
+
+# returns object which matches the boolean
+jq 'select(.request.uri == "/nebula/digitalocean.date")'
