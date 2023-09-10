@@ -3,3 +3,5 @@ echo {} | jq --arg PWD "$PWD" '.workdir = $PWD'
 
 # returns object which matches the boolean
 jq 'select(.request.uri == "/nebula/digitalocean.date")'
+# returns array with keys that match the filter
+jq 'map(select(.request.uri == "/nebula/digitalocean.date"))'
