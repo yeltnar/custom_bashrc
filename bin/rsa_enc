@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# TODO add signing 
+# TODO this should generally exit if there is an error
 
 validateInputEnc(){
   # directory for temp files 
@@ -27,6 +27,30 @@ validateInputEnc(){
 }
 
 validateInputDec(){
+  # directory for temp files 
+  if [ -z "$workdir" ]; then
+    echo "\$workdir is \"$workdir\""
+    exit -1;
+  fi
+  if [ -z "$DECRYPTED_FILE" ]; then
+    echo "\$DECRYPTED_FILE is \"$DECRYPTED_FILE\""
+    exit -1;
+  fi
+  if [ -z "$ENCRYPTED_FILE" ]; then
+    echo "\$ENCRYPTED_FILE is \"$ENCRYPTED_FILE\""
+    exit -1;
+  fi
+  if [ -z "$AES_KEY_ENC" ]; then
+    echo "\$AES_KEY_ENC is \"$AES_KEY_ENC\""
+    exit -1;
+  fi
+  if [ -z "$PRIVKEY" ]; then
+    echo "\$PRIVKEY is \"$PRIVKEY\""
+    exit -1;
+  fi
+}
+
+validateSign(){
   # directory for temp files 
   if [ -z "$workdir" ]; then
     echo "\$workdir is \"$workdir\""
@@ -109,6 +133,15 @@ decrypt(){
 
 }
 
+sign(){
+  openssl pkeyutl -sign -inkey "${PRIVKEY}" -in "${FILE_TO_SIGN}" -out "${SIGNATURE_FILE}"
+}
+
+verify(){
+  ssh-keygen -e -f "${PUBSSHKEY}" -m PKCS8 > "${PUBKEY}"
+  openssl pkeyutl -verify -pubin -inkey "${PUBKEY}" -in "${FILE_TO_VERIFY}" -sigfile "${SIGNATURE_FILE}"; 
+}
+
 test(){
   if [ -z "$workdir" ]; then
     export workdir="/tmp/enc_rm"; 
@@ -136,6 +169,32 @@ test(){
   decrypt
 
   cmp "$FILE_TO_ENCRYPT" "$DECRYPTED_FILE" && echo 'Decrypted is same as original';
+}
+
+testSignVerify(){
+  if [ -z "$workdir" ]; then
+    export workdir="/tmp/enc_rm"; 
+  fi
+
+  PRIVKEY="$workdir/id_rsa"
+
+  mkdir -p "$workdir";
+  ssh-keygen -m PEM -f "$PRIVKEY" -b 4096 -N ""
+
+  export FILE_TO_ENCRYPT="$workdir/f.txt"; 
+  rm "$FILE_TO_ENCRYPT" 2>/dev/null
+  echo 'hello, there' > "$FILE_TO_ENCRYPT"
+
+  # PRIVKEY="$workdir/id_rsa"
+  FILE_TO_SIGN="$FILE_TO_ENCRYPT"
+  SIGNATURE_FILE=test.sign
+  sign
+
+  PUBSSHKEY="$workdir/id_rsa.pub"
+  PUBKEY=pub.pkcs8
+  FILE_TO_VERIFY="$FILE_TO_ENCRYPT"
+  # SIGNATURE_FILE=test.sign
+  verify && echo 'verify good' || echo 'verify bad'
 }
 
 # checks if provided function is in the lit of functions
