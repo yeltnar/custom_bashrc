@@ -95,12 +95,13 @@ if [ ! -e $report_sent_file ]; then
 
     if [ -z "$missing_reports" ]; then
         echo "no missing repos";
+        _send_update_push "good reports" "no missing repos"
     else
         echo "missing reports is:$missing_reports"
         _send_update_push "missing reports" "$missing_reports"
+	_send_update_push "good reports" "$good_list"
     fi
 
-    _send_update_push "good reports" "$good_list"
     # _send_update_push "bad reports" "$bad_list"
 fi
 
