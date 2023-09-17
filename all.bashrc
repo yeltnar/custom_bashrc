@@ -214,7 +214,7 @@ ${PS_LIGHT_BLUE}∟> \$${PS_COLOR_RESET} "
 PS2="${PS_LIGHT_BLUE} > ${PS_COLOR_RESET}  "
 
 for f in $(ls $bashrc_folder/autocomplete); do
-  echo "sourcing " "$bashrc_folder/autocomplete/$f"
+  #echo "sourcing " "$bashrc_folder/autocomplete/$f"
   . "$bashrc_folder/autocomplete/$f"
 done
 
