@@ -1,0 +1,11 @@
+out_file="/tmp/test_out_file.txt"
+
+if [ -e "$out_file" ]; then
+   source "$out_file"
+fi
+
+if [ -z "$TEST_VAR" ]; then
+   echo "enter value for TEST_VAR"
+   read TEST_VAR
+   echo "export TEST_VAR=$TEST_VAR" > $out_file
+fi
