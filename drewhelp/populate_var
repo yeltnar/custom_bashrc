@@ -1,11 +1,26 @@
-out_file="/tmp/test_out_file.txt"
+out_file="./test.out"
 
 if [ -e "$out_file" ]; then
-   source "$out_file"
+   source "$out_file";
 fi
 
-if [ -z "$TEST_VAR" ]; then
-   echo "enter value for TEST_VAR"
-   read TEST_VAR
-   echo "export TEST_VAR=$TEST_VAR" > $out_file
-fi
+declare -a desired_vars=(
+"HOST"
+"PORT"
+"SECONDARY_HOST"
+"SECONDARY_PORT"
+"DEVICE_NAME"
+"TEST_FILE_PATH"
+"var_dir"
+"nebula_config_client_folder"
+"CURL_OPTIONS"
+);
+
+for val in ${desired_vars[@]}; do
+   echo "loop for $val --${!val}--"
+   if [ -z "${!val}" ]; then
+      echo "enter value for $val"
+      read to_write
+      echo "export $val=$to_write" >> $out_file
+   fi
+done
