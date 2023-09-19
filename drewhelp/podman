@@ -1,5 +1,8 @@
 # make sure to use `:Z` after -v flag so it can be read in the container (lower case z means used by all containers)
 
+# use podman instead of docker socket 
+export DOCKER_HOST='unix:///Users/drew/.local/share/containers/podman/machine/qemu/podman.sock'
+
 # generate k8s yaml from running pod
 podman generate kube {container}
 
