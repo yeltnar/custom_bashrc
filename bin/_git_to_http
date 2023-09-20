@@ -1,0 +1,6 @@
+if [ -z $git_remote ]; then
+	echo "git_remote not defined; exiting"; 
+	exit
+fi
+
+echo $git_remote | awk -F '[@:/]' '{print "https://" $2 "/" $3 "/" $4}'
