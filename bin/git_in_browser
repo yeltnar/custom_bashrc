@@ -4,6 +4,8 @@ if [ -z $browser ]; then
     browser='firefox'
 fi
 
-git_remote=$(git remote -v | head -n1 | awk '{print $2}')
-http_remote=$(echo $git_remote | awk -F '[@:/]' '{print "https://" $2 "/" $3 "/" $4}')
+export git_remote=$(git remote -v | head -n1 | awk '{print $2}')
+http_remote=$(_git_to_http)
+git_remote=$(_http_to_git)
+
 $browser $http_remote

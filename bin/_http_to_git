@@ -1,0 +1,6 @@
+if [ -z $http_remote ]; then
+	echo "http_remote not defined; exiting"; 
+	exit
+fi
+
+echo $http_remote | awk -F '[/]' '{print "git@" $3 "/" $4 "/" $5}'
