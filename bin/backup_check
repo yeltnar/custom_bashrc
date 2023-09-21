@@ -41,7 +41,7 @@ status_endpoint="https://ntfy.andbrant.com"
 status_topic="`cat $bashrc_folder/gitignore/borg_ntfy_topic`"
 export bearer_token="`cat $bashrc_folder/gitignore/ntfy_token`"
 status_auth="Authorization: Bearer $bearer_token"
-since="48h"
+since="24h"
 
 update_endpoint="https://ntfy.sh"
 # update_topic="$status_topic"
