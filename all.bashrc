@@ -183,7 +183,7 @@ XDG_CONFIG_HOME="$bashrc_folder/alacritty/alacritty.yml"
 #set -o vi
 
 # Set history to ignore consecutive duplicate commands and commands that start with a space
-export HISTCONTROL=ignoreboth
+export HISTCONTROL="ignorespace:erasedups"
 _clean_history() {
   # history -n has to be there before history -w to read from
   # .bash_history the commands saved from any other terminal,
@@ -220,6 +220,7 @@ done
 
 prompt_command() {
   # $? is 0 if git dir, otherwise false
+
   if git status > /dev/null 2>&1; then
     local GIT_STATUS=$(git status | grep 'On branch' | cut -b 11-)
     export PS1_GIT="${GIT_STATUS}"
@@ -227,7 +228,7 @@ prompt_command() {
     export PS1_GIT=""	
   fi
 }
-PROMPT_COMMAND=prompt_command
+PROMPT_COMMAND="prompt_command ; $PROMPT_COMMAND"
 
 echo "Loaded all.bashrc"
 
