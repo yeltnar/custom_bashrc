@@ -1,0 +1,4 @@
+# make ext4 fs in a file
+truncate -s 1G disk.img
+mkfs ext4 -F disk.img
+mount -o loop disk.img /tmp/mounted_disk

@@ -2,3 +2,12 @@
 truncate -s10G disk.img
 mkfs -t btrfs ./disk.img 
 sudo mount ./disk.img /tmp/mounted_disk/
+
+# dedup a btrfs
+jdupes -S -B -r /tmp/mounted_disk
+# verify dedup
+btrfs filesystem du /tmp/mounted_disk
+
+# subvolume commands
+sudo btrfs subv
+
