@@ -1,23 +1,16 @@
 # setup (encrypted) disk image
-
-truncate -s 1G disk.img
-mkfs ext4 -F disk.img
-mount -o loop disk.img /tmp/mounted_disk
-
-# make btrfs mount
-truncate -s10G disk.img
-mkfs -t btrfs ./disk.img 
-sudo mount ./disk.img /tmp/mounted_disk/
-
-# subvolume commands
-sudo btrfs subv
-
-# dedup a btrfs
-jdupes -S -B -r /tmp/mounted_disk
-# verify dedup
-btrfs filesystem du /tmp/mounted_disk
-
 # http://freesoftwaremagazine.com/articles/create_encrypted_disk_image_gnulinux/
+
+# create file
+truncate -s 1G disk.img
+
+# add luks to the file
 sudo cryptsetup -y luksFormat disk.img 
+# decrypt and create virtual disk 
 sudo cryptsetup luksOpen disk.img disk_img_decrypted
+
+# create fs on luks disk
 sudo mkfs.ext4 /dev/mapper/disk_img_decrypted 
+
+# mount decrypted luks
+mount -o loop disk.img /tmp/mounted_disk
