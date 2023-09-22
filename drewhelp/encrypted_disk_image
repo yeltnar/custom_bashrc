@@ -13,4 +13,9 @@ sudo cryptsetup luksOpen disk.img disk_img_decrypted
 sudo mkfs.ext4 /dev/mapper/disk_img_decrypted 
 
 # mount decrypted luks
-mount -o loop disk.img /tmp/mounted_disk
+mount -o loop /dev/mapper/disk_img_decrypted /tmp/mounted_disk
+
+# unmount
+sudo umount /tmp/mounted_disk
+sudo cryptsetup close /dev/mapper/disk_img_decrypted
+
