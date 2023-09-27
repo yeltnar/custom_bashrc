@@ -46,6 +46,7 @@ mount(){
     # mount decrypted luks
     mkdir -p "$mount_location"
     sudo mount -o loop $dev_location "$mount_location"
+    sudo chown $(id -u):$(id -g) "$mount_location"
 }
 
 unmount(){
