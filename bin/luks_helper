@@ -1,0 +1,65 @@
+# setup (encrypted) disk image
+# http://freesoftwaremagazine.com/articles/create_encrypted_disk_image_gnulinux/
+
+work_dir="/tmp/luks-testing"
+mount_location="/tmp/luks-testing/mount"
+dev_luks="disk_img_decrypted"
+dev_location="/dev/mapper/$dev_luks"
+img_path="disk.img"
+
+mkdir -p "$work_dir"
+cd "$work_dir"
+
+echo "working in $work_dir"
+
+listFunctions(){
+  declare -F | awk '{print $NF}'
+	exit
+}
+
+init_img(){
+
+    # check file does not exsist 
+    if [ ! -e "$img_path" ]; then
+        echo "image path already exsists: $img_path; exiting" >2
+        exit -1;
+    fi
+
+    # create file
+    truncate -s 1G "$img_path"
+
+    # add luks to the file
+    sudo cryptsetup -y luksFormat "$img_path" 
+
+    # decrypt luks
+    sudo cryptsetup luksOpen "$img_path" "$dev_luks"
+
+    # create fs on luks disk
+    sudo mkfs.ext4 "$dev_location" 
+
+    # close luks mount
+    sudo cryptsetup close $dev_location
+}
+
+mount(){
+    sudo cryptsetup luksOpen "$img_path" "$dev_luks"
+    # mount decrypted luks
+    mkdir -p "$mount_location"
+    sudo mount -o loop $dev_location "$mount_location"
+}
+
+unmount(){
+    # unmount
+    sudo umount "$mount_location"
+    sudo cryptsetup close $dev_location
+}
+
+# checks if provided function is in the lit of functions
+if [ "$(echo $1 | grep 'listFunctions' | wc -l)" = "1" ]; then
+  $1
+elif [ "" != "$1" ]; then
+  $1
+else
+	echo "no function provided. Try:"
+	listFunctions
+fi
