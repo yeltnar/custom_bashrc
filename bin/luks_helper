@@ -20,8 +20,8 @@ listFunctions(){
 init_img(){
 
     # check file does not exsist 
-    if [ ! -e "$img_path" ]; then
-        echo "image path already exsists: $img_path; exiting" >2
+    if [ -e "$img_path" ]; then
+        echo "image path already exsists: $img_path; exiting" >&2
         exit -1;
     fi
 
