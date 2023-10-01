@@ -1,16 +1,30 @@
 # setup (encrypted) disk image
 # http://freesoftwaremagazine.com/articles/create_encrypted_disk_image_gnulinux/
 
-work_dir="/tmp/luks-testing"
-mount_location="/tmp/luks-testing/mount"
-dev_luks="disk_img_decrypted"
-dev_location="/dev/mapper/$dev_luks"
-img_path="disk.img"
+_checkVars(){
 
-mkdir -p "$work_dir"
-cd "$work_dir"
+  if [ -z "$work_dir" ] ; then
+      echo "work_dir env var not defined; exiting";
+      exit -1;
+  fi
+  if [ -z "$mount_location" ] ; then
+      echo "mount_location env var not defined; exiting";
+      exit -1;
+  fi
+  if [ -z "$dev_luks" ] ; then
+      echo "dev_luks env var not defined; exiting";
+      exit -1;
+  fi
+  if [ -z "$dev_location" ] ; then
+      echo "dev_location env var not defined; exiting";
+      exit -1;
+  fi
+  if [ -z "$img_path" ] ; then
+      echo "img_path env var not defined; exiting";
+      exit -1;
+  fi
 
-echo "working in $work_dir"
+}
 
 listFunctions(){
   declare -F | awk '{print $NF}'
@@ -18,6 +32,14 @@ listFunctions(){
 }
 
 init_img(){
+    _checkVars
+
+
+    echo "working in $work_dir"
+    mkdir -p "$work_dir"
+    cd "$work_dir"
+
+    echo $img_path
 
     # check file does not exsist 
     if [ -e "$img_path" ]; then
@@ -42,6 +64,12 @@ init_img(){
 }
 
 mount(){
+
+    echo "working in $work_dir"
+    mkdir -p "$work_dir"
+    cd "$work_dir"
+
+    _checkVars
     sudo cryptsetup luksOpen "$img_path" "$dev_luks"
     # mount decrypted luks
     mkdir -p "$mount_location"
@@ -50,9 +78,31 @@ mount(){
 }
 
 unmount(){
+
+    echo "working in $work_dir"
+    mkdir -p "$work_dir"
+    cd "$work_dir"
+
+    _checkVars
     # unmount
     sudo umount "$mount_location"
     sudo cryptsetup close $dev_location
+}
+
+test(){
+  export work_dir="/tmp/luks-testing"
+  export mount_location="/tmp/luks-testing/mount"
+  export dev_luks="disk_img_decrypted"
+  export dev_location="/dev/mapper/$dev_luks"
+  export img_path="disk.img"
+
+  init_img; 
+  mount; 
+  date > "$mount_location/t.txt";
+  echo "***";
+  cat "$mount_location/t.txt";
+  echo "***";
+  unmount;
 }
 
 # checks if provided function is in the lit of functions
