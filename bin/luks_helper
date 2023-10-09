@@ -89,7 +89,7 @@ unmount(){
     sudo cryptsetup close $dev_location
 }
 
-test(){
+test_helper(){
   export work_dir="/tmp/luks-testing"
   export mount_location="/tmp/luks-testing/mount"
   export dev_luks="disk_img_decrypted"
@@ -105,10 +105,7 @@ test(){
   unmount;
 }
 
-# checks if provided function is in the lit of functions
-if [ "$(echo $1 | grep 'listFunctions' | wc -l)" = "1" ]; then
-  $1
-elif [ "" != "$1" ]; then
+if [[ "$(echo `declare -F | awk '{print $NF}'`)" == *"$1"* ]] ; then
   $1
 else
 	echo "no function provided. Try:"
