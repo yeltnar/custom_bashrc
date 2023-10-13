@@ -3,4 +3,4 @@ if [ -z $http_remote ]; then
 	exit
 fi
 
-echo $http_remote | awk -F '[/]' '{print "git@" $3 "/" $4 "/" $5}'
+echo $http_remote | awk -F '[/]' '{print "git@" $3 ":" $4 "/" $5}'
