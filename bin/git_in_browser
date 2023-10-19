@@ -4,7 +4,15 @@ if [ -z $browser ]; then
     browser='firefox'
 fi
 
-export git_remote=$(git remote -v | head -n1 | awk '{print $2}')
+remote_lines=$(git remote -v | wc -l)
+
+if [ -z `command -v fzf` ] || [ "$remote_lines" -lt 3 ]; then
+    filter_function="head -n1";
+else
+    filter_function="fzf";
+fi
+
+export git_remote=$(git remote -v | grep fetch | $filter_function | awk '{print $2}')
 http_remote=$(_git_to_http)
 git_remote=$(_http_to_git)
 
