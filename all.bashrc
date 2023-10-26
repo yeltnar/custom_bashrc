@@ -193,7 +193,7 @@ _clean_history() {
   history -c            # Clear current history
   history -r            # Read history from $HISTFILE
 }
-PROMPT_COMMAND="_clean_history; $PROMPT_COMMAND"
+# PROMPT_COMMAND="_clean_history; $PROMPT_COMMAND" # this will sync history across tmux
 
 
 
