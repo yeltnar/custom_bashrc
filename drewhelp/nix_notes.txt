@@ -105,3 +105,7 @@ do
 	echo "command"
 done
 
+# loop at machine usage
+top # installed on most machines
+htop # installed on most machines
+

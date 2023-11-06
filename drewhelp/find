@@ -1,0 +1,10 @@
+# https://stackoverflow.com/questions/5249779/how-to-search-filenames-by-regex-with-find
+
+# Search for a file with a specific name.
+find ./GFG -name sample.txt
+
+# use simple regex
+find ./GFG -regex sample.txt
+
+# use more complex regex
+find ./GFG -regex -regextype posix-extended sample.txt
