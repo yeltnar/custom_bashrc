@@ -26,3 +26,7 @@ git --work-tree=. --git-dir=git2 status
 # reset working branch to origin/main's commit
 git checkout --hard origin/main
 git reset --hard origin/main
+
+# clone local git remote... notice there is no protocol, only path
+git clone /path/to/remote
+
