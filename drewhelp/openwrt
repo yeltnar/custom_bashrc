@@ -1,0 +1,6 @@
+# active_ips.sh
+cat /proc/net/nf_conntrack | awk -F 'src=' '{print $2}' | awk '{print $1}' | sort | uniq
+
+# find_mac.sh
+cat active_ips.sh | ash | awk '{print "ip neigh show " $0 " "}' | ash | grep '04:c8'
+
