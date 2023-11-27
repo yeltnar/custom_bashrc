@@ -1,5 +1,25 @@
 # create qemu disk
-qemu-img create -f qcow2 disk1.qcow 10G
+qemu-img create -f qcow2 msl.qcow2 20G
+
+# install disk.iso on msl.qcow2
+qemu-system-x86_64 \
+-m 2048 \
+-hda msl.qcow2 \
+-cdrom ./disk.iso \
+-boot c \
+-smp 2 \
+-device e1000,netdev=net0 \
+-netdev user,id=net0,hostfwd=tcp::4022-:22,hostfwd=tcp::8443-:8443 
+
+# start msl.qcow2 with no graphics
+qemu-system-x86_64 \
+-nographic \
+-m 2048 \
+-hda msl.qcow2 \
+-boot c \
+-smp 2 \
+-device e1000,netdev=net0 \
+-netdev user,id=net0,hostfwd=tcp::4022-:22,hostfwd=tcp::8443-:8443 
 
 # install qemu OS
 qemu-system-x86_64 -cdrom ./disk.iso -enable-kvm -m 2048 -nic user,model=virtio -drive file=disk1.qcow,media=disk,if=virtio
