@@ -1,3 +1,7 @@
 # return non-matching
 -v, --invert-match select non-matching lines
 
+-P # match perl style regex
+-i # not case sensitive
+-o # Print only matching chars
+
