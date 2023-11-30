@@ -1,2 +1,8 @@
 # use cacert in pem format
 --cacert /path/to/cert.pem
+
+# post json
+curl -X POST https://reqbin.com/echo/post/json \
+-H 'Content-Type: application/json' \
+-d '{"login":"my_login","password":"my_password"}'
+
