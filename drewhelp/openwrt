@@ -1,6 +1,26 @@
+# should use the squash; change overlay size
+
 # active_ips.sh
 cat /proc/net/nf_conntrack | awk -F 'src=' '{print $2}' | awk '{print $1}' | sort | uniq
 
 # find_mac.sh
 cat active_ips.sh | ash | awk '{print "ip neigh show " $0 " "}' | ash | grep '04:c8'
+
+# info for resizing squash partition 
+https://forum.openwrt.org/t/howto-resizing-root-partition-on-x86-march-2023-edition/153398
+
+# delete partition, create new one # also in the resizing link 
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/storage_administration_guide/s2-disk-storage-parted-resize-part
+
+# change wan port
+uci set network.wan.device='eth0'
+uci set network.wan6.device='eth0'
+uci set network.wan6.reqaddress='try'
+uci set network.wan6.reqprefix='auto'
+uci del network.cfg030f15.ports
+uci add_list network.cfg030f15.ports='eth1'
+uci add_list network.cfg030f15.ports='eth2'
+uci add_list network.cfg030f15.ports='eth3'
+uci add_list network.cfg030f15.ports='eth4'
+uci add_list network.cfg030f15.ports='eth5'
 
