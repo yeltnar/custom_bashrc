@@ -21,3 +21,9 @@ cat ./workdir/lower.txt
 rm ./lower/lower.txt 
 rm ./overlay/lower.txt 
 
+# look for overlay devices
+mount | grep overlay
+
+# find file which overlay maps to
+cat /sys/class/block/loop0/loop/backing_file
+
