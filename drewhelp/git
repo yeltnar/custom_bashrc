@@ -30,3 +30,7 @@ git reset --hard origin/main
 # clone local git remote... notice there is no protocol, only path
 git clone /path/to/remote
 
+# sign git commit with specific key
+# notice no space between -S and id
+git commit -S1E5DC28C510B0A48 -m a
+

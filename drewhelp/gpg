@@ -37,5 +37,10 @@ gpg --delete-key drew
 # delete private key
 gpg --delete-secret-key drew
 
+# generate without passphrase # note batch 
+gpg --batch --passphrase '' --quick-gen-key default default
 
+# sign git commit with specific key
+# notice no space between -S and id
+git commit -S1E5DC28C510B0A48 -m a
 
