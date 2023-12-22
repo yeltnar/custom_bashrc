@@ -1,0 +1,12 @@
+#!/bin/bash
+
+startTime="2023-12-20%2000:00:00"
+endTime="2023-12-20%2023:49:00"
+
+if [ -z "$api_key" ]; then
+	echo "api_key is not defined; exiting";
+	exit
+fi
+
+curl "https://monitoringapi.solaredge.com/site/4081692/power?api_key=$api_key&startTime=$startTime&endTime=$endTime"
+
