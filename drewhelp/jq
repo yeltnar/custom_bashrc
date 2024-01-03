@@ -7,5 +7,5 @@ jq 'select(.request.uri == "/nebula/digitalocean.date")'
 jq 'map(select(.request.uri == "/nebula/digitalocean.date"))'
 
 # test array's `name` key for `pixel` as a regex
-jq 'map(select(.name|test("pixel")))'6008
+jq 'map(select(.name|test("pixel")))'
 
