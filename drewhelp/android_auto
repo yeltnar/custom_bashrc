@@ -1,0 +1,7 @@
+# how to
+https://developer.android.com/training/cars/testing/dhu#running-dhu
+
+./desktop-head-unit --usb
+
+# path 
+/home/drew/Android/Sdk/extras/google/auto/desktop-head-unit
