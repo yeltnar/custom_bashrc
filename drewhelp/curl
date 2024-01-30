@@ -9,3 +9,6 @@ curl -X POST https://reqbin.com/echo/post/json \
 # set outgoing address
 curl --interface zz.zz.zz.zz http://example.com/
 
+# get cert info from server
+openssl s_client -connect {HOSTNAME}:{PORT} -showcerts
+
