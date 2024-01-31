@@ -1,4 +1,8 @@
 if [ -z $http_remote ]; then
+	http_remote="$1";
+fi
+
+if [ -z $http_remote ]; then
 	echo "http_remote not defined; exiting"; 
 	exit
 fi
