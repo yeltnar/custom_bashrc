@@ -1,4 +1,8 @@
 if [ -z $git_remote ]; then
+	git_remote="$1";
+fi
+
+if [ -z $git_remote ]; then
 	echo "git_remote not defined; exiting"; 
 	exit
 fi
