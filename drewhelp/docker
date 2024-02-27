@@ -26,3 +26,6 @@ docker commit $docker_ref
 # full docker image registry URL
 registry.hub.docker.com/library/IMAGE:TAG
 
+# multi-architecture images
+docker build -t rm --platform amd64 . 
+
