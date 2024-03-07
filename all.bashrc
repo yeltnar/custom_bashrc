@@ -28,8 +28,8 @@ elif [ "$SHLVL" -eq 1 ]; then
 	session_info;
 fi
 
-alias advance_pwd="if [ `/bin/pwd` == `/bin/pwd -P` ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
-alias ddd="if [ $(/bin/pwd) == $(/bin/pwd -P) ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
+# alias advance_pwd="if [ `/bin/pwd` == `/bin/pwd -P` ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
+# alias ddd="if [ $(/bin/pwd) == $(/bin/pwd -P) ]; then /bin/pwd; else /bin/pwd && /bin/pwd -P; fi"
 
 #alias vimbashrc="vim ~/.bashrc"
 alias vimallbashrc="vim $bashrc_folder/all.bashrc "
