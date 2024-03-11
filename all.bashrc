@@ -195,40 +195,12 @@ _clean_history() {
 }
 # PROMPT_COMMAND="_clean_history; $PROMPT_COMMAND" # this will sync history across tmux
 
-
-
-# change this to modify the user info
-# PS1="\h:\W \u\$"
-PS_YELLOW="\[\033[01;93m\]"
-PS_LIGHT_BLUE="\[\033[01;96m\]"
-PS_WHITE="\[\033[97m\]"
-PS_COLOR_RESET="\[\033[00m\]"
-PS_USER="\u"
-PS_HOSTNAME="\h"
-PS_PWD="\w"
-PS1_GIT=""
-PS1="${PS_YELLOW}${PS_USER}@${PS_HOSTNAME}${PS_COLOR_RESET}:\
-${PS_LIGHT_BLUE}${PS_PWD}${PS_COLOR_RESET} \
-${PS_WHITE}\${PS1_GIT}${PS_COLOR_RESET}\n\
-${PS_LIGHT_BLUE}∟> \$${PS_COLOR_RESET} "
-PS2="${PS_LIGHT_BLUE} > ${PS_COLOR_RESET}  "
-
 for f in $(ls $bashrc_folder/autocomplete); do
   #echo "sourcing " "$bashrc_folder/autocomplete/$f"
   . "$bashrc_folder/autocomplete/$f"
 done
 
-prompt_command() {
-  # $? is 0 if git dir, otherwise false
-
-  if git status > /dev/null 2>&1; then
-    local GIT_STATUS=$(git status | grep 'On branch' | cut -b 11-)
-    export PS1_GIT="${GIT_STATUS}"
-  else
-    export PS1_GIT=""	
-  fi
-}
-PROMPT_COMMAND="prompt_command ; $PROMPT_COMMAND"
+. "$bashrc_folder/bash_colors"
 
 echo "Loaded all.bashrc"
 
