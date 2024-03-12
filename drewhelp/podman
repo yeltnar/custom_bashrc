@@ -38,3 +38,12 @@ podman save -o /tmp/image.tar
 # load tar as image
 podman load -i /tmp/image.tar
 
+# run x86 image 
+https://developer.ibm.com/tutorials/running-x86-64-containers-mac-silicon-m1/
+
+# change default VM 
+podman system connection default intel
+
+# add mac dirs to VM
+podman machine init -v $HOME:$HOME -v /tmp:/tmp_host
+
