@@ -1,12 +1,27 @@
 #!/bin/bash
 
-startTime="2023-12-20%2000:00:00"
-endTime="2023-12-20%2023:49:00"
+startDate="2024-3-11"
+endDate="2024-3-11"
+
+# can use this with GNU date
+# startDate=$(date --date "1 days ago" '+%Y-%m-%d')
+# endDate=$(date --date "1 days ago" '+%Y-%m-%d')
+
+startTime="$startDate%2000:00:00"
+endTime="$endDate%2023:59:59"
 
 if [ -z "$api_key" ]; then
 	echo "api_key is not defined; exiting";
 	exit
 fi
 
-curl "https://monitoringapi.solaredge.com/site/4081692/power?api_key=$api_key&startTime=$startTime&endTime=$endTime"
+# curl "https://monitoringapi.solaredge.com/site/4081692/power?api_key=$api_key&startTime=$startTime&endTime=$endTime"
+
+url="https://monitoringapi.solaredge.com/site/4081692/energy?timeUnit=QUARTER_OF_AN_HOUR&api_key=$api_key&startDate=$startDate&endDate=$endDate"
+# url="https://monitoringapi.solaredge.com/site/4081692/meters?meters=Production,Consumption&startTime=$startTime&endTime=$endTime&api_key=$api_key"
+# url="https://monitoringapi.solaredge.com/equipment/2/sensors?api_key=$api_key"
+
+# url="https://monitoringapi.solaredge.com/site/4081692/power?timeUnit=QUARTER_OF_AN_HOUR&api_key=$api_key&startTime=$startTime&endTime=$endTime"
+echo "$url" >&2 
+curl "$url"
 

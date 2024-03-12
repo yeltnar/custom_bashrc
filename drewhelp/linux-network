@@ -1,0 +1,36 @@
+### created using Ubuntu machine ###
+
+# bring up network interface 
+sudo ifconfig enx00e04cb60c24 up
+
+# take down network interface 
+sudo ifconfig enx00e04cb60c24 down
+
+# get dhcp address with interface
+sudo dhclient enx00e04cb60c24
+
+# ping with interface 
+ping -I enx00e04cb60c24 192.168.99.1
+
+
+# generate /etc/netplan/* files
+netplan generate
+
+# example of lowering priority 
+network:
+  ethernets:
+    enx00e04cb60c24:
+      dhcp4: true
+      dhcp4-overrides: 
+        route-metric: 200
+  version: 2
+
+# try new netplan config 
+netplan try
+
+# apply and restart 
+netplan apply
+
+# show route info
+route -n
+
