@@ -20,3 +20,5 @@ journalctl -u drew-nebula -b --no-pager > logdump/nebula
 
 # use --all to stop seeing `[blob data]`
 
+# show timer status from systemd
+systemctl list-timers
