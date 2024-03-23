@@ -43,14 +43,14 @@ alias ..="cd ..;pwd"
 alias cdmkdir="dir=$1;echo $dir;mkdir $dir; cd $dir"
 
 cdbashrc(){
-	cd $bashrc_folder
+	pushd $bashrc_folder
 	if [ "" != "$1" ]; then
-		cd "$1";
+		pushd "$1";
 	fi
 }
 
 cdsystemctl(){
-	cd /etc/systemd/system 	 
+	pushd /etc/systemd/system 	 
 }
 
 alias bashhistory="cat ~/.bash_history"
