@@ -1,6 +1,3 @@
-#!/bin/bash
-
-
 if [ ! -e $bashrc_folder ]; then
     echo "\$bashrc_folder is not set" 1>&2;
     exit;
