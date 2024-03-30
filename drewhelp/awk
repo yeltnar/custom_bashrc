@@ -7,3 +7,5 @@ ls | awk '{print "\047"$0"\047"}'
 # awk variables 
 awk -v q="'" '{print q $0 q}' input
 
+# script to sum interest
+cat julie_Chase0705_Activity_20240330.CSV | grep -i 'interest Payment' | awk -F',' '{sum+=$4;print $0} END{print "\nsum: "sum}'
