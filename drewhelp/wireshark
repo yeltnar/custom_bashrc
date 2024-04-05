@@ -1,0 +1,4 @@
+rm -f /tmp/sharkfin; 
+mkfifo /tmp/sharkfin; 
+wireshark -k -i /tmp/sharkfin & 
+ssh mini "dumpcap -P -i 'eno1' -w - -f 'not tcp port 22'" > /tmp/sharkfin
