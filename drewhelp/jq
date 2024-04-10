@@ -12,3 +12,7 @@ jq 'map(select(.name|test("pixel")))'
 
 homeassistant_all_devices | jq 'map(select(.entity_id | test("lumi_lumi_weather_battery"))) .[].state'
 
+# filter for elements in an array which have `lumi...` inside of entity_id. 
+# then, for each match, print the state and friendly_name
+homeassistant_all_devices | jq -r 'map(select(.entity_id | test("lumi_lumi_weather_battery"))) .[] | "\(.state) \"\(.attributes.friendly_name)\""'
+
