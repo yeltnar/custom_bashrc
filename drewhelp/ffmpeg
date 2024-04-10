@@ -19,6 +19,7 @@ ffmpeg -i in.mp4 -filter:v "crop=out_w:out_h:x:y" out.mp4
 # file '/path/to/file2'
 # file '/path/to/file3'
 ffmpeg -f concat -i mylist.txt -c copy output.mp4
+ls . | awk -v q="'" '{print "file " q $0 q }'
 
 # mute 
 ffmpeg -i in.mp4 -c copy -an out.mp4
