@@ -10,3 +10,5 @@ jq 'map(select(.request.uri == "/nebula/digitalocean.date"))'
 # test array's `name` key for `pixel` as a regex
 jq 'map(select(.name|test("pixel")))'
 
+homeassistant_all_devices | jq 'map(select(.entity_id | test("lumi_lumi_weather_battery"))) .[].state'
+
