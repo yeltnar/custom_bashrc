@@ -3,16 +3,16 @@
 ### login (make sure to note account)
 `ibmcloud login --sso`
 
-### set resource group (check here https://cloud.ibm.com/account/resource-groups)
+### install code engine plugin 
+`ibmcloud plugin install code-engine`
+
+### set resource group (locate here https://cloud.ibm.com/account/resource-groups)
 `ibmcloud target -g $RESOURCE_GROUP`
 ### eg
 `ibmcloud target -g cc-664003u337-wuntljx4`
 
-### project (check here https://cloud.ibm.com/codeengine/projects)
+### project (locate here https://cloud.ibm.com/codeengine/projects)
 `ibmcloud ce project select -n cc-664003u337-wuntljx4-codeengine`
-
-### install code engine plugin 
-`ibmcloud plugin install code-engine`
 
 ### list applications 
 `ibmcloud ce app list`
