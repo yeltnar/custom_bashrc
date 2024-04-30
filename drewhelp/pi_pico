@@ -1,0 +1,5 @@
+# get device
+ls /dev/tty* | grep -i ACM
+
+# connect; press enter a few times to get micro python repl
+minicom -o -D /dev/ttyACM0
