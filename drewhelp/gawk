@@ -1,0 +1,1 @@
+ls | grep Apr | gawk 'match($0, /-(.*)\.csv/, a){print a[1]}'
