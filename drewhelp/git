@@ -34,3 +34,5 @@ git clone /path/to/remote
 # notice no space between -S and id
 git commit -S1E5DC28C510B0A48 -m a
 
+# add working git as remote # notice referencing the .git dir
+git add working_remote user@host/path/to/project/.git
