@@ -29,6 +29,9 @@ ssh -L 8123:localhost:8123 user@server.lan
 # /etc/ssh/sshd_config[.d/x.conf] must have GatewayPorts [yes|clientspecified] yes is all; clientspecified is syntax below 
 ssh -R 10.10.10.1:9494:localhost:8123 user@site.com
 
+# force interactive shell with COMMAND given
+ssh -t user@host bash
+
 # ssh config file
 touch ~/.ssh/config
 chmod 600 ~/.ssh/config
