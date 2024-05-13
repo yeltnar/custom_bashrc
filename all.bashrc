@@ -183,6 +183,8 @@ then
 	alias vim=nvim
 fi
 
+alias les="vim -R";
+
 XDG_CONFIG_HOME="$bashrc_folder/alacritty/alacritty.yml"
 
 #set -o vi
