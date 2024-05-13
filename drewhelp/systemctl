@@ -22,3 +22,6 @@ journalctl -u drew-nebula -b --no-pager > logdump/nebula
 
 # show timer status from systemd
 systemctl list-timers
+
+# view failed services 
+sudo systemctl list-units --failed
