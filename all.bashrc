@@ -50,7 +50,12 @@ cdbashrc(){
 }
 
 cdsystemctl(){
-	pushd /etc/systemd/system 	 
+	pushd /etc/systemd/system	 
+}
+
+cdnix(){
+	nixos="$HOME/playin/nixos_files";
+	pushd "$nixos"; 
 }
 
 alias bashhistory="cat ~/.bash_history"
