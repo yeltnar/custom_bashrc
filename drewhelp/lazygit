@@ -1,0 +1,11 @@
+? is used for help page
+
+under Local branches, `o` will open pull request 
+
+shift+s allows for stashing only staged files 
+
+v starts range while staging a file, arrow to select
+
+d unstages staged lines from righ pane
+
+under Files, shift+d has reset options 
