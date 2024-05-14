@@ -1,0 +1,8 @@
+# keybase on nixos
+# install `keybase`, and `keybase-gui` pkgs
+# run 
+keybase service & 
+export keybase_service_pid="$!"; 
+NIX_SKIP_KEYBASE_CHECKS=1 keybase-gui --no-sandbox; 
+echo "keybase service is... $keybase_service_pid";
+kill $keybase_service_pid;
