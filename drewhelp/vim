@@ -36,3 +36,7 @@ q to stop recording
 
 # open Read Only mode
 vim -R $FILE_NAME
+
+# set syntax highlighting
+:set syntax=html
+
