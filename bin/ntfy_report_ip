@@ -29,7 +29,7 @@ cd $bashrc_folder
 
 PATH="/usr/local/bin:/sbin:/usr/bin:/bin:/snap/bin:/data/data/com.termux/files/usr/bin:$PATH"
 
-pub_ip=$(curl https://digitalocean.andbrant.com);
+pub_ip=$(curl -sS https://digitalocean.andbrant.com);
 lan_ip="$(ifconfig | awk '/192\.168/{print $2}' | tr '\n' ' ')";
 nebula_ip=$(ifconfig | awk '/10\.10\.10/{print $2}');
 git_branch=$(git rev-parse HEAD)
@@ -73,5 +73,9 @@ fi
 
 curl_command="-d $new_content $ntfy_endpoint/device_status"
 echo "curl_command -> $curl_command"
-curl -v -H "Authorization: Bearer $token" -d "$new_content" $ntfy_endpoint/device_status #&& rm -rf $fail_file || report_failure
+curl -sS -H "Authorization: Bearer $token" -d "$new_content" $ntfy_endpoint/device_status 2> /tmp/ntfy_report_curl_error #&& rm -rf $fail_file || report_failure
+
+if [ -s "/tmp/ntfy_report_curl_error" ];then
+	mv /tmp/ntfy_report_curl_error ~/cron/
+fi
 
