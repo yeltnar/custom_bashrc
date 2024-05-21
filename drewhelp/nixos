@@ -1,2 +1,17 @@
 # clear old generations 
 sudo nix-collect-garbage --delete-older-than 14d
+
+# recommeneded to sometimes run as sudo to collect additional garbage
+# THIS DELETES ALL OLD ENTIRES 
+sudo nix-collect-garbage -d
+
+# list old generations 
+nix-env --list-generations
+
+nix-collect-garbage --delete-old
+
+# delete specific generations  
+nix-collect-garbage --delete-generations 1 2 3
+
+# As a separation of concerns - you will need to run this command to clean out boot
+sudo /run/current-system/bin/switch-to-configuration boot
