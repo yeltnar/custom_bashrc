@@ -25,3 +25,8 @@ systemctl list-timers
 
 # view failed services 
 sudo systemctl list-units --failed
+
+# clear logs 
+journalctl --vacuum-time=2d
+journalctl --vacuum-size=500M
+
