@@ -12,6 +12,14 @@ nix-collect-garbage --delete-old
 
 # delete specific generations  
 nix-collect-garbage --delete-generations 1 2 3
+sudo nix-collect-garbage --delete-older-than 14d
 
-# As a separation of concerns - you will need to run this command to clean out boot
-sudo /run/current-system/bin/switch-to-configuration boot
+# rebuid, make bootable, but don't switch 
+# should also rebuild grub.cfg, if just ran nix-collect-garbage
+sudo nixos-rebuild boot
+
+# FROM ANOTHER SET OF INSTRUCTIONS # As a separation of concerns - you will need to run this command to clean out boot
+# sudo /run/current-system/bin/switch-to-configuration boot
+
+
+# mulvad nixos package, from the large repo, installs a deb package 
