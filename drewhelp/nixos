@@ -21,5 +21,7 @@ sudo nixos-rebuild boot
 # FROM ANOTHER SET OF INSTRUCTIONS # As a separation of concerns - you will need to run this command to clean out boot
 # sudo /run/current-system/bin/switch-to-configuration boot
 
+# to use mullvad, must first start mullvad-daemon in the cli
 
 # mulvad nixos package, from the large repo, installs a deb package 
+
