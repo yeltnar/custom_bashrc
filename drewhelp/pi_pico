@@ -2,4 +2,5 @@
 ls /dev/tty* | grep -i ACM
 
 # connect; press enter a few times to get micro python repl
+# may need sudo, based on the device permissions 
 minicom -o -D /dev/ttyACM0

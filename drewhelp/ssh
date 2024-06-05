@@ -39,6 +39,9 @@ chmod 600 ~/.ssh/config
 # public github keys
 curl https://github.com/yeltnar.keys
 
+# custom known hosts file 
+ssh -o UserKnownHostsFile=/tmp/knownhosts  user@host
+
 # ssh config file contents
 Host hostname1
     SSH_OPTION value
