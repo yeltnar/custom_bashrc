@@ -109,3 +109,7 @@ done
 top # installed on most machines
 htop # installed on most machines
 
+# get hostname info
+hostnamectl
+# seems to be populated from /etc/os-release
+
