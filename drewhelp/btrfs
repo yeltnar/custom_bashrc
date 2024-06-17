@@ -10,4 +10,6 @@ btrfs filesystem du /tmp/mounted_disk
 
 # subvolume commands
 sudo btrfs subv
+btrfs subvolume create /mnt/path
+mount -o compress=zstd,subvol=path /device/path /mnt/point 
 
