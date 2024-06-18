@@ -113,3 +113,6 @@ htop # installed on most machines
 hostnamectl
 # seems to be populated from /etc/os-release
 
+# get public ip address
+dig +short myip.opendns.com @resolver1.opendns.com
+
