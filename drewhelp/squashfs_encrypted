@@ -12,6 +12,9 @@ mksquashfs ./to_squash ./image.sqfs
 truncate -s +8M image.sqfs # add some padding for encryption 
 cryptsetup -q reencrypt --encrypt --type luks2 --resilience none --disable-locks --reduce-device-size 8M image.sqfs # add encryption 
 
+# encrypt with keyfile... will not prompt for password 
+# cryptsetup --key-file /root/mykeyfile.key -q reencrypt --encrypt --type luks2 --resilience none --disable-locks --reduce-device-size 8M image.sqfs # add encryption 
+
 # mount
 mkdir squash_mnt
 sudo cryptsetup open ./image.sqfs enc_sqfs # create unencrypted device

@@ -44,3 +44,6 @@ gpg --batch --passphrase '' --quick-gen-key default default
 # notice no space between -S and id
 git commit -S1E5DC28C510B0A48 -m a
 
+# don't print extra info
+gpg -q ... 
+
