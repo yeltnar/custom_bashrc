@@ -30,3 +30,10 @@ sudo systemctl list-units --failed
 journalctl --vacuum-time=2d
 journalctl --vacuum-size=500M
 
+# list dependencies of a service 
+sudo systemctl list-dependencies media-sqfs_test.mount --all --recursive
+
+# list units and their status 
+sudo systemctl list-units
+sudo systemctl list-units --failed
+sudo systemctl list-units --all
