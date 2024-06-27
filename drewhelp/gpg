@@ -47,3 +47,9 @@ git commit -S1E5DC28C510B0A48 -m a
 # don't print extra info
 gpg -q ... 
 
+### trust ### 
+
+gpg --edit-key
+# ...type 'trust'
+# ...give it a level, 1-5, or m for main menu
+
