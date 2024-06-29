@@ -18,6 +18,9 @@ sudo nix-collect-garbage --delete-older-than 14d
 # should also rebuild grub.cfg, if just ran nix-collect-garbage
 sudo nixos-rebuild boot
 
+# rebuild, and use, but don't setup as boot 
+sudo nixos-rebuild test
+
 # FROM ANOTHER SET OF INSTRUCTIONS # As a separation of concerns - you will need to run this command to clean out boot
 # sudo /run/current-system/bin/switch-to-configuration boot
 
