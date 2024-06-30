@@ -15,6 +15,7 @@ echo "hi" | gpg --encrypt --recipient gpg@andbrant.com | gpg --decrypt
 echo "hi" | gpg --encrypt --recipient gpg@andbrant.com --symmetric --batch --no-tty --passphrase-file ./pass | gpg --batch --passphrase-file ./pass --decrypt --no-tty 
 
 # generate key
+# when generating, make sure to provide name if using with GitHub 
 gpg --gen-key
 gpg --full-generate-key
 
