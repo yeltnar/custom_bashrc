@@ -35,9 +35,13 @@ git add working_remote user@host/path/to/project/.git
 
 # sign git commit with specific key
 # https://stackoverflow.com/questions/10161198/is-there-a-way-to-autosign-commits-in-git-with-a-gpg-key
+# gpg key used needs to have real email and a name to work with github 
 # notice no space between -S and id
 git commit -S1E5DC28C510B0A48 -m a
 # gpg --list-secret-keys --keyid-format=long; will be after encryption method / 
 git config commit.gpgsign true
 git config user.signingkey XXXXXX
+
+# view git log with signatures 
+git log --show-signature
 
