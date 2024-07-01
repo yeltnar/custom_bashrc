@@ -14,8 +14,8 @@ gpg --yes --export-secret-keys --output ~/tmp/gpg_testing/private.key rm_gpg_tes
 # create test file 
 date > test.txt
 
-# encrypt and decrypt 
-gpg --yes --encrypt --output test.txt.enc --recipient rm_gpg_testing test.txt 
+# encrypt (sign) and decrypt 
+gpg --yes --encrypt --sign --output test.txt.enc --recipient rm_gpg_testing test.txt 
 gpg --yes --decrypt --output test.dec.txt test.txt.enc
 
 # test
