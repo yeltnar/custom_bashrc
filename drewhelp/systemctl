@@ -35,3 +35,5 @@ journalctl --vacuum-size=500M
 # list dependencies of a service 
 sudo systemctl list-dependencies media-sqfs_test.mount --all --reverse
 
+# show path of service file
+systemctl show -P FragmentPath $SERVICE
