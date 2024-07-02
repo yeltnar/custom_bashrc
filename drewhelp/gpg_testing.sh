@@ -1,15 +1,24 @@
 set +x;
 
+export testing_dir="/tmp/gpg_testing";
+export GNUPGHOME="$testing_dir/gpg_home";
+export workdir="$testing_dir/workdir";
+
+mkdir -p "$GNUPGHOME";
+chmod 700 "$GNUPGHOME";
+
 # setup directory
-mkdir -p ~/tmp/gpg_testing; 
-cd ~/tmp/gpg_testing;
+mkdir -p "$workdir"; 
+cd "$workdir";
 
 # generate key without passphrase (for unattended use) 
 gpg --batch --passphrase '' --quick-gen-key rm_gpg_testing;
 
+gpg --list-keys
+
 # export keys
-gpg --yes --export --output ~/tmp/gpg_testing/pub.key rm_gpg_testing
-gpg --yes --export-secret-keys --output ~/tmp/gpg_testing/private.key rm_gpg_testing
+gpg --yes --export --output "$workdir/pub.key" rm_gpg_testing
+gpg --yes --export-secret-keys --output "$workdir/private.key" rm_gpg_testing
 
 # create test file 
 date > test.txt
