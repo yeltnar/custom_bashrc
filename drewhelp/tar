@@ -1,5 +1,10 @@
+# compress archive-name from source
 tar -zcvf archive-name.tar.gz source-directory-name
+
+# extract tar (to current directory)
 tar -zxvf prog-1-jan-2005.tar.gz
+
+# extract tar to output directory 
 tar xf file.tar -C /path/to/directory
 
 -C changes working dir for process. This changes how paths work when compressing
