@@ -7,3 +7,6 @@ ln -sf /new/target /path/to/symlink
 # replace symlink with new directory or file 
 ln -sfn /new/target /path/to/symlink
 
+# read location of symlink
+readlink $SYMLINK
+readlink -f $SYMLINK
