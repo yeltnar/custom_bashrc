@@ -56,4 +56,4 @@ gpg -q ...
 gpg --edit-key
 # ...type 'trust'
 # ...give it a level, 1-5, or m for main menu
-
+# ...save (shouldn't need this?) 
