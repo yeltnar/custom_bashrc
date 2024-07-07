@@ -1,0 +1,3 @@
+# nixos launch
+nix-shell -p prismlauncher --command prismlauncher 
+# or just install it
