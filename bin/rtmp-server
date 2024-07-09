@@ -1,0 +1,1 @@
+podman rm nginx-rtmp; podman run -p 1935:1935 --name nginx-rtmp docker.io/tiangolo/nginx-rtmp
