@@ -9,3 +9,6 @@ v starts range while staging a file, arrow to select
 d unstages staged lines from righ pane
 
 under Files, shift+d has reset options 
+
+# custom command (and more) location
+~/.config/lazygit/state.yml
