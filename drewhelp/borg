@@ -41,5 +41,6 @@ borg export-tar --progress ::backup2 backup.tar.gz
 borg mount :: /tmp/mount                                                    
 borg umount                                                
 
-
+# get latest date of repo
+borg list --json $REPO | jq -r .archives[-1].time
 
