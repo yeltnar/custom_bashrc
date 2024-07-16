@@ -42,6 +42,9 @@ curl https://github.com/yeltnar.keys
 # custom known hosts file 
 ssh -o UserKnownHostsFile=/tmp/knownhosts  user@host
 
+# remove hostkey for host with optional port
+ssh-keygen -R host[:port]
+
 # ssh config file contents
 Host hostname1
     SSH_OPTION value

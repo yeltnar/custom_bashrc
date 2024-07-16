@@ -17,7 +17,8 @@ firefox https://vim.rtorr.com/ &
 :s/foo/bar/g
 # %s for all lines
 :%s/foo/bar/g
-
+# visual find and replace video
+# https://youtu.be/v2a6Nv7RSd0
 
 # macros
 q[registry] to start recording
@@ -39,4 +40,5 @@ vim -R $FILE_NAME
 
 # set syntax highlighting
 :set syntax=html
+
 
