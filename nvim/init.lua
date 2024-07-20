@@ -2,6 +2,10 @@ local o = vim.opt
 
 o.nu = true
 o.relativenumber = true 
+
+o.scrolloff = 8
+o.incsearch = true
+
 require("plugins")
 
 -- how to setup/use
