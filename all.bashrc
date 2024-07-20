@@ -210,13 +210,13 @@ done
 
 echo "Loaded all.bashrc"
 
-if [ -n "$(which nvim)" ] && [ ! -e ~/.config/nvim/init.vim ]; then
-	echo "neovim is installed but ~/.config/nvim/init.vim isn't found. Copy the default?";
-	read -p "Copy nvim config? (y/n) " cp_nvim;
+if [ -n "$(which nvim)" ] && [ ! -e ~/.config/nvim ]; then
+	echo "neovim is installed but ~/.config/nvim isn't found. Symink from bashrc directory?";
+	read -p "Symlink nvim config? (y/n) " cp_nvim;
 	if [ "$cp_nvim" == "y" ]; then
-		echo "Copying the init.vim file"
-		mkdir -p ~/.config/nvim/;
-		cp "$bashrc_folder/init.vim" ~/.config/nvim/init.vim;
+		echo "Symlinking $bashrc_folder/nvim to ~/.config/nvim";
+		mkdir -p ~/.config
+		ln -s "$bashrc_folder/nvim" ~/.config/nvim;
 	fi
 fi
 
