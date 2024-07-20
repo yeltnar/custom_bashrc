@@ -1,5 +1,6 @@
 local o = vim.opt
 
+o.nu = true
 o.relativenumber = true 
 require("plugins")
 
