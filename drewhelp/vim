@@ -41,4 +41,5 @@ vim -R $FILE_NAME
 # set syntax highlighting
 :set syntax=html
 
+# when in visual mode, highlight code, then `=` for auto formatting
 
