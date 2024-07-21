@@ -42,10 +42,11 @@ alias ..="cd ..;pwd"
 alias cdmkdir="dir=$1;echo $dir;mkdir $dir; cd $dir"
 
 cdbashrc(){
-	pushd $bashrc_folder
+	to_move="$bashrc_folder"
 	if [ "" != "$1" ]; then
-		pushd "$1";
+		to_move="$to_move/$1";
 	fi
+	pushd $to_move;
 }
 
 cdsystemctl(){
@@ -53,8 +54,11 @@ cdsystemctl(){
 }
 
 cdnix(){
-	nixos="$HOME/playin/nixos_files";
-	pushd "$nixos"; 
+	to_move="$HOME/playin/nixos_files"
+	if [ "" != "$1" ]; then
+		to_move="$to_move/$1";
+	fi
+	pushd $to_move;
 }
 
 alias bashhistory="cat ~/.bash_history"

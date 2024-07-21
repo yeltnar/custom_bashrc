@@ -1,0 +1,25 @@
+# put this in /etc/bash_completion.d/SCRIPT_NAME
+# (or /usr/local/etc/bash_completion.d/ for mac)
+# then reload the bash session
+
+main(){
+
+_script_cdnix()
+{
+  _script_commands=$(ls "$HOME/playin/nixos_files")
+
+  local cur
+  COMPREPLY=()
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  COMPREPLY=( $(compgen -W "${_script_commands}" -- ${cur}) )
+
+  return 0
+}
+complete -o nospace -F _script_cdnix cdnix 
+
+}
+
+main
+
+# source: https://askubuntu.com/questions/68175/how-to-create-script-with-auto-complete
+
