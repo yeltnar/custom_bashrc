@@ -8,4 +8,5 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvi
 # `:PackerSync`
 
 # cab `find ~` or `tree ~` and remove all dotfiles for nvim to re-install
+# help https://youtubetranscript.com/?v=w7i4amO_zaE&t=166
 

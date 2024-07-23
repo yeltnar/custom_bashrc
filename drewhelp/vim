@@ -43,3 +43,5 @@ vim -R $FILE_NAME
 
 # when in visual mode, highlight code, then `=` for auto formatting
 
+# use ctrl+w to switch between panes in vim. Useful if have extra screen like TSPlayground 
+
