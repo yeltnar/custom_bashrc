@@ -116,3 +116,6 @@ hostnamectl
 # get public ip address
 dig +short myip.opendns.com @resolver1.opendns.com
 
+# get pretty printed system information
+neofetch
+

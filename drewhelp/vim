@@ -46,3 +46,5 @@ vim -R $FILE_NAME
 # use ctrl+w to switch between panes in vim. Useful if have extra screen like TSPlayground 
 
 # syntax and filetype must both be set to have good highlighting? 
+# :syntax
+# :filetype

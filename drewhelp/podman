@@ -47,3 +47,7 @@ podman system connection default intel
 # add mac dirs to VM
 podman machine init -v $HOME:$HOME -v /tmp:/tmp_host
 
+# you can reset the entire storage with 
+podman system reset
+
+
