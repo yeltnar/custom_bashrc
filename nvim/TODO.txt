@@ -1,4 +1,4 @@
-# Grep search doesn't work for file contents? 
+# file search depends on ripgrep (rg) to be installed
 
 # auto run this
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
