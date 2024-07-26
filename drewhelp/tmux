@@ -49,3 +49,10 @@ tmux pipe-pane -o -t0 "tail -n +2 | col -b | base64 -d > ~/output"
 tmux send-keys -t0 "base64 /some/file && read" Enter
 tmux pipe-pane -t0
 tmux send-keys -t0 Enter
+
+# some popup stuff 
+# https://github.com/tmux/tmux/issues/1842#issuecomment-601057063
+# -E exit when done
+# -d working directory 
+# end is command to run
+tmux popup -E -d "$PWD" "$@"

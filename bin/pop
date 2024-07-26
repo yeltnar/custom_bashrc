@@ -1,0 +1,4 @@
+# use `pop -E lazyvim` to exit when process is done 
+
+tmux popup -d "$PWD" "$@";
+

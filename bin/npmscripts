@@ -1,1 +1,6 @@
-cat "package.json" | jq .scripts
+if [[ "$@" == *"-p"* ]]; then
+	tmux popup -d "$PWD" 'cat "package.json" | jq .scripts';
+else
+	cat "package.json" | jq .scripts;
+fi
+
