@@ -1,0 +1,3 @@
+# fzf but in new pane. -p will make a popup 
+# will return selected option to the shell in whichi it is run
+fzf-tmux -p 
