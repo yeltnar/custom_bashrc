@@ -1,0 +1,5 @@
+# use this to set up cluster on nix 
+# https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/cluster/k3s/docs/USAGE.md
+
+# link config file so it is default for user 
+ln -s /etc/rancher/k3s/k3s.yaml ${HOME}/.kube/config
