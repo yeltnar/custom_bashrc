@@ -18,12 +18,13 @@ PS2="${PS_LIGHT_BLUE} > ${PS_COLOR_RESET}  "
 prompt_command() {
   # $? is 0 if git dir, otherwise false
 
-  if git status > /dev/null 2>&1; then
-    local GIT_STATUS=$(git status | grep 'On branch' | cut -b 11-)
+  if git branch > /dev/null 2>&1; then
+    local GIT_STATUS=$(git branch | awk '/\*/' | cut -c3-)
     export PS1_GIT="${GIT_STATUS}"
   else
     export PS1_GIT=""	
   fi
 }
 PROMPT_COMMAND="prompt_command ; $PROMPT_COMMAND"
+# PROMPT_COMMAND="prompt_command ;"
 
