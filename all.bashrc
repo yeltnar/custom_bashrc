@@ -172,8 +172,6 @@ sudo_start_nebula(){
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-alias kc=kubectl;
-
 alias tmux_help="firefox https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/"
 alias vim_help="firefox https://vim.rtorr.com/"
 
