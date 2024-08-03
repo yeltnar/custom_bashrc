@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -z $browser ]; then
+    browser='firefox'
+fi
+
+url="https://vim.rtorr.com/";
+
+$browser $url

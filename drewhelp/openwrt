@@ -24,3 +24,8 @@ uci add_list network.cfg030f15.ports='eth3'
 uci add_list network.cfg030f15.ports='eth4'
 uci add_list network.cfg030f15.ports='eth5'
 
+
+# add new user 
+# https://openwrt.org/docs/guide-user/additional-software/create-new-users
+# some info about luci read/write permissions
+# https://forum.openwrt.org/t/add-a-new-luci-user/150102

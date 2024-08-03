@@ -40,3 +40,6 @@ nixos-rebuild switch --upgrade
 
 # disk decryption at (after) boot
 # https://nixos.wiki/wiki/Full_Disk_Encryption#Option_2:_Unlock_after_boot_using_crypttab_and_a_keyfile
+
+# expose ports without rebuilding
+nixos-firewall-tool
