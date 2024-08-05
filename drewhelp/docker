@@ -30,4 +30,4 @@ registry.hub.docker.com/library/IMAGE:TAG
 docker build -t rm --platform amd64 . 
 
 # watchtower (lighthouse logo) update containers with single run
-docker run -d --name watchtower --run-once -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower
+docker rm -f watchtower ; docker run -it -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --run-once
