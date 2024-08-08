@@ -53,3 +53,5 @@ vim -R $FILE_NAME
 # show parsed tree
 :TSPlaygroundToggle 
 
+# read bash reaponse into buffer
+:r !date | cat
