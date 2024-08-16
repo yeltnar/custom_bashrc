@@ -1,0 +1,3 @@
+nix-shell -p google-chrome --command google-chrome-stable ; 
+ls -l ~/.config/ | grep google-chrome ; 
+rm -rf ~/.config/google-chrome ; 
