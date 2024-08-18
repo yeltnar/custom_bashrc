@@ -1,2 +1,15 @@
 # kill app
 adb shell am force-stop com.my.app.id
+
+# watch for home app to be killed
+ watch "adb shell dumpsys activity | grep -A 150 'Process LRU list' | grep 'Proc #' -n | grep -i HOME "
+
+# get meminfo for an app 
+adb shell dumpsys meminfo app.lawnchair > /tmp/app.lawnchair_usage
+
+# get processes and usage 
+adb shell top
+adb shell top -u u0_a262
+# this will get processes for the UID user, and android has one user to process setup, so gets one process 
+adb shell; top -u u0_a262 
+# can also specify the PID, but that changes when task managed 

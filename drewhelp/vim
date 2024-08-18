@@ -50,6 +50,9 @@ vim -R $FILE_NAME
 # :syntax
 # :filetype
 
+# turn off line wrapping 
+:set nowrap
+
 # show parsed tree
 :TSPlaygroundToggle 
 
