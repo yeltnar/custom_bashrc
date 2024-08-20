@@ -1,6 +1,6 @@
 last_folder='ip_addr_check'
 file_location="$HOME/.config/$last_folder"
-address=$(curl https://do.andbrant.com)
+address=$(curl https://ip.andbrant.com)
 
 mkdir -p $file_location
 cd $file_location
