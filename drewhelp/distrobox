@@ -1,0 +1,9 @@
+# create container... defaults to fedora 
+distrobox create --name t
+distrobox create --name debian --init --image debian:latest
+
+# enter created containers 
+distrobox enter debian
+
+# list distrobox containers
+distrobox ls
