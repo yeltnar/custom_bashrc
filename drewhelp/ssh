@@ -57,3 +57,4 @@ Host dev
 
 # ssh certificate authorities 
 # https://goteleport.com/blog/how-to-configure-ssh-certificate-based-authentication/
+ssh-keygen -s user_ca -I $HOSTNAME -n $USER1,$USER2 ~/.ssh/key.pub; ssh-keygen -L -f ~/.ssh/key-cert.pub
