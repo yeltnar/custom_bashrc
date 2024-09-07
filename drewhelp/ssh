@@ -55,3 +55,5 @@ Host dev
     User john
     Port 2322
 
+# ssh certificate authorities 
+# https://goteleport.com/blog/how-to-configure-ssh-certificate-based-authentication/
