@@ -119,3 +119,5 @@ dig +short myip.opendns.com @resolver1.opendns.com
 # get pretty printed system information
 neofetch
 
+# location of gnome search shortcuts 
+/home/drew/.local/share/applications
