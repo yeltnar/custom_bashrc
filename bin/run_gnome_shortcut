@@ -1,0 +1,2 @@
+shortcut_name="Satisfactory.desktop";
+cat ~/.local/share/applications/$shortcut_name | awk -F'=' '/Exec/{print $2}' | bash;
