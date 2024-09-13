@@ -2,6 +2,10 @@
 # https://nixos.org/manual/nixos/stable
 # https://nix.dev/manual/nix
 # https://nixos.wiki
+# _options_
+# https://search.nixos.org/options
+# _packages_
+# https://search.nixos.org/packages 
 
 # clear old generations 
 sudo nix-collect-garbage --delete-older-than 14d
