@@ -210,7 +210,15 @@ done
 
 . "$bashrc_folder/bash_colors"
 
-echo "Loaded all.bashrc"
+if [ -n "$(which tmux)" ] && [ ! -e "$HOME/.tmux.conf"  ]; then
+	echo "~/.tmux.conf not found. Symink from bashrc directory?";
+	read -p "Symlink .tmux.conf config? (y/n) " cp_tmux_conf;
+	if [ "$cp_tmux_conf" == "y" ]; then
+		echo "Symlinking $bashrc_folder/tmux/tmux.conf to ~/.tmux.conf";
+		ln -s "$bashrc_folder/tmux/tmux.conf" ~/.tmux.conf;
+		tmux source ~/.tmux.conf # force reload  
+	fi
+fi
 
 if [ -n "$(which nvim)" ] && [ ! -e ~/.config/nvim ]; then
 	echo "neovim is installed but ~/.config/nvim isn't found. Symink from bashrc directory?";
@@ -222,4 +230,5 @@ if [ -n "$(which nvim)" ] && [ ! -e ~/.config/nvim ]; then
 	fi
 fi
 
-#shutdown "+60"
+echo "Loaded all.bashrc"
+
