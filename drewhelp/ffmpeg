@@ -33,3 +33,15 @@ ffmpeg -y -i input.flac output.mp3
 # image input video output # 5 fps
 ffmpeg -framerate 5 -pattern_type glob -i *.jpg -c:v libx264 -pix_fmt yuv420p out.mp4 
 ffmpeg -framerate 5 -pattern_type glob -i '*.jpg' -c:v libx264 -pix_fmt yuv420p out.mp4 
+
+
+# ffplay 
+# Q, ESC - Exit
+# F - Fullscreen
+# P, Space - Time out
+# W - Show Audio waveforms
+# S - Display by frame
+# Left direction key/right ARROW key - Back 10s/forward 10s
+# Up ARROW/DOWN ARROW key - Back 1min/forward 1min
+# Page Down/page up - Back 10min/forward 10min
+# Mouse click Screen - Jumps to the specified position (based on the width of the mouse position relative to the screen)
