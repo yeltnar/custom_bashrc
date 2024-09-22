@@ -1,5 +1,5 @@
 export update_type="grapheneos_version_beta_check"
-export update_stream="oriole-beta"
+export update_stream="caiman-beta"
 export update_message="New GrapheneOS BETA version"
 
 _generic_grapheneos_check_update

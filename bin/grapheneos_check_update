@@ -1,5 +1,5 @@
 export update_type="grapheneos_version_check"
-export update_stream="oriole-stable"
+export update_stream="caiman-stable"
 export update_message="New GrapheneOS version"
 
 _generic_grapheneos_check_update
