@@ -16,6 +16,7 @@ docker system prune -f --filter "until=72h"
 
 # access host from inside container
 host.docker.internal
+host.containers.internal # for podman 
 
 # block outgoing traffic
 https://medium.com/@havloujian.joachim/advanced-docker-networking-outgoing-ip-921fc3090b09

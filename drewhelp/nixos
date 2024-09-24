@@ -47,3 +47,5 @@ nixos-rebuild switch --upgrade
 
 # expose ports without rebuilding
 nixos-firewall-tool
+
+# `nix-env -iA XXX.neovim`, where XXX is channel from `nix-channel --list`
