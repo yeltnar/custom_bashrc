@@ -56,3 +56,9 @@ tmux send-keys -t0 Enter
 # -d working directory 
 # end is command to run
 tmux popup -E -d "$PWD" "$@"
+
+# resize panes 
+# can use ctrl+[direction key] 
+# :resize-p [-L, -R, -U, -D] NUMBER
+# :resize-p -L 70
+
