@@ -29,6 +29,7 @@ registry.hub.docker.com/library/IMAGE:TAG
 
 # multi-architecture images
 docker build -t rm --platform amd64 . 
+docker build -t rm --platform linux/amd64 . 
 
 # watchtower (lighthouse logo) update containers with single run
 docker rm -f watchtower ; docker run -it -d --name watchtower -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --run-once
