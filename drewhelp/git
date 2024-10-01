@@ -8,7 +8,7 @@ mkdir /path/to/dir/remote.git
 cd /path/to/dir/remote.git; git init --bare 
 # on host, add remote, use as anything else
 # PROTOCOL REQUIRED WHEN ADDING PORT # ssh://user@host:PORT/path
-git remote add local_git user@host/path/to/dir/remote.git
+git remote add local_git user@host:/path/to/dir/remote.git
 
 
 # set up git hooks
