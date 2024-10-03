@@ -49,3 +49,9 @@ nixos-rebuild switch --upgrade
 nixos-firewall-tool
 
 # `nix-env -iA XXX.neovim`, where XXX is channel from `nix-channel --list`
+#
+
+# use three single quotes to escape the center quote... useful for strings like in mkDerivation hook functions 
+# sed -i '''1d''' common/protocol/generate-protostrings.sh                                                                                                                                              
+# sed -i '''1i#!${pkgs.bash}/bin/bash''' common/protocol/generate-protostrings.sh     
+
