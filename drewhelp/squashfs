@@ -4,4 +4,4 @@ mkdir to_squash
 echo 'hi, from squash' >> to_squash/hi.txt
 mksquashfs ./to_squash ./to_squash.sqsh
 mkdir squash_mnt
-sudo mount -t squashfs -o loop ./to_squash squash_mnt
+sudo mount -t squashfs -o loop ./to_squash.sqsh squash_mnt
