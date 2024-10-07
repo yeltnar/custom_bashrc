@@ -1,9 +1,13 @@
 # create container... defaults to fedora 
 distrobox create --name t
 distrobox create --name debian --init --image debian:latest
+distrobox create --image archlinux --name archlinux
 
 # enter created containers 
 distrobox enter debian
 
 # list distrobox containers
 distrobox ls
+
+# install nix on arch 
+sudo pacman -s nix
