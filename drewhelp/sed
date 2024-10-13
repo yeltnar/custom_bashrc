@@ -1,4 +1,8 @@
 sed -i s/4.20/4.x/ package.json
 
--E for regex
+# for extended regex
+-E 
+
+# helpful video
+firefox 'https://www.youtube.com/watch?v=akN2TFarz0A&list=WL&index=7'
 
