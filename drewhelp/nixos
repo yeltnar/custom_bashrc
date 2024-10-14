@@ -7,6 +7,9 @@
 # _packages_
 # https://search.nixos.org/packages 
 
+# version / lifespan of releases
+https://status.nixos.org/
+
 # clear old generations 
 sudo nix-collect-garbage --delete-older-than 14d
 
@@ -49,7 +52,9 @@ nixos-rebuild switch --upgrade
 nixos-firewall-tool
 
 # `nix-env -iA XXX.neovim`, where XXX is channel from `nix-channel --list`
-#
+
+# how they setup packages 
+https://nixos.org/guides/nix-pills/13-callpackage-design-pattern
 
 # https://discourse.nixos.org/t/escaping-in-nixs-indented-strings/1201
 # use 2 single quotes, with \ and char for literal char  
