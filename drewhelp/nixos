@@ -49,3 +49,6 @@ nixos-rebuild switch --upgrade
 nixos-firewall-tool
 
 # `nix-env -iA XXX.neovim`, where XXX is channel from `nix-channel --list`
+
+# how they setup packages 
+# https://nixos.org/guides/nix-pills/13-callpackage-design-pattern
