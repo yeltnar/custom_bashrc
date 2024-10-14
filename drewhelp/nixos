@@ -51,4 +51,12 @@ nixos-firewall-tool
 # `nix-env -iA XXX.neovim`, where XXX is channel from `nix-channel --list`
 
 # how they setup packages 
-# https://nixos.org/guides/nix-pills/13-callpackage-design-pattern
+https://nixos.org/guides/nix-pills/13-callpackage-design-pattern
+
+# https://discourse.nixos.org/t/escaping-in-nixs-indented-strings/1201
+# use 2 single quotes, with \ and char for literal char  
+# find . | grep -v tests | awk ''\'/plugin.so/{ print "cp " $0 " $out/lib/nbdkit/plugins" }''\' | bash 
+
+# when using nix-shell, persist PS1
+export NIX_SHELL_PRESERVE_PROMPT=1;
+
