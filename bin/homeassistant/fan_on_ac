@@ -1,0 +1,11 @@
+
+
+curl --location --request POST "$(homeassistant_host)/api/services/climate/set_fan_mode" \
+--header "Authorization: Bearer $(homeassistant_token)" \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "entity_id": "climate.my_ecobee",
+    "fan_mode":"on"
+}'
+
+
