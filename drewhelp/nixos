@@ -7,6 +7,9 @@
 # _packages_
 # https://search.nixos.org/packages 
 
+# version / lifespan of releases
+https://status.nixos.org/
+
 # clear old generations 
 sudo nix-collect-garbage --delete-older-than 14d
 
