@@ -66,3 +66,6 @@ export NIX_SHELL_PRESERVE_PROMPT=1;
 # show why package is being installed
 nix why-depends /run/current-system nixpkgs#neovim 
 
+# allow dynamic libs 
+# https://github.com/nix-community/nix-ld
+
