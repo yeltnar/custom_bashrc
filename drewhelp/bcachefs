@@ -1,0 +1,16 @@
+# NixOS
+# To enable filesystem support and availability of user-space utils, add following line to the system configuration 
+# /etc/nixos/configuration.nix 
+# boot.supportedFilesystems = [ "bcachefs" ];
+# 
+# nix-shell -p bcachefs-tools 
+#
+# more good notes
+# https://wiki.nixos.org/wiki/Bcachefs 
+
+truncate -s 1G ./disk.img
+bcachefs format ./disk.img
+mkdir -p ./mnt 
+sudo mount -t bcachefs ./disk.img ./mnt/
+
+# sudo umount ./mnt/
