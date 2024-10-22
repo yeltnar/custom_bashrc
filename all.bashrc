@@ -188,7 +188,10 @@ alias les="vim -R";
 
 XDG_CONFIG_HOME="$bashrc_folder/alacritty/alacritty.yml"
 
-#set -o vi
+# use vi / vim type commands in terminal 
+set -o vi
+bind -m vi-command 'Control-l: clear-screen'
+bind -m vi-insert 'Control-l: clear-screen'
 
 # Set history to ignore consecutive duplicate commands and commands that start with a space
 export HISTCONTROL="ignorespace:erasedups"
