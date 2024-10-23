@@ -50,4 +50,7 @@ podman machine init -v $HOME:$HOME -v /tmp:/tmp_host
 # you can reset the entire storage with 
 podman system reset
 
-
+# gpu graphics card setup
+podman run --rm --gpus=all nvidia/cuda:11.0.3-base-ubuntu20.04 nvidia-smi
+# podman-compose does not seem to be taking '--gpus' into consideration, this forces it 
+podman-compose --podman-run-args="--gpus=all" up;
