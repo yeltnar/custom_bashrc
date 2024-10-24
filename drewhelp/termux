@@ -1,1 +1,11 @@
 # save ttf file as ~/.termux/font.ttf and restart to customize font 
+
+nix-on-droid fixes
+
+nix-env -iA prevents 'nix-on-droid switch' from later being built
+try 'nix-env' command to rollback to first generation
+
+# need .bash_profile to load .bashrc shiz
+
+# manually set up sshd 
+https://github.com/nix-community/nix-on-droid/issues/32#issuecomment-575930345
