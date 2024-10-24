@@ -16,6 +16,29 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+require("lspconfig").nixd.setup({
+  cmd = { "nixd" },
+  settings = {
+    nixd = {
+      nixpkgs = {
+        expr = "import <nixpkgs> { }",
+      },
+      formatting = {
+        -- command = { "alejandra" }, -- or nixfmt or nixpkgs-fmt
+        command = { "nixfmt" }, -- or nixfmt or nixpkgs-fmt or alejandra
+      },
+      -- options = {
+      --   nixos = {
+      --       expr = '(builtins.getFlake "/PATH/TO/FLAKE").nixosConfigurations.CONFIGNAME.options',
+      --   },
+      --   home_manager = {
+      --       expr = '(builtins.getFlake "/PATH/TO/FLAKE").homeConfigurations.CONFIGNAME.options',
+      --   },
+      -- },
+    },
+  },
+})
+
 -- configuring single server, example: typescript
 -- lspconfig.ts_ls.setup {
 --   on_attach = nvlsp.on_attach,
