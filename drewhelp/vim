@@ -1,4 +1,6 @@
-# /bin/bash
+# great cheat sheet, with good links to others 
+# it is saved in git pull backup on backup drive 
+# https://github.com/bartkummel/vim-cheatsheet/blob/master/cheatsheet.pdf
 
 # vim cheatsheet 
 firefox https://vim.rtorr.com/ &
