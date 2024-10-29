@@ -1,16 +1,40 @@
+# WARNING
+# This requires kernel version 6.7 or greater! 
+
 # NixOS
 # To enable filesystem support and availability of user-space utils, add following line to the system configuration 
 # /etc/nixos/configuration.nix 
 # boot.supportedFilesystems = [ "bcachefs" ];
 # 
 # nix-shell -p bcachefs-tools 
-#
+
 # more good notes
 # https://wiki.nixos.org/wiki/Bcachefs 
 
-truncate -s 1G ./disk.img
-bcachefs format ./disk.img
-mkdir -p ./mnt 
-sudo mount -t bcachefs ./disk.img ./mnt/
+# good ref for setting up loop devices
+# https://www.ucartz.com/clients/knowledgebase/1243/How-to-create-virtual-block-device-loop-deviceorfilesystem-in-Linux.html
 
-# sudo umount ./mnt/
+truncate -s 1G ./disk_cache.img
+truncate -s 1G ./disk_backing.img
+
+# set up loop devices
+sudo losetup -fP --show ./disk_cache.img > ./disk_cache.dev 
+sudo losetup -fP --show ./disk_backing.img > ./disk_backing.dev  
+
+# print the devices  
+losetup -a 
+
+sudo bcachefs format \
+--label=cache.cache1 $(cat ./disk_cache.dev) \
+--label=backing.backing1 $(cat ./disk_backing.dev) \
+--foreground_target=cache \
+--promote_target=cache \
+--background_target=backing
+
+mkdir -p ./mnt 
+sudo mount \
+-t bcachefs \
+$(cat ./disk_cache.dev):$(cat ./disk_backing.dev) ./mnt
+
+# sudo umount ./mnt
+
