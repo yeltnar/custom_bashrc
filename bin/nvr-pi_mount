@@ -1,0 +1,7 @@
+export host="nvr-pi.lan"
+export user="pi"
+export remote_dir="/"
+export local_dir="/tmp/nvr-pi"
+
+_mount_generic
+

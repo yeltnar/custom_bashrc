@@ -1,0 +1,7 @@
+export host="nixos-testing.lan"
+export user="drew"
+export remote_dir="/"
+export local_dir="/tmp/nixosvm"
+
+_mount_generic
+
