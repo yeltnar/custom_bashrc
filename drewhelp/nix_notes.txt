@@ -121,3 +121,7 @@ neofetch
 
 # location of gnome search shortcuts 
 /home/drew/.local/share/applications
+
+# fix last command. Will bring up editor
+fc 
+

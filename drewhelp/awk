@@ -7,5 +7,15 @@ ls | awk '{print "\047"$0"\047"}'
 # awk variables 
 awk -v q="'" '{print q $0 q}' input
 
+# get lines greater than length works with less than too
+awk 'length($0) > 7'
+
+# if statement
+ps -ef | awk '{if($NF == "/bin/bash") print $0 }'
+
+# awk for loop 
+gawk 'BEGIN { for(i=0; i<=10; i++) print i, squared is, i*i; }'
+
 # script to sum interest
 cat julie_Chase0705_Activity_20240330.CSV | grep -i 'interest Payment' | awk -F',' '{sum+=$4;print $0} END{print "\nsum: "sum}'
+
