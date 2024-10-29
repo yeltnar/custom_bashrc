@@ -68,4 +68,6 @@ nix why-depends /run/current-system nixpkgs#neovim
 
 # allow dynamic libs 
 # https://github.com/nix-community/nix-ld
+# This setting will allow for dynamic libraries 
+# programs.nix-ld.enable
 
