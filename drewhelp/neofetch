@@ -1,1 +1,4 @@
 # neofetch shows the icon of the os/distribition and the system information. Can also show details about the processor and ram
+
+# nix oneshot command
+nix-shell -p neofetch --run neofetch
