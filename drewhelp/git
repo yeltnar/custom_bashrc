@@ -46,3 +46,7 @@ git config user.signingkey XXXXXX
 # view git log with signatures 
 git log --show-signature
 
+# set pull merge global setting 
+git config --global pull.rebase true
+git config --global pull.ff true
+
