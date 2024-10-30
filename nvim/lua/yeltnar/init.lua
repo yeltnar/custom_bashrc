@@ -2,7 +2,9 @@ require("yeltnar.remap")
 
 local o = vim.opt
 
-o.clipboard = "unnamed"
+
+-- o.clipboard = "unnamed"
+o.clipboard = ""
 
 o.nu = true
 o.relativenumber = true
