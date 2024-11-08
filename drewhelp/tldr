@@ -1,0 +1,5 @@
+# og node version 
+nix-shell -p tldr --run 'time tldr --version'
+
+# rust version 
+nix-shell -p tlrc --run 'time tldr --version'
