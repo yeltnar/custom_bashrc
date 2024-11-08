@@ -1,0 +1,10 @@
+# need root to mount the device 
+
+# create volume for mount 
+sudo docker volume rm my-volume
+sudo docker volume create --driver=local --opt type=ext4 --opt device=/tmp/dockervolume/disk.img --opt o=loop my-volume 
+sudo docker run -v my-volume:/my-volume --rm archlinux ls /my-volume 
+
+# all in one line using mounts... the local driver is implied 
+sudo docker run -it --mount='type=volume,dst=/my-volume,volume-opt=device=/tmp/dockervolume/disk.img,volume-opt=type=ext4' --rm archlinux ls /my-volume 
+
