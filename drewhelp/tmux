@@ -62,3 +62,6 @@ tmux popup -E -d "$PWD" "$@"
 # :resize-p [-L, -R, -U, -D] NUMBER
 # :resize-p -L 70
 
+# pop up small helper prompt
+C-b . # ( ctrl+b, shift+. )
+
