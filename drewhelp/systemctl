@@ -1,6 +1,9 @@
 # start/stop etc
 https://phoenixnap.com/kb/start-stop-restart-linux-services
 
+# list of varialbes with % that can be used ie. %i
+# https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html#Specifiers
+
 # where to put 
 /lib/systemd/system/
 # /etc/systemd/system/drew-nebula
