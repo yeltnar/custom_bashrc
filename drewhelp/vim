@@ -60,3 +60,6 @@ vim -R $FILE_NAME
 
 # read bash reaponse into buffer
 :r !date | cat
+
+# redo (opposit of u)
+ctrl+r
