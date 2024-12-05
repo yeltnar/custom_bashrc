@@ -1,0 +1,15 @@
+DEFAULT_CONTAINER_RUNTIME="podman"
+
+if [ -z $CONTAINER_RUNTIME ]
+then
+  printf "[Using $DEFAULT_CONTAINER_RUNTIME]\n" >&2
+	CONTAINER_RUNTIME="$DEFAULT_CONTAINER_RUNTIME";
+fi
+
+if [ -z $1 ]; then
+  $CONTAINER_RUNTIME volume ls
+else
+  DATA_DIR=$($CONTAINER_RUNTIME volume inspect "$1" | jq -r .[0].Mountpoint);
+  echo $DATA_DIR
+fi
+
