@@ -6,7 +6,7 @@ then
 	RT="$DEFAULT_CONTAINER_RUNTIME";
 fi
   
-printf "[Using $RT]\n" >&2
+printf "[Using $(whoami) $RT]\n" >&2
 
 if [ -z $1 ]; then
   $RT volume ls
