@@ -1,15 +1,17 @@
-DEFAULT_CONTAINER_RUNTIME="podman"
+# default container runtime 
+DEFAULT_CONTAINER_RUNTIME="podman";
 
-if [ -z $CONTAINER_RUNTIME ]
+if [ -z $RT ]
 then
-  printf "[Using $DEFAULT_CONTAINER_RUNTIME]\n" >&2
-	CONTAINER_RUNTIME="$DEFAULT_CONTAINER_RUNTIME";
+	RT="$DEFAULT_CONTAINER_RUNTIME";
 fi
+  
+printf "[Using $RT]\n" >&2
 
 if [ -z $1 ]; then
-  $CONTAINER_RUNTIME volume ls
+  $RT volume ls
 else
-  DATA_DIR=$($CONTAINER_RUNTIME volume inspect "$1" | jq -r .[0].Mountpoint);
+  DATA_DIR=$($RT volume inspect "$1" | jq -r .[0].Mountpoint);
   echo $DATA_DIR
 fi
 
