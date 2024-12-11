@@ -29,3 +29,19 @@ uci add_list network.cfg030f15.ports='eth5'
 # https://openwrt.org/docs/guide-user/additional-software/create-new-users
 # some info about luci read/write permissions
 # https://forum.openwrt.org/t/add-a-new-luci-user/150102
+
+### set up wireguard for single range ###
+# needed packages: luci-proto-wireguard, wireguard-tools, luci-app-pbr
+#
+# Concept:
+# create wireguard interface and zone
+# set wireguard as default interface using weights
+# use wireguard and wan as zone forwarding for lan
+# use allow list for other zone (iot) to the wireguard interface
+# set policy routing to allow lan subnet to use wan interface
+# note: currently need to force wireguard server to use wan so it can get lan access when client is on lan
+# 
+# helpful links: 
+# https://www.youtube.com/watch?v=FN2qfxNIs2g 
+# https://www.ivpn.net/setup/router/openwrt-wireguard/
+# https://mullvad.net/en/help/running-wireguard-router
