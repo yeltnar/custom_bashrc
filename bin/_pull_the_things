@@ -1,2 +1,2 @@
 . $bashrc_folder/entrypoint.sh
-cdbashrc && git pull && popd && cdnix && git pull && popd 
+cdbashrc && git pull ; popd ; cdnix && git pull ; popd 
