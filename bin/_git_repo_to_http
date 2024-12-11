@@ -1,0 +1,7 @@
+git_remote="`git remote -v | awk '/origin.*push/{print $2}'`";
+echo "currently $git_remote";
+ssh="`_git_to_http $git_remote`";
+echo "moving to $ssh";
+git remote remove origin;
+git remote add origin "$ssh";
+echo "done";
