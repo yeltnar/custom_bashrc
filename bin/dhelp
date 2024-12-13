@@ -12,10 +12,8 @@ else
   # check if have tty
   if [ -t 1 ];
   then
-    echo interactive
     less $bashrc_folder/$help_files_dir/$1;
   else 
-    echo noninteractive
     cat $bashrc_folder/$help_files_dir/$1;
   fi
 fi
