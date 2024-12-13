@@ -1,2 +1,2 @@
 # adb shell dumpsys batterystats > ./batterystats.txt && adb bugreport ./bugreport.zip
-docker run -v /usr/share/zoneinfo:/usr/share/zoneinfo -p 9999:9999 gcr.io/android-battery-historian/stable:3.0 --port 9999
+docker run -v /usr/share/zoneinfo:/usr/share/zoneinfo -p 9999:9999 android-battery-historian --port 9999
