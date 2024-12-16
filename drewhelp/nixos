@@ -71,3 +71,15 @@ nix why-depends /run/current-system nixpkgs#neovim
 # This setting will allow for dynamic libraries 
 # programs.nix-ld.enable
 
+# example of importing all nix file from given directory
+imports =
+  [ # Include the results of the hardware scan.
+    /etc/nixos/hardware-configuration.nix
+  ] 
+  ++
+  lib.fileset.toList (
+    # All default.nix files in ./.
+    # lib.fileset.fileFilter (file: file.name == "systemd-proxy.nix") /home/drew/playin/nixos_files/includes/systemd-proxy
+    lib.fileset.fileFilter (file: file.hasExt "nix") /home/drew/playin/nixos_files/includes/systemd-proxy
+  );
+
