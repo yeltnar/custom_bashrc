@@ -5,7 +5,9 @@ https://www.inmotionhosting.com/support/website/git/git-server/
 # on remote, make git dir
 mkdir /path/to/dir/remote.git
 # init git same dir
-cd /path/to/dir/remote.git; git init --bare 
+cd /path/to/dir/remote.git; 
+# create bare repo with different initial branch 
+git init --bare --initial-branch=main 
 # on host, add remote, use as anything else
 # PROTOCOL REQUIRED WHEN ADDING PORT # ssh://user@host:PORT/path
 git remote add local_git user@host:/path/to/dir/remote.git
@@ -50,3 +52,4 @@ git log --show-signature
 git config --global pull.rebase true
 git config --global pull.ff true
 
+# 
