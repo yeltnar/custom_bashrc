@@ -1,0 +1,2 @@
+# mount one path in a new directory 
+sudo mount --bind /tmp /tmp/tmp
