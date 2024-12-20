@@ -3,6 +3,7 @@
 docker save IMGTAG > img.tar
 docker save --output img.tar IMGTAG
 
+# use `docker load` to import the tar (not import cuz it doesn't keep some metadata)
 docker load -i f.tar
 
 # does some of the cleaning 
