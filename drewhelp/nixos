@@ -41,7 +41,7 @@ sudo nixos-rebuild test
 # mulvad nixos package, from the large repo, installs a deb package 
 
 #change update channel # dont need to update configuration.nix
-sudo nix-channel --add https://nixos.org/channels/nixos-24.05 nixos
+sudo nix-channel --add https://nixos.org/channels/nixos-24.11 nixos
 # switch the channel
 nixos-rebuild switch --upgrade
 
