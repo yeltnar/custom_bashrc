@@ -1,5 +1,13 @@
 # discussion of top like programs 
 # https://unix.stackexchange.com/questions/38560/gpu-usage-monitoring-cuda 
 
-# I liked this one
-# nvitop
+# nvidia specific
+nvitop
+
+# generic top
+# install with nix-shell -p nvtopPackages.nvidia. others exsist for other platforms
+# can also use nix-shell -p nvtopPackages.full
+nvtop 
+
+# looks nice for non-gpu stuff 
+btop
