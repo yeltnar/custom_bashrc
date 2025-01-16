@@ -1,2 +1,5 @@
 # adb shell dumpsys batterystats > ./batterystats.txt && adb bugreport ./bugreport.zip
-docker run -v /usr/share/zoneinfo:/usr/share/zoneinfo -p 9999:9999 android-battery-historian --port 9999
+# the image is no longer there, so have to use one I saved 
+# use `podman load` to import the tar (not import cuz it doesn't keep some metadata)
+docker run -v /etc/zoneinfo:/usr/share/zoneinfo -p 9999:9999 android-battery-historian --port 9999
+
