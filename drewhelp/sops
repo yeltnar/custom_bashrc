@@ -1,0 +1,8 @@
+rm -rf /tmp/sops-playin
+export SOPS_AGE_KEY_FILE="/tmp/sops-playin/age/keys.txt";
+mkdir -p /tmp/sops-playin/age
+age-keygen -o /tmp/sops-playin/age/keys.txt
+date > /tmp/sops-playin/in.txt
+public_key=$(age-keygen -y /tmp/sops-playin/age/keys.txt)
+sops encrypt --age $public_key /tmp/sops-playin/in.txt > /tmp/sops-playin/out.enc.txt
+sops -d /tmp/sops-playin/out.enc.txt 
