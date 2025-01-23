@@ -1,0 +1,2 @@
+# start default network... seems this is needed after reboot (when no auto start is set up)
+sudo virsh net-start --network default 
