@@ -83,3 +83,7 @@ imports =
     lib.fileset.fileFilter (file: file.hasExt "nix") /home/drew/playin/nixos_files/includes/systemd-proxy
   );
 
+# graphically manage config and packages
+# https://github.com/snowfallorg/nix-software-center
+# https://github.com/snowfallorg/nixos-conf-editor
+
