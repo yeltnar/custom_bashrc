@@ -6,3 +6,6 @@ sed -i s/4.20/4.x/ package.json
 # helpful video
 firefox 'https://www.youtube.com/watch?v=akN2TFarz0A&list=WL&index=7'
 
+# keep only last x lines. Here x is 1, because the 2 is x+1. 
+echo -e "test1\ntest2\ntest3\ntest4" | sed -e :a -e '$q;N;2,$D;ba'
+
