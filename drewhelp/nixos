@@ -91,4 +91,6 @@ imports =
 # https://github.com/snowfallorg/nix-software-center
 # https://github.com/snowfallorg/nixos-conf-editor
 
-
+# command that is run when doing nixos-rebuild test 
+# note how it does imports from the cli
+# nix-build --no-out-link --expr 'with import <nixpkgs/nixos> {}; config.system.build.nixos-rebuild'
