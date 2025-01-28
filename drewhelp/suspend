@@ -1,0 +1,14 @@
+# good info
+# https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate
+
+# suspend to ram 
+systemctl suspend
+
+# saves state to swap space # zero power consumption 
+systemctl hibernate
+
+# suspend to both, if runs out of power still have in swap 
+systemctl hybrid-sleep
+
+# tries to be smart about waking up and moving to swap sleep 
+systemctl suspend-then-hibernate
