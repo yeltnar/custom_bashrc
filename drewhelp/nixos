@@ -103,3 +103,7 @@ imports =
 # sudo nixos-rebuild --verbose --target-host drew@192.168.122.187 --verbose build 2>&1 | tee rm.txt
 # can also copy single app 
 # nix-copy-closure --verbose --verbose --to drew@192.168.122.187 /nix/store/krk96d4y4dsi8a60q09yxry0z6nqndw1-google-chrome-132.0.6834.110 
+
+# specify nixos-configuration example 
+# nix-build '<nixpkgs/nixos>' -A vm -I nixpkgs=channel:nixos-24.05 -I nixos-config=./configuration.nix
+
