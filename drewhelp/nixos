@@ -107,3 +107,5 @@ imports =
 # specify nixos-configuration example 
 # nix-build '<nixpkgs/nixos>' -A vm -I nixpkgs=channel:nixos-24.05 -I nixos-config=./configuration.nix
 
+# good info about making a VM to test the config... has some neat tricks nixos-firewall-too 
+# https://nix.dev/tutorials/nixos/nixos-configuration-on-vm.html
