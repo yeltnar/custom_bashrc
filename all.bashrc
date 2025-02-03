@@ -233,5 +233,15 @@ if [ -n "$(which nvim)" ] && [ ! -e ~/.config/nvim ]; then
 	fi
 fi
 
+if [ -n "$(which ghostty)" ] && [ ! -e ~/.config/ghostty ]; then
+	echo "ghostty is installed but ~/.config/ghostty isn't found. Symink from bashrc directory?";
+	read -p "Symlink ghostty config? (y/n) " cp_ghostty;
+	if [ "$cp_ghostty" == "y" ]; then
+		echo "Symlinking $bashrc_folder/ghostty to ~/.config/ghostty";
+		mkdir -p ~/.config
+		ln -s "$bashrc_folder/ghostty" ~/.config/ghostty;
+	fi
+fi
+
 echo "Loaded all.bashrc"
 
