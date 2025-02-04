@@ -1,2 +1,2 @@
 . $bashrc_folder/entrypoint.sh
-cdbashrc && git pull ; popd ; cdnix && git pull ; popd 
+echo -e "\n*** bashrc ***" ; cdbashrc && git pull ; echo -e "\n*** nixos_files ***" ; popd ; cdnix && git pull ; popd 
