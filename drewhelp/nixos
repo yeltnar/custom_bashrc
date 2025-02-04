@@ -25,6 +25,16 @@ nix-collect-garbage --delete-old
 # delete specific generations  
 nix-collect-garbage --delete-generations 1 2 3
 sudo nix-collect-garbage --delete-older-than 14d
+# find out what roots reference this asset 
+nix-store --query --roots /var/store/XXX
+# when in /nix/store/XXX... 
+# list what this asset uses  
+nix-store --query --references $PWD
+# when in /nix/store/XXX... 
+# list what uses this store asset 
+nix-store --query --referrers $PWD
+# delete given store asset 
+nix-store --delete /nix/store/XXX 
 
 # rebuid, make bootable, but don't switch 
 # should also rebuild grub.cfg, if just ran nix-collect-garbage
@@ -97,10 +107,15 @@ imports =
 
 # copy closure to another machine 
 # nix.settings.trusted-users = ["drew"];  # needs to be set on the dest machine to allow copying
+#
 # copy exsisting store 
 # nix-copy-closure --verbose --to drew@192.168.122.187 /nix/store/j8d2nphy9vcb53xmvmxjrhd1iiz77wz3-nixos-system-drew-lin-desktop-24.11.713515.47addd76727f 
+#
 # build, and copy
-# sudo nixos-rebuild --verbose --target-host drew@192.168.122.187 --verbose build 2>&1 | tee rm.txt
+# might need --use-remote-root 
+# nixos-rebuild --verbose --target-host drew@192.168.122.187 --verbose build 2>&1 | tee rm.txt
+# nixos-rebuild --target-host drew@192.168.122.187 switch --flake /home/drew/playin/nixos_files/etc/nixos/digital-ocean/ --use-remote-sudo
+#
 # can also copy single app 
 # nix-copy-closure --verbose --verbose --to drew@192.168.122.187 /nix/store/krk96d4y4dsi8a60q09yxry0z6nqndw1-google-chrome-132.0.6834.110 
 
