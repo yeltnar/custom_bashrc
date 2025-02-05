@@ -5,3 +5,6 @@ dconf load /org/gnome/ < ~/playin/custom_bashrc/gnome-settings
 
 # restart gnome / displaymanager
 sudo systemctl restart display-manager.service
+
+# switch virtual session X
+ctrl+alt+fX
