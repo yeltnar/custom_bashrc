@@ -125,3 +125,5 @@ imports =
 
 # good info about making a VM to test the config... has some neat tricks nixos-firewall-too 
 # https://nix.dev/tutorials/nixos/nixos-configuration-on-vm.html
+#
+# ssh-ng:// - syntax to access remote store for nix? 
