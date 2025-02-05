@@ -213,7 +213,7 @@ done
 
 . "$bashrc_folder/bash_colors"
 
-if [ -n "$(which tmux)" ] && [ ! -e "$HOME/.tmux.conf"  ]; then
+if [ -n "$(command -v tmux)" ] && [ ! -e "$HOME/.tmux.conf"  ]; then
 	echo "~/.tmux.conf not found. Symink from bashrc directory?";
 	read -p "Symlink .tmux.conf config? (y/n) " cp_tmux_conf;
 	if [ "$cp_tmux_conf" == "y" ]; then
@@ -223,7 +223,7 @@ if [ -n "$(which tmux)" ] && [ ! -e "$HOME/.tmux.conf"  ]; then
 	fi
 fi
 
-if [ -n "$(which nvim)" ] && [ ! -e ~/.config/nvim ]; then
+if [ -n "$(command -v nvim)" ] && [ ! -e ~/.config/nvim ]; then
 	echo "neovim is installed but ~/.config/nvim isn't found. Symink from bashrc directory?";
 	read -p "Symlink nvim config? (y/n) " cp_nvim;
 	if [ "$cp_nvim" == "y" ]; then
@@ -233,7 +233,7 @@ if [ -n "$(which nvim)" ] && [ ! -e ~/.config/nvim ]; then
 	fi
 fi
 
-if [ -n "$(which ghostty)" ] && [ ! -e ~/.config/ghostty ]; then
+if [ -n "$(command -v ghostty)" ] && [ ! -e ~/.config/ghostty ]; then
 	echo "ghostty is installed but ~/.config/ghostty isn't found. Symink from bashrc directory?";
 	read -p "Symlink ghostty config? (y/n) " cp_ghostty;
 	if [ "$cp_ghostty" == "y" ]; then
