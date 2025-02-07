@@ -8,3 +8,6 @@ sudo systemctl restart display-manager.service
 
 # switch virtual session X
 ctrl+alt+fX
+
+# reset display? 
+# CTRL-ALT-F7
