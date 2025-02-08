@@ -2,3 +2,4 @@ command = /run/current-system/sw/bin/bash
 click-repeat-interval = 500
 auto-update-channel = stable
 font-size = 18
+font-feature=-calt # disable font ligatures (ie replacing != with =/=)
