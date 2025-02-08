@@ -1,5 +1,7 @@
 need_write=false
 to_write=""
+# FILE_TO_WRITE="~/.bashrc";
+FILE_TO_WRITE="$HOME/playin/custom_bashrc/gitignore/device_name.env";
 
 if [ -z ${DEVICE_NAME+x} ]; 
 then 
@@ -27,14 +29,13 @@ echo "hostname is '$(hostname)'"
 
 if [ "$need_write" = true ]; 
 then 
-    file_contents=$(cat ~/.bashrc)
+    file_contents=$(cat $FILE_TO_WRITE)
     to_write=$(echo -e $to_write)
-
-    echo "${to_write}" > ~/.bashrc
-    echo "${file_contents}" >> ~/.bashrc
+    echo "${to_write}" > $FILE_TO_WRITE
+    echo "${file_contents}" >> $FILE_TO_WRITE
 
     echo "writing to .bashrc"
 
     # echo "reloading"
-    # source ~/.bashrc
+    # source $FILE_TO_WRITE
 fi
