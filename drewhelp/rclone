@@ -13,3 +13,16 @@ rclone config file
 # default dir for caching
 ~/.cache/rclone
 
+# mount cli command 
+mount :memory: /tmp/memory -t rclone
+# same command as above to create podman volume
+podman volume create rclone-test -o type=rclone -o device=:memory: 
+# /etc/fstab to do almost the same thing (at different path)
+:memory: /media/memory rclone allow-other=true 0 2
+
+# use rclone to mount from config file. Here we use `podman-test` mounted with `-o device=podman-test:`
+# # example config file 
+# [podman-test]
+# type = memory
+podman volume create rclone-test2 -o type=rclone -o device=podman-test:
+podman volume create rclone-sftp-mini -o type=rclone -o device=:sftp:/ -o o=vfs-cache-mode=full,sftp-host=mini.lan,sftp-user=drew,sftp-port=22,sftp-key-file=/home/drew/.ssh/id_rsa,sftp-pubkey-file=/home/drew/.ssh/id_rsa-cert.pub
