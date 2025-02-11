@@ -1,3 +1,6 @@
+# notes about using rclone with the `mount` program
+# https://rclone.org/commands/rclone_mount/#rclone-as-unix-mount-helper
+
 # config dialog 
 rclone config
 
