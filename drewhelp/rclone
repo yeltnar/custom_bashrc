@@ -29,3 +29,36 @@ podman volume create rclone-test -o type=rclone -o device=:memory:
 # type = memory
 podman volume create rclone-test2 -o type=rclone -o device=podman-test:
 podman volume create rclone-sftp-mini -o type=rclone -o device=:sftp:/ -o o=vfs-cache-mode=full,sftp-host=mini.lan,sftp-user=drew,sftp-port=22,sftp-key-file=/home/drew/.ssh/id_rsa,sftp-pubkey-file=/home/drew/.ssh/id_rsa-cert.pub
+
+rclone mount podman-test /tmp/podman-test
+mount -t fuse.rclone mount podman-test /tmp/podman-test
+rclone mount podman-test: /tmp/podman-test
+rclone mount minio: /tmp/minio-mount 
+
+# example of mounting rclone device using podman-compose file 
+version: "3"
+services:
+  test:
+    image: ubuntu:latest
+    volumes: 
+      - minio:/minio
+volumes:
+  minio:
+    driver_opts: 
+      type: rclone 
+      device: ":s3:"
+      o: s3-provider=Minio,s3-access-key-id=OMmLbBKvz8dAQJgjZKSX,s3-secret-access-key=okQOAJ54FyH8YwWvCNb3LLSLsLsVTGEnCfl7AolT,s3-endpoint=http://localhost:9000
+rclone mount minio: /tmp/minio-mount --type s3 --provider Minio --access_key_id OMmLbBKvz8dAQJgjZKSX --secret_access_key okQOAJ54FyH8YwWvCNb3LLSLsLsVTGEnCfl7AolT --endpoint http://localhost:9000
+
+# mount memory with mount command 
+mount :memory: /tmp/memory -t rclone
+# ceate podman volume with memory device 
+podman volume create rclone-test -o type=rclone -o device=:memory: 
+# /etc/fstab mount for memory 
+:memory: /media/memory rclone allow-other=true 0 2
+# create podman volume with sftp backend  
+podman volume create rclone-sftp-mini -o type=rclone -o device=:sftp:/ -o o=vfs-cache-mode=full,sftp-host=mini.lan,sftp-user=drew,sftp-port=22,sftp-key-file=/home/drew/.ssh/id_rsa,sftp-pubkey-file=/home/drew/.ssh/id_rsa-cert.pub
+# create podman volume with s3 backend  
+rclone mount :s3: /tmp/minio-mount --s3-provider Minio --s3-access-key-id OMmLbBKvz8dAQJgjZKSX --s3-secret-access-key okQOAJ54FyH8YwWvCNb3LLSLsLsVTGEnCfl7AolT --s3-endpoint http://localhost:9000
+# mount minio: config from file with rclone 
+rclone mount minio: /tmp/minio-mount --type s3 --provider Minio --access_key_id OMmLbBKvz8dAQJgjZKSX --secret_access_key okQOAJ54FyH8YwWvCNb3LLSLsLsVTGEnCfl7AolT --endpoint http://localhost:9000
