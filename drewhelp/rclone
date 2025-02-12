@@ -35,6 +35,7 @@ mount -t fuse.rclone mount podman-test /tmp/podman-test
 rclone mount podman-test: /tmp/podman-test
 rclone mount minio: /tmp/minio-mount 
 
+# NOTE: when using tls/https with s3, need to make sure the cert works in the system store, because there is no way to add cert with rclone alone 
 # example of mounting rclone device using podman-compose file 
 version: "3"
 services:
@@ -46,9 +47,8 @@ volumes:
   minio:
     driver_opts: 
       type: rclone 
-      device: ":s3:"
-      o: s3-provider=Minio,s3-access-key-id=OMmLbBKvz8dAQJgjZKSX,s3-secret-access-key=okQOAJ54FyH8YwWvCNb3LLSLsLsVTGEnCfl7AolT,s3-endpoint=http://localhost:9000
-rclone mount minio: /tmp/minio-mount --type s3 --provider Minio --access_key_id OMmLbBKvz8dAQJgjZKSX --secret_access_key okQOAJ54FyH8YwWvCNb3LLSLsLsVTGEnCfl7AolT --endpoint http://localhost:9000
+      device: ":s3:/bucket"
+      o: "s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_access_key},s3-endpoint=${s3_endpoint}"
 
 # mount memory with mount command 
 mount :memory: /tmp/memory -t rclone
