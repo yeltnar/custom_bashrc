@@ -63,3 +63,9 @@ vim -R $FILE_NAME
 
 # redo (opposit of u)
 ctrl+r
+
+# show current file path 
+ctrl+g 
+
+# show/hide file browser 
+ctrl+n
