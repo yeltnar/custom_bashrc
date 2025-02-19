@@ -69,3 +69,7 @@ ctrl+g
 
 # show/hide file browser 
 ctrl+n
+
+# `!CMD` will run and print, but not replace 
+# `%!CMD` to replace selected text with result of command 
+# will replace selected text, if in visual mode 
