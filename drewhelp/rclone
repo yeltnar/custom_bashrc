@@ -23,6 +23,9 @@ podman volume create rclone-test -o type=rclone -o device=:memory:
 # /etc/fstab to do almost the same thing (at different path)
 :memory: /media/memory rclone allow-other=true 0 2
 
+# send SIGHUP signal to force cache reload
+kill -SIGHUP $PID 
+
 # use rclone to mount from config file. Here we use `podman-test` mounted with `-o device=podman-test:`
 # # example config file 
 # [podman-test]
