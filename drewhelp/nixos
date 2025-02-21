@@ -6,6 +6,8 @@
 # https://search.nixos.org/options
 # _packages_
 # https://search.nixos.org/packages 
+# _home-manager_
+# https://mynixos.com/home-manager/option/programs.bash.sessionVariables
 
 # version / lifespan of releases
 https://status.nixos.org/
