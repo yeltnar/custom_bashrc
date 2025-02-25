@@ -73,3 +73,10 @@ ctrl+n
 # `!CMD` will run and print, but not replace 
 # `%!CMD` to replace selected text with result of command 
 # will replace selected text, if in visual mode 
+
+
+# nvchad cheatsheet 
+# LEADER [space] + ch
+
+# look for leader maps 
+rg -i leader ~/.local/share/nvim/lazy/NvChad/
