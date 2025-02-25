@@ -1,2 +1,9 @@
 # show processes as tree
 ps aux --forest
+
+# from https://www.baeldung.com/linux/find-process-namespaces
+# list namespaces etc
+ps -o pid,pidns,netns,mntns,ipcns,utsns,userns,args
+
+# target specific process 
+ps -p 1
