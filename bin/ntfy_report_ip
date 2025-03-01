@@ -24,6 +24,7 @@ if [ ! -e $ntfy_endpoint_location ]; then
 fi
 
 cat ~/.bashrc | grep 'export' | grep NAME > /tmp/device_name && source /tmp/device_name
+source $bashrc_folder/gitignore/device_name.env
 
 cd $bashrc_folder
 

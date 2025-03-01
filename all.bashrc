@@ -186,8 +186,6 @@ fi
 
 alias les="vim -R";
 
-XDG_CONFIG_HOME="$bashrc_folder/alacritty/alacritty.yml"
-
 # use vi / vim type commands in terminal 
 set -o vi
 bind -m vi-command 'Control-l: clear-screen'
