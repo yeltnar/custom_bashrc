@@ -5,13 +5,14 @@ PATH="$PATH:$bashrc_folder/bin/homeassistant"
 
 # check if tmux is found, and not currently tmux
 if [ ! -z "$(which tmux)" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ]; then
-	
+
 	tmux_random_id="$(date "+%s-%N")";
 	new_id=$tmux_random_id
 
 	tmux new-session -d -t "$tmux_random_id" &&
 	tmux send-keys -t "$tmux_random_id" "export tmux_random_id=$tmux_random_id" C-m &&
 	tmux rename-ses -t "$tmux_random_id" "$new_id" &&
+  # exec replaces current execution with tmux 
 	exec tmux attach-ses -t "$new_id" && exit;
 fi
 
