@@ -1,0 +1,4 @@
+# print image with CLI
+# -f kitty will set the formatting to kitty, which will work with ghostty even if used through tmux 
+chafa -f kitty milkyway+C\&H-nix.jpg
+# `viu` may work too
