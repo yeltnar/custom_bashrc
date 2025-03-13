@@ -65,3 +65,11 @@ podman volume create rclone-sftp-mini -o type=rclone -o device=:sftp:/ -o o=vfs-
 rclone mount :s3: /tmp/minio-mount --s3-provider Minio --s3-access-key-id OMmLbBKvz8dAQJgjZKSX --s3-secret-access-key okQOAJ54FyH8YwWvCNb3LLSLsLsVTGEnCfl7AolT --s3-endpoint http://localhost:9000
 # mount minio: config from file with rclone 
 rclone mount minio: /tmp/minio-mount --type s3 --provider Minio --access_key_id OMmLbBKvz8dAQJgjZKSX --secret_access_key okQOAJ54FyH8YwWvCNb3LLSLsLsVTGEnCfl7AolT --endpoint http://localhost:9000
+
+# example of using rclone crypt with one shot
+mkdir -p /tmp/rclone-crypt-test/remote
+mkdir -p /tmp/rclone-crypt-test/mount
+# these can be replaced with RCLONE_CRYPT_REMOTE, RCLONE_CRYPT_PASSWORD, RCLONE_CRYPT_PASSWORD2 env vars
+pw1=R9E5UmqHzpjKbNvlXo0kZjsNTzdBNe4bSjpILa-uDu2qrMPTuPY
+pw2=UjwgXEbTm_s7iPT94EbkkMd9483JwSzJOatqzUSDgPgFkfnxQoM
+rclone mount :crypt: --crypt-password "$pw1" --crypt-password2 "$pw2" --crypt-remote /tmp/rclone-crypt-test/remote /tmp/rclone-crypt-test/mount 
