@@ -1,0 +1,1 @@
+tmux detach -E 'export NO_TMUX=t; bash'
