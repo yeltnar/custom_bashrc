@@ -65,3 +65,5 @@ tmux popup -E -d "$PWD" "$@"
 # pop up small helper prompt
 C-b . # ( ctrl+b, shift+. )
 
+# swap tmux process for sh, like `exec`
+tmux detach -E sh
