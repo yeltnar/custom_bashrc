@@ -1,3 +1,5 @@
+# NOTE: THIS SHOULD BE USED WITH A LATER VERSION OF JQ... IF FAILS MAYBE THATS WHY
+
 jq '.data.".dockerconfigjson"'
 echo {} | jq --arg PWD "$PWD" '.workdir = $PWD'
 
