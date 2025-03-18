@@ -18,3 +18,6 @@ homeassistant_all_devices | jq 'map(select(.entity_id | test("lumi_lumi_weather_
 # then, for each match, print the state and friendly_name
 homeassistant_all_devices | jq -r 'map(select(.entity_id | test("lumi_lumi_weather_battery"))) .[] | "\(.state) \"\(.attributes.friendly_name)\""'
 
+# this will filter the json array for a k that matches the test of "value", and print the 'b' key when it matches
+echo '[{"b":{"k":"val"}},{"b":{"k":"value"}},{"b":{"k":"value"}}]' | \
+jq 'map(select(.b.k | test("value"))) .[] | .b'
