@@ -45,3 +45,6 @@ uci add_list network.cfg030f15.ports='eth5'
 # https://www.youtube.com/watch?v=FN2qfxNIs2g 
 # https://www.ivpn.net/setup/router/openwrt-wireguard/
 # https://mullvad.net/en/help/running-wireguard-router
+
+# clear dns cache
+service dnsmasq restart
