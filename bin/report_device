@@ -8,7 +8,7 @@ get_device(){
 	cat $bashrc_folder/gitignore/homeassistant_device_name
 }
 
-pub_ip=$(curl https://digitalocean.andbrant.com);
+pub_ip=$(curl https://ip.andbrant.com);
 lan_ip=$(ifconfig | awk '/192/{print $2}');
 nebula_ip=$(ifconfig | awk '/10\.10\.10/{print $2}');
 

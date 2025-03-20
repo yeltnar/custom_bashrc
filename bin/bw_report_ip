@@ -6,7 +6,7 @@ PATH="$PATH:$bashrc_folder/bin"
 
 PATH="$PATH:/usr/local/bin:/sbin:/usr/bin:/bin:/snap/bin:/data/data/com.termux/files/usr/bin"
 
-pub_ip=$(curl https://digitalocean.andbrant.com);
+pub_ip=$(curl https://ip.andbrant.com);
 lan_ip="$(ifconfig | awk '/192\.168/{print $2}' | tr '\n' ' ')";
 nebula_ip=$(ifconfig | awk '/10\.10\.10/{print $2}');
 git_branch=$(git rev-parse HEAD)
