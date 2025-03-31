@@ -2,3 +2,10 @@ for f in *; do
   echo "File -> $f"
 done
 
+# Define an array
+arr=("apple" "banana" "cherry" "date")
+
+# Loop through the elements of the array
+for item in "${arr[@]}"; do
+  echo "Current item: $item"
+done
