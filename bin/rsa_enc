@@ -7,22 +7,32 @@ validateInputEnc(){
   if [ -z "$workdir" ]; then
     echo "\$workdir is \"$workdir\""
     exit -1;
+  else
+    workdir=$(realpath "$workdir");
   fi
   if [ -z "$FILE_TO_ENCRYPT" ]; then
     echo "\$FILE_TO_ENCRYPT is \"$FILE_TO_ENCRYPT\""
     exit -1;
+  else
+    FILE_TO_ENCRYPT=$(realpath "$FILE_TO_ENCRYPT");
   fi
   if [ -z "$ENCRYPTED_FILE" ]; then
     echo "\$ENCRYPTED_FILE is \"$ENCRYPTED_FILE\""
     exit -1;
+  else
+    ENCRYPTED_FILE=$(realpath "$ENCRYPTED_FILE");
   fi
   if [ -z "$PUB_KEY" ]; then
     echo "\$PUB_KEY is \"$PUB_KEY\""
     exit -1;
+  else
+    PUB_KEY=$(realpath "$PUB_KEY");
   fi
   if [ -z "$AES_KEY_ENC" ]; then
     echo "\$AES_KEY_ENC is \"$AES_KEY_ENC\""
     exit -1;
+  else
+    AES_KEY_ENC=$(realpath "$AES_KEY_ENC");
   fi
 }
 
