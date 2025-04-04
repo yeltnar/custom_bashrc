@@ -40,3 +40,8 @@ ExecStart=/home/pi/nebula/nebula -config ./config.yml
 [Install]
 WantedBy=multi-user.target
 
+# dns querries... if you use resolveble address can deligete to nebula for nebula addresses 
+# get ip address 
+dig @10.10.10.1 +short mini A
+# get cert info
+dig @10.10.10.1 +short 10.10.10.1 TXT
