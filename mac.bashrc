@@ -10,3 +10,8 @@ alias gimp="/Applications/GIMP.app/Contents/MacOS/GIMP"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 
 alias cf="ibmcloud cf $@"
+
+alias playbacks="vim ~/filedumps/playbacks"
+alias todo="vim ~/filedumps/todo"
+
+alias chrome-nix-tmp="nix develop ~/playin/nixos_files/shells/chrome"
