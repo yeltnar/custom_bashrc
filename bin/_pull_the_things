@@ -1,2 +1,7 @@
-. $bashrc_folder/entrypoint.sh
-echo -e "\n*** bashrc ***" ; cdbashrc && git pull ; echo -e "\n*** nixos_files ***" ; popd ; cdnix && git pull ; popd 
+. $bashrc_folder/aliases.bashrc
+echo -e "\n*** bashrc ***" ;
+pushd $bashrc_folder && git pull ;
+echo -e "\n*** nixos_files ***" ;
+popd ;
+pushd $HOME/playin/nixos_files && git pull ;
+popd 
