@@ -102,7 +102,7 @@ unmount(){
 }
 
 break_lock(){
-	borg break-lock $mount_point
+	borg break-lock
 }
 
 mount(){
@@ -115,10 +115,12 @@ mount(){
 if [ "$(echo $1 | grep 'listFunctions' | wc -l)" = "1" ]; then
     $1
 elif [ "" != "$1" ]; then
+  
+  if [ -z "$BORG_PASSPHRASE" ]; then
+    export BORG_PASSPHRASE=$( bw_autologin get item $PASSWORD_ID | jq -r .login.password ) 
+  fi
 
-   export BORG_PASSPHRASE=$( bw_autologin get item $PASSWORD_ID | jq -r .login.password ) 
-
-   if [ -z "$BORG_PASSPHRASE" ]; then
+  if [ -z "$BORG_PASSPHRASE" ]; then
 	echo $BORG_PASSPHRASE;
 	echo 'backup did not finish; no borg passphrase';
 	_send_push 'Borg report' "BORG_PASSPHRASE empty";
