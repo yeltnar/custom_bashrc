@@ -60,3 +60,6 @@ Host dev
 ssh-keygen -s user_ca -I $HOSTNAME -n $USER1,$USER2 ~/.ssh/key.pub; ssh-keygen -L -f ~/.ssh/key-cert.pub
 # example users
 # u0_a156,u0_a139,drew,pi
+
+# change for termux... make sure to adjust for username too
+TrustedUserCaKeys /data/data/com.termux/files/usr/etc/ssh/user_ca.pub
