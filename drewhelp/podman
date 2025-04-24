@@ -65,6 +65,11 @@ podman-compose systemd --action create-unit
 # set custom remote helpers 
 # https://developer.ibm.com/tutorials/running-x86-64-containers-mac-silicon-m1/
 # https://lima-vm.io/docs/examples/#running-containers
+limactl list podman --format yaml | yq -r .instance.config.message
 podman system connection add --identity ~/.lima/_config/user --port 64996 lima drew@localhost
 podman system connection default lima 
 podman system connection default podman-machine-default
+limactl list  --json | jq 
+
+# use different podman connection... can also use --connection or -c
+export CONTAINER_CONNECTION=my-remote-host

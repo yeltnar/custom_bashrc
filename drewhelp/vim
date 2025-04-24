@@ -82,6 +82,10 @@ ctrl+n
 rg -i leader ~/.local/share/nvim/lazy/NvChad/
 
 
+# open list of marks
+' [single quote]
+'. [last change]
+
 nvim surround 
     Old text                    Command         New text
 --------------------------------------------------------------------------------
