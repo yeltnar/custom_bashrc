@@ -1,5 +1,8 @@
 return {
   {
+    -- Make sure to run `Lazy install` after adding package 
+    
+    -- ysiwt lets you type custom html tag
     -- https://github.com/kylechui/nvim-surround
     "kylechui/nvim-surround",
     version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
