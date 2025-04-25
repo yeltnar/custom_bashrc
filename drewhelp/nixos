@@ -134,3 +134,17 @@ imports =
 
 # example of buiding wile injecting arguments to function 
 # nix-build '<nixpkgs/nixos>' ./install_update_nebula.nix -I nixos-config=../../etc/nixos/laptop/configuration.nix -I nixpkgs=channel:nixos-24.11 --arg pkgs '<nixpkgs/nixos>' --arg config '{networking={hostname="drew-mbp";};}' --arg user '"drew"'
+
+
+# helpful links 
+# for packages
+https://search.nixos.org/packages 
+# to quickly check if NixOS already has options for a given task
+https://search.nixos.org/options 
+# for detailed instructions
+https://nixos.org/manual/nixos/stable/ 
+# for packaging instructions
+https://nixos.org/manual/nixpkgs/stable/ 
+# for learning about using the underlying nix tools
+https://nix.dev/ 
+
