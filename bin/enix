@@ -1,0 +1,13 @@
+nix_shells_folder="/home/drew/playin/nixos_files/shells/"
+
+flake_shell="";
+
+if [ -z ${1} ]; 
+then
+  flake_shell=$( ls $nix_shells_folder | grep -v -e '.nix$' | fzf );
+else
+  flake_shell=$1 
+fi
+
+cd "$nix_shells_folder/$flake_shell";
+nix develop .
