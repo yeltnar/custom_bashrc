@@ -5,6 +5,9 @@
 # vim cheatsheet 
 firefox https://vim.rtorr.com/ &
 
+# vim tricks
+https://vimtricks.com/p/vim-jump-list/
+
 # force case (capital C) 
 /ignorecase\C
 
