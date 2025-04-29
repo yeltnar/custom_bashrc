@@ -1,4 +1,11 @@
 # get arguments as they are passed in, even with spaces 
 "$@"
 
+# get processes like with grep and display name (-l is shorter)
+pgrep -a 
+
+# kill process that matches name
+pkill
+# send signal 
+pkill -<sig>
 
