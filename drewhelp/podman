@@ -73,3 +73,6 @@ limactl list  --json | jq
 
 # use different podman connection... can also use --connection or -c
 export CONTAINER_CONNECTION=my-remote-host
+
+# build for different architecture 
+--arch string
