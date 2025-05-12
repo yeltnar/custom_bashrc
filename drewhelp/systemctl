@@ -46,3 +46,6 @@ journalctl -b 0
 
 # send signal to systemctl service 
 sudo systemctl kill -s SIGHUP mnt-minio.mount
+
+# see startup time info
+systemd-analyze blame 
