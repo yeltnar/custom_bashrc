@@ -1,0 +1,22 @@
+{
+  log {
+      output stdout
+      level DEBUG
+  }
+}
+
+https://localhost:8888 {
+    log {
+        output stdout
+        level DEBUG
+    }
+    tls internal {
+        client_auth {
+            mode require_and_verify
+            trusted_ca_cert_file /ca/ca.crt
+        }
+    }
+    templates
+    header Content-Type text/plain
+    respond "{{.RemoteIP}}"
+}
