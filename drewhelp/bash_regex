@@ -1,0 +1,9 @@
+string="hello world 123"
+regex="([a-z]+) ([a-z]+) ([0-9]+)"
+
+if [[ "$string" =~ $regex ]]; then
+  echo "Full match: ${BASH_REMATCH[0]}"
+  echo "First word: ${BASH_REMATCH[1]}"
+  echo "Second word: ${BASH_REMATCH[2]}"
+  echo "Numbers: ${BASH_REMATCH[3]}"
+fi
