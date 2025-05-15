@@ -9,3 +9,5 @@ pkill
 # send signal 
 pkill -<sig>
 
+# get all types (path or builtin) of a program and builtin
+type -a pwd
