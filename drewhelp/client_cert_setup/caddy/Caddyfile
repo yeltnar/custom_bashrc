@@ -4,18 +4,20 @@
       level DEBUG
   }
 }
-
+(mtls) {
+    tls internal {
+        client_auth {
+            mode require_and_verify
+            trust_pool file /ca/ca.crt
+        }
+    }
+}
 https://localhost:8888 {
     log {
         output stdout
         level DEBUG
     }
-    tls internal {
-        client_auth {
-            mode require_and_verify
-            trusted_ca_cert_file /ca/ca.crt
-        }
-    }
+    import mtls
     templates
     header Content-Type text/plain
     respond "{{.RemoteIP}}"
