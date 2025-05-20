@@ -1,4 +1,4 @@
-nix_shells_folder="/home/drew/playin/nixos_files/shells/"
+nix_shells_folder="$HOME/playin/nixos_files/shells/"
 
 flake_shell="";
 

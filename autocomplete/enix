@@ -4,7 +4,7 @@
 
 _enix_shell()
 {
-  nix_shells_folder="/home/drew/playin/nixos_files/shells/"
+  nix_shells_folder="$HOME/playin/nixos_files/shells/"
 
   # don't use nix files cuz those are for nix-shell, not nix develop
   _script_commands=$(ls "$nix_shells_folder" | grep -v -e '.nix$' )
