@@ -1,0 +1,5 @@
+if [ -z $1 ]; then
+  echo no argument provided... exiting
+fi
+# open "https://yeltnar.github.io/search/?yeltnarsearch&q=fisms#redirectdone"
+open "https://yeltnar.github.io/search/?yeltnarsearch&q=$1"
