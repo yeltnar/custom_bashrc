@@ -89,6 +89,8 @@ rg -i leader ~/.local/share/nvim/lazy/NvChad/
 ' [single quote]
 '. [last change]
 
+:WhichKey will show commands available 
+
 nvim surround 
     Old text                    Command         New text
 --------------------------------------------------------------------------------
