@@ -53,6 +53,10 @@ backup(){
 	borg info :: --last 1
 }
 
+list(){
+  borg list 
+}
+
 # TODO make generic 
 prune(){
 	list
@@ -117,15 +121,19 @@ if [ "$(echo $1 | grep 'listFunctions' | wc -l)" = "1" ]; then
 elif [ "" != "$1" ]; then
   
   if [ -z "$BORG_PASSPHRASE" ]; then
+    echo "setting passphrase"
     export BORG_PASSPHRASE=$( bw_autologin get item $PASSWORD_ID | jq -r .login.password ) 
   fi
 
   if [ -z "$BORG_PASSPHRASE" ]; then
-	echo $BORG_PASSPHRASE;
-	echo 'backup did not finish; no borg passphrase';
-	_send_push 'Borg report' "BORG_PASSPHRASE empty";
-	exit -1;
-   fi
+    echo $BORG_PASSPHRASE;
+    echo 'backup did not finish; no borg passphrase';
+    _send_push 'Borg report' "BORG_PASSPHRASE empty";
+    exit -1;
+  fi
+
+  # echo $BORG_REPO
+  # echo $BORG_PASSPHRASE
 
    $1
 else
