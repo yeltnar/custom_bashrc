@@ -23,6 +23,18 @@ elif [ "$SHLVL" -eq 1 ]; then
 	session_info;
 fi
 
+_sleep-and-exit(){
+  sleep_time=99;
+  # sleep 99;
+  if [[ -n $1 ]]; then
+    sleep_time=$1;
+  fi
+  date
+  echo sleeping for $sleep_time seconds;
+  sleep $sleep_time &&
+  exit;
+}
+
 cdbashrc(){
 	to_move="$bashrc_folder"
 	if [ "" != "$1" ]; then
