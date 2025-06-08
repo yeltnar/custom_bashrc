@@ -1,0 +1,5 @@
+f=`fzf`
+if [ -n "$f" ]; then 
+  history -s "vim $f"
+  nvim "$f" 
+fi
