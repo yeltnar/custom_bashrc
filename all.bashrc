@@ -185,6 +185,11 @@ if [ -n "$(command -v nvim)" ] && [ ! -e ~/.config/nvim ]; then
 	fi
 fi
 
+if [ -n "$(command -v fzf)" ]; then
+  eval "$(fzf --bash)"
+fi
+
+
 if [ -n "$(command -v ghostty)" ] && [ ! -e ~/.config/ghostty ]; then
 	echo "ghostty is installed but ~/.config/ghostty isn't found. Symink from bashrc directory?";
 	read -p "Symlink ghostty config? (y/n) " cp_ghostty;
