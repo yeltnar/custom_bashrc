@@ -91,6 +91,11 @@ rg -i leader ~/.local/share/nvim/lazy/NvChad/
 
 :WhichKey will show commands available 
 
+norm
+visual line select multiple lines
+type ':' then type 'norm ' everything will be typed for each line... can do macros too 
+:'<,'>norm _f:f"ldt"_lvt"yf:f"lP
+
 nvim surround 
     Old text                    Command         New text
 --------------------------------------------------------------------------------

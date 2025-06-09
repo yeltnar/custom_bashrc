@@ -76,3 +76,4 @@ export CONTAINER_CONNECTION=my-remote-host
 
 # build for different architecture 
 --arch string
+--arch amd64 

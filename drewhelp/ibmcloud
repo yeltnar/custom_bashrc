@@ -1,0 +1,8 @@
+# get info for code engine
+# can also find from account page in browser 
+ibmcloud resource service-instances -o json --service-name codeengine | jq -r .[].resource_group_id
+# ibmcloud target -g RESOURCE_GROUP_NAME
+
+# can also find from code engine page in browser 
+ibmcloud ce project list -o json | jq -r .[].name
+# ibmcloud ce project select -n <project>
