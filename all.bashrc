@@ -134,10 +134,6 @@ sudo_start_nebula(){
 	sudo ../nebula -config config.yml
 }
 
-# set vim as default editor 
-export VISUAL=vim
-export EDITOR="$VISUAL"
-
 set bell-style visible
 
 # use vi / vim type commands in terminal 
@@ -174,6 +170,13 @@ if [ -n "$(command -v tmux)" ] && [ ! -e "$HOME/.tmux.conf"  ]; then
 		tmux source ~/.tmux.conf # force reload  
 	fi
 fi
+
+# set vim (or nvim) as default editor 
+export VISUAL=vim
+if [ -n "$(command -v nvim)" ]; then
+  export VISUAL=nvim
+fi
+export EDITOR="$VISUAL"
 
 if [ -n "$(command -v nvim)" ] && [ ! -e ~/.config/nvim ]; then
 	echo "neovim is installed but ~/.config/nvim isn't found. Symink from bashrc directory?";
