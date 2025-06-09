@@ -37,8 +37,9 @@ end
 
 -- You can then map this function to a keybinding, for example:
 vim.api.nvim_set_keymap('n', '<leader>gr', ':lua ChangeToGitRoot()<CR>', { noremap = true, silent = true })
-local txt=ChangeToGitRoot(false)
+-- local txt=ChangeToGitRoot(false)
+local txt=nil
 local joiner=""
-if txt ~= nil then joiner = "; " end
+if txt ~= nil then joiner = "; " else txt="" end
 
 print("hello from yeltnar" .. joiner .. txt)
