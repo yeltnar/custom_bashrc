@@ -67,3 +67,9 @@ C-b . # ( ctrl+b, shift+. )
 
 # swap tmux process for sh, like `exec`
 tmux detach -E sh
+
+# run command and show result in current pane. Lingers until closed
+tmux new-shell COMMAND
+
+# run COMMAND in a new widow... will close pane when command exits
+tmux new-window COMMAND
