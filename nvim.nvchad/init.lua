@@ -23,7 +23,6 @@ require("lazy").setup({
     import = "nvchad.plugins",
   },
 
-  -- this is where my plugins are loaded from the lua/plugins/init.lua file
   { import = "plugins" },
 }, lazy_config)
 
