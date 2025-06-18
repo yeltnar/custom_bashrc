@@ -1015,21 +1015,8 @@ require('lazy').setup({
   },
 })
 
-require("lspconfig").lua_ls.setup({
-  cmd = {
-    -- will use globla install when is not installed with Mason (better for nixos) 
-    'lua-language-server',
-  },
-  settings = {
-    Lua = {
-      completion = {
-        callSnippet = 'Replace',
-      },
-      -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-      -- diagnostics = { disable = { 'missing-fields' } },
-    },
-  },
-})
+require 'yeltnar'
+require 'lsp'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
