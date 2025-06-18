@@ -1,4 +1,5 @@
 require("yeltnar.remap")
+require("yeltnar.barbar")
 
 local o = vim.opt
 
