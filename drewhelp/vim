@@ -106,3 +106,6 @@ nvim surround
     'change quot*es'            cs'"            "change quotes"
     <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
     delete(functi*on calls)     dsf             function calls
+
+# this will remove all nvim cache and saved settings 
+rm -rf ~/.local/share/nvim* ; rm -rf ~/.local/state/nvim* ; rm -rf ~/.config/nvim/lazy-lock.json 
