@@ -8,3 +8,6 @@ find ./GFG -regex sample.txt
 
 # use more complex regex
 find ./GFG -regex -regextype posix-extended sample.txt
+
+# find modified in the last day 
+find . -daystart -mtime 1
