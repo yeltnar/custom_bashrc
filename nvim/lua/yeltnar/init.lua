@@ -17,6 +17,10 @@ vim.filetype.add({
   }
 });
 
+-- set colorscheme 
+-- vim.cmd [[colorscheme tokyodark]]
+require("current-theme")
+
 function ChangeToGitRoot(should_print)
   if should_print == nil then should_print = true end
   -- Check if the current directory is inside a Git repository
