@@ -142,6 +142,8 @@ nix-store --gc --print-roots
 # delete old homemanager
 home-manager expire-generations '-7 days'
 
+# view current system
+ls -l /run/current-system 
 
 # helpful links 
 # for packages
