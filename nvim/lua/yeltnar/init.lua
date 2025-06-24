@@ -3,8 +3,14 @@ require("yeltnar.barbar")
 
 local o = vim.opt
 
--- o.clipboard = "unnamed"
-o.clipboard = ""
+-- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+vim.schedule(function()
+	o.clipboard = ""
+  -- o.clipboard = "unnamed"
+end)
 
 o.nu = true
 o.relativenumber = true
@@ -16,6 +22,13 @@ vim.filetype.add({
     bashrc = 'bash'
   }
 });
+
+o.tabstop = 2         -- Number of spaces a <Tab> counts for
+o.shiftwidth = 2      -- Number of spaces to use for each step of (auto)indent
+-- o.expandtab = true    -- Use spaces instead of tabs (highly recommended for consistency)
+o.autoindent = true   -- Copy indent from current line when starting a new line
+o.smartindent = true  -- Smarter autoindenting for C-like languages
+o.softtabstop = 2     -- Number of spaces a <Tab> or <BS> keypress inserts/deletes
 
 -- set colorscheme 
 -- vim.cmd [[colorscheme tokyodark]]
