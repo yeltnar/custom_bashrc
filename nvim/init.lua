@@ -1047,7 +1047,40 @@ require('lazy').setup({
       suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
       -- log_level = 'debug',
     }
-  }
+  },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      bigfile = { enabled = false },
+      dashboard = { enabled = false },
+      explorer = { enabled = true },
+      indent = { enabled = false },
+      input = { enabled = false },
+      picker = { enabled = false },
+      notifier = { enabled = false },
+      quickfile = { enabled = false },
+      scope = { enabled = false },
+      scroll = { enabled = false },
+      statuscolumn = { enabled = false },
+      words = { enabled = false },
+      image = { enabled = true },
+      lazygit = { enabled = true },
+    },
+    config = function() 
+      vim.keymap.set({"n", "v", "s", "c", "t"}, "<C-n>", function() Snacks.explorer() end, { remap = true, silent = true, desc = "Open Explorer" })
+
+      vim.keymap.set({"n", "v", "s", "c", "t"}, "<leader>l", function() Snacks.lazygit.open({enter_params = {border='none'}}) end, { remap = true, silent = true, desc = "Open Lazygit" })
+
+      vim.keymap.set({"n", "v", "s", "c", "t"}, "<C-s>", function() Snacks.scratch() end, { remap = true, silent = true, desc = "Open Lazygit" })
+      vim.keymap.set({"n", "v", "s", "c", "t"}, "<C-S-s>", function() Snacks.scratch.select() end, { remap = true, silent = true, desc = "Open Lazygit" })
+    end,
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
