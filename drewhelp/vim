@@ -96,6 +96,12 @@ visual line select multiple lines
 type ':' then type 'norm ' everything will be typed for each line... can do macros too 
 :'<,'>norm _f:f"ldt"_lvt"yf:f"lP
 
+# create new file
+:new # will create a split window with an unnamed buffer.
+:enew # will open one in the current window.
+:vnew # will open one in a vertically split window.
+:tabnew # will open one in a new tab.
+
 nvim surround 
     Old text                    Command         New text
 --------------------------------------------------------------------------------
