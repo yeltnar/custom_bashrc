@@ -49,3 +49,6 @@ sudo systemctl kill -s SIGHUP mnt-minio.mount
 
 # see startup time info
 systemd-analyze blame 
+
+# helpful TUI tool
+systemctl-tui
