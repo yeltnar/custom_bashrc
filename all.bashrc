@@ -152,14 +152,24 @@ _clean_history() {
   history -c            # Clear current history
   history -r            # Read history from $HISTFILE
 }
-# PROMPT_COMMAND="_clean_history; $PROMPT_COMMAND" # this will sync history across tmux
 
 for f in $(ls $bashrc_folder/autocomplete); do
   #echo "sourcing " "$bashrc_folder/autocomplete/$f"
   . "$bashrc_folder/autocomplete/$f"
 done
 
+# clear prompt, before starting to set it 
+export PROMPT_COMMAND="";
 . "$bashrc_folder/bash_colors"
+
+# save history as soon as submitted 
+shopt -s histappend
+# export PROMPT_COMMAND="history -a ; $PROMPT_COMMAND"; # append lines
+# export PROMPT_COMMAND="history -c ; $PROMPT_COMMAND"; # clear history in memory
+# export PROMPT_COMMAND="history -r ; $PROMPT_COMMAND"; # read history 
+
+# always read history before printing it
+alias history="history -n; history"
 
 if [ -n "$(command -v tmux)" ] && [ ! -e "$HOME/.tmux.conf"  ]; then
 	echo "~/.tmux.conf not found. Symink from bashrc directory?";
