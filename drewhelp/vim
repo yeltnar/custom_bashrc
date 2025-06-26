@@ -105,6 +105,9 @@ type ':' then type 'norm ' everything will be typed for each line... can do macr
 :vnew # will open one in a vertically split window.
 :tabnew # will open one in a new tab.
 
+# incriment and decrement 
+<C-a> and <C-x>
+
 nvim surround 
     Old text                    Command         New text
 --------------------------------------------------------------------------------
