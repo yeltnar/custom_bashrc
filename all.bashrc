@@ -5,6 +5,11 @@ export bashrc_folder="$HOME/playin/custom_bashrc"
 PATH="$PATH:$bashrc_folder/bin"
 PATH="$PATH:$bashrc_folder/bin/homeassistant"
 
+# fixes ssh when using ghostty and not tmux
+if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+    export TERM=xterm-256color
+fi
+
 # check if tmux is found, and not currently tmux
 if [ ! -z "$(which tmux)" ] && [ -z "$TMUX" ] && [ -z "$NO_TMUX" ]; then
   # exec replaces current execution with tmux 
