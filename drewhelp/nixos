@@ -135,13 +135,6 @@ imports =
 # example of buiding wile injecting arguments to function 
 # nix-build '<nixpkgs/nixos>' ./install_update_nebula.nix -I nixos-config=../../etc/nixos/laptop/configuration.nix -I nixpkgs=channel:nixos-24.11 --arg pkgs '<nixpkgs/nixos>' --arg config '{networking={hostname="drew-mbp";};}' --arg user '"drew"'
 
-# some clean up steps
-# https://old.reddit.com/r/NixOS/comments/1l2u3tx/reminder_delete_old_roots/
-# list roots known to store
-nix-store --gc --print-roots 
-# delete old homemanager
-home-manager expire-generations '-7 days'
-
 # view current system
 ls -l /run/current-system 
 
@@ -156,4 +149,12 @@ https://nixos.org/manual/nixos/stable/
 https://nixos.org/manual/nixpkgs/stable/ 
 # for learning about using the underlying nix tools
 https://nix.dev/ 
+
+# clean up - https://old.reddit.com/r/NixOS/comments/1l2u3tx/reminder_delete_old_roots/
+# show all roots including lingering builds
+nix-store --gc --print-roots
+# expire old home manager
+home-manager expire-generations '-7 days'
+# delete old generations... sometimes run as root
+nix-collect-garbage --delete-older-than 1d
 
