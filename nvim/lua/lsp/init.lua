@@ -22,6 +22,8 @@ require("lspconfig").nixd.setup({
   },
 }),
 
+require("lspconfig").pyright.setup({}),
+
 require("lspconfig").lua_ls.setup({
   cmd = {
     -- will use globla install when is not installed with Mason (better for nixos) 
