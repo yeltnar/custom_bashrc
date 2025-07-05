@@ -1063,6 +1063,21 @@ require('lazy').setup({
     }
   },
   {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    lazy = false,
+    config = function() 
+        require("oil").setup()
+        vim.keymap.set("n", "<C-n>", "<CMD>Oil<CR>", { desc = "Open oil.nvim" })
+    end
+  },
+  {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
@@ -1073,7 +1088,7 @@ require('lazy').setup({
       -- refer to the configuration section below
       bigfile = { enabled = false },
       dashboard = { enabled = false },
-      explorer = { enabled = true },
+      explorer = { enabled = false },
       indent = { enabled = false },
       input = { enabled = false },
       picker = { enabled = false },
@@ -1087,7 +1102,7 @@ require('lazy').setup({
       lazygit = { enabled = true },
     },
     config = function() 
-      vim.keymap.set({"n", "v", "s", "c", "t"}, "<C-n>", function() Snacks.explorer() end, { remap = true, silent = true, desc = "Open Explorer" })
+      -- vim.keymap.set({"n", "v", "s", "c", "t"}, "<C-n>", function() Snacks.explorer() end, { remap = true, silent = true, desc = "Open Explorer" })
 
       vim.keymap.set({"n", "v", "s", "c", "t"}, "<leader>l", function() Snacks.lazygit.open({enter_params = {border='none'}}) end, { remap = true, silent = true, desc = "Open Lazygit" })
 
