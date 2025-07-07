@@ -8,6 +8,8 @@ alias vimmacrc="vim $bashrc_folder/mac.bashrc "
 alias vimwinrc="vim $bashrc_folder/win.bashrc "
 alias vimwinrc="vim $bashrc_folder/win.bashrc "
 
+alias _git_root="git rev-parse --show-toplevel"
+
 alias ..="cd ..;pwd"
 # alias --="cd -;pwd"
 alias cdmkdir="dir=$1;echo $dir;mkdir $dir; cd $dir"
