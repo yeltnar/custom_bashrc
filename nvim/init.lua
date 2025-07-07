@@ -1062,6 +1062,8 @@ require('lazy').setup({
     }
   },
   {
+    -- :help oil
+    -- :help oil-config
     'stevearc/oil.nvim',
     ---@module 'oil'
     ---@type oil.SetupOpts
@@ -1074,6 +1076,12 @@ require('lazy').setup({
     config = function() 
       require("oil").setup(
         {
+          columns = {
+            "icon",
+            -- "permissions",
+            "size",
+            "mtime",
+          },
           -- See :help oil-actions for a list of all available actions
           keymaps = {
             -- ["g?"] = { "actions.show_help", mode = "n" },
