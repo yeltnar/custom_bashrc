@@ -1098,6 +1098,13 @@ require('lazy').setup({
             buflisted = true,
             bufhidden = "hide",
           },
+          view_options = {
+            -- show_hidden = true,
+            is_hidden_file = function(name, bufnr)
+              -- don't hide any files 
+              return false
+            end,
+          },
         }
       )
         vim.keymap.set("n", "<C-n>", "<CMD>Oil<CR>", { desc = "Open oil.nvim" })
