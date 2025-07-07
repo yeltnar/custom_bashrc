@@ -13,5 +13,6 @@ alias cf="ibmcloud cf $@"
 
 alias playbacks="vim ~/filedumps/playbacks"
 alias todo="vim ~/filedumps/todo"
+alias hours="vim ~/filedumps/hours"
 
 alias chrome-nix-tmp="nix develop ~/playin/nixos_files/shells/chrome"
