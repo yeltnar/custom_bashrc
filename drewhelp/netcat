@@ -4,4 +4,7 @@ netcat -l $PORT
 # connect to upd for udp
 netcat -u host $PORT
 
+# unix domain socket; the client may need to be run direct and not through pipe bash
+nc -lU /tmp/rm.sock
+nc -U /tmp/rm.sock
 
