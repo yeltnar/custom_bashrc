@@ -25,7 +25,7 @@ vim.filetype.add({
 
 o.tabstop = 2         -- Number of spaces a <Tab> counts for
 o.shiftwidth = 2      -- Number of spaces to use for each step of (auto)indent
--- o.expandtab = true    -- Use spaces instead of tabs (highly recommended for consistency)
+o.expandtab = true    -- Use spaces instead of tabs (highly recommended for consistency)
 o.autoindent = true   -- Copy indent from current line when starting a new line
 o.smartindent = true  -- Smarter autoindenting for C-like languages
 o.softtabstop = 2     -- Number of spaces a <Tab> or <BS> keypress inserts/deletes
