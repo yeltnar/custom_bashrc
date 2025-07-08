@@ -538,6 +538,10 @@ require('lazy').setup({
           --
           -- In this case, we create a function that lets us more easily define mappings specific
           -- for LSP related items. It sets the mode, buffer and description for us each time.
+
+          -- better go to definition
+          vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, { remap = false, silent = true, desc = "[g]o to definition" })
+
           local map = function(keys, func, desc, mode)
             mode = mode or 'n'
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
