@@ -22,7 +22,8 @@ require("lspconfig").nixd.setup({
   },
 }),
 
-require("lspconfig").pyright.setup({}),
+require('lspconfig').pyright.setup({}),
+vim.lsp.config('pyright', {}),
 
 require("lspconfig").lua_ls.setup({
   cmd = {
