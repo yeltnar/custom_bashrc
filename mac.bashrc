@@ -16,3 +16,11 @@ alias todo="vim ~/filedumps/todo"
 alias hours="vim ~/filedumps/hours"
 
 alias chrome-nix-tmp="nix develop ~/playin/nixos_files/shells/chrome"
+
+cdclient_engineering(){
+	to_move="$HOME/client_engineering/"
+	if [ "" != "$1" ]; then
+		to_move="$to_move/$1";
+	fi
+	pushd $to_move;
+}
