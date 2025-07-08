@@ -1,7 +1,13 @@
 . $bashrc_folder/aliases.bashrc
-echo -e "\n*** bashrc ***" ;
-pushd $bashrc_folder && git pull ;
-echo -e "\n*** nixos_files ***" ;
-popd ;
-pushd $HOME/playin/nixos_files && git pull ;
-popd 
+
+declare -A to_pull
+to_pull["bashrc"]="$bashrc_folder"
+to_pull["nixos_files"]="$HOME/playin/nixos_files"
+
+for key in "${!to_pull[@]}"; do
+  path="${to_pull[$key]}"
+  echo -e "\n*** $key ***" ;
+  pushd $path && git pull ;
+  popd
+done
+
