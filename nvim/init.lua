@@ -487,7 +487,10 @@ require('lazy').setup({
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-      { 'mason-org/mason.nvim', opts = {} },
+      { 'mason-org/mason.nvim', opts = {
+        -- this is used so we search the regular environment before Mason's path... fixes NixOS issues
+        PATH = "append",
+      } },
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -690,7 +693,21 @@ require('lazy').setup({
         --
 
         --  This is removed and manually configured later so it is not managed by Mason
-        -- lua_ls = {
+        lua_ls = {
+          cmd = {
+            -- will use globla install when is not installed with Mason (better for nixos) 
+            'lua-language-server',
+          },
+          settings = {
+            Lua = {
+              completion = {
+                callSnippet = 'Replace',
+              },
+              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+              -- diagnostics = { disable = { 'missing-fields' } },
+            },
+          },
+        }
         --   -- Specify the command for your system's lua-language-server
         --   -- IMPORTANT: Replace this with the actual path to your system's executable
         --   cmd = {'/run/current-system/sw/bin/lua-language-server'},
