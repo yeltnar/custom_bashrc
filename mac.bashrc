@@ -17,10 +17,28 @@ alias hours="vim ~/filedumps/hours"
 
 alias chrome-nix-tmp="nix develop ~/playin/nixos_files/shells/chrome"
 
+to_move="$HOME/client_engineering/"
 cdclient_engineering(){
-	to_move="$HOME/client_engineering/"
-	if [ "" != "$1" ]; then
-		to_move="$to_move/$1";
-	fi
-	pushd $to_move;
+  if [ "" != "$1" ]; then
+    to_move="$to_move/$1";
+  fi
+  pushd $to_move;
 }
+
+main() {
+  echo hello from complete 
+  _script_cdclient_engineering() {
+    _script_commands=$(ls $to_move)
+
+    local cur
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY=( $(compgen -W "${_script_commands}" -- ${cur}) )
+
+    return 0
+  }
+  complete -o nospace -F _script_cdclient_engineering cdclient_engineering
+}
+
+main
+
