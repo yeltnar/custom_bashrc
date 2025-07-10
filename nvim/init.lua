@@ -1012,7 +1012,7 @@ require('lazy').setup({
       -- folds with `z`
       vim.opt.foldmethod = "expr"
       vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      vim.opt.foldlevelstart = 99 -- don't fold when start
+      vim.opt.foldlevelstart = 99 -- don't fold when start until get really deep 
     end,
     opts = {
       ensure_installed = {

@@ -62,7 +62,8 @@ vim -R $FILE_NAME
 :set nowrap
 
 # show parsed tree
-:TSPlaygroundToggle 
+:InspectTree
+:TSPlaygroundToggle # deprecated
 
 # read bash reaponse into buffer
 :r !date | cat
