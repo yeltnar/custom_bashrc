@@ -100,6 +100,13 @@ visual line select multiple lines
 type ':' then type 'norm ' everything will be typed for each line... can do macros too 
 :'<,'>norm _f:f"ldt"_lvt"yf:f"lP
 
+# splits 
+# :q to close split 
+ctrl+w shows options
+:split :sp
+:vsplit :vsp
+# with config, ctrl+h,j,k,l will move in directions
+
 # create new file
 :new # will create a split window with an unnamed buffer.
 :enew # will open one in the current window.
