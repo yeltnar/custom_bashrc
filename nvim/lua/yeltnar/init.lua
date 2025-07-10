@@ -20,7 +20,11 @@ o.incsearch = true
 vim.filetype.add({
   extension = {
     bashrc = 'bash'
-  }
+  },
+  pattern = {
+    [os.getenv('HOME') .. '/playin/custom_bashrc/drewhelp/.*'] = 'markdown',
+    [os.getenv('HOME') .. '/filedumps/.*'] = 'markdown',
+  },
 });
 
 o.tabstop = 2         -- Number of spaces a <Tab> counts for
