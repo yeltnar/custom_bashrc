@@ -545,7 +545,6 @@ require('lazy').setup({
           end
 
           -- better go to definition
-          -- vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, { remap = false, silent = true, desc = "[g]o to [d]efinition" })
           map('gd', vim.lsp.buf.definition, "[g]o to [d]efinition")
 
           -- Rename the variable under your cursor.
