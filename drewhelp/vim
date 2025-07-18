@@ -108,10 +108,16 @@ ctrl+w shows options
 # with config, ctrl+h,j,k,l will move in directions
 
 # create new file
-:new # will create a split window with an unnamed buffer.
-:enew # will open one in the current window.
-:vnew # will open one in a vertically split window.
-:tabnew # will open one in a new tab.
+## will create a split window with an unnamed buffer.
+:new
+## will open one in the current window.
+:enew
+## will open one in a vertically split window.
+:vnew
+## will open one in a new tab.
+:tabnew
+## will save current buffer as a new file and switch to that file
+:saveas /tmp/file
 
 # incriment and decrement 
 <C-a> and <C-x>
