@@ -1,3 +1,4 @@
+
 function setup()
   local map = vim.api.nvim_set_keymap
   local opts = { noremap = true, silent = true }
@@ -7,6 +8,7 @@ function setup()
   map("n", "<Tab>", "<Cmd>BufferNext<CR>", opts)
   map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", opts)
   map("n", "<S-Tab>", "<Cmd>BufferPrevious<CR>", opts)
+  vim.keymap.set('n', '<C-Tab>', ':b#<CR>', { desc = 'Switch to last used buffer' })
 
   -- Re-order to previous/next
   map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", opts)
