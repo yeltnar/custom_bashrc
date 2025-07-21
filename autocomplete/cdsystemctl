@@ -2,20 +2,20 @@
 # (or /usr/local/etc/bash_completion.d/ for mac)
 # then reload the bash session
 
-cdbashrc(){
-	local to_move="$bashrc_folder/"
+cdsystemctl(){
+	local to_move="/etc/systemd/sytem"
 	if [ "" != "$1" ]; then
-		to_move="$to_move$1";
+		to_move="$to_move/$1";
 	fi
 	pushd $to_move;
 }
 
-_script_cdbashrc() {
+_script_cdsystemctl() {
   local cur=${COMP_WORDS[COMP_CWORD]}
-  local to_move="$bashrc_folder/"
+	local to_move="/etc/systemd/sytem"
   # don't put space at end of completion 
   compopt -o nospace 
   COMPREPLY=( $( cd "$to_move"; compgen -d -S / -- "$cur" ) )
 }
-complete -F _script_cdbashrc cdbashrc
+complete -F _script_cdsystemctl cdsystemctl
 

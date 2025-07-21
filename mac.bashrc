@@ -25,20 +25,12 @@ cdclient_engineering(){
   pushd $to_move;
 }
 
-main() {
-  echo hello from complete 
-  _script_cdclient_engineering() {
-    _script_commands=$(ls $to_move)
-
-    local cur
-    COMPREPLY=()
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    COMPREPLY=( $(compgen -W "${_script_commands}" -- ${cur}) )
-
-    return 0
-  }
-  complete -o nospace -F _script_cdclient_engineering cdclient_engineering
+_script_cdclient_engineering() {
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  local start_dir="$to_move/"
+  # don't put space at end of completion 
+  compopt -o nospace 
+  COMPREPLY=( $( cd "$start_dir"; compgen -d -S / -- "$cur" ) )
 }
-
-main
+complete -F _script_cdclient_engineering cdclient_engineering
 

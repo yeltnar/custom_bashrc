@@ -40,26 +40,6 @@ _sleep-and-exit(){
   exit;
 }
 
-cdbashrc(){
-	to_move="$bashrc_folder"
-	if [ "" != "$1" ]; then
-		to_move="$to_move/$1";
-	fi
-	pushd $to_move;
-}
-
-cdsystemctl(){
-	pushd /etc/systemd/system	 
-}
-
-cdnix(){
-	to_move="$HOME/playin/nixos_files"
-	if [ "" != "$1" ]; then
-		to_move="$to_move/$1";
-	fi
-	pushd $to_move;
-}
-
 # add timestamp to all history commands.  hs function is set to hide this info unless asked for
 export HISTTIMEFORMAT="(%c) "
 
