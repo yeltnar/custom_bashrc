@@ -8,7 +8,9 @@ function setup()
   map("n", "<Tab>", "<Cmd>BufferNext<CR>", opts)
   map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", opts)
   map("n", "<S-Tab>", "<Cmd>BufferPrevious<CR>", opts)
-  vim.keymap.set('n', '<C-Tab>', ':b#<CR>', { desc = 'Switch to last used buffer' })
+  -- don't use <C-Tab> because its used by Ghostty
+  vim.keymap.set('n', '<A-Tab>', ':b#<CR>', { desc = 'Switch to last used buffer' })
+  vim.keymap.set('n', '<leader><Tab>', ':b#<CR>', { desc = 'Switch to last used buffer' })
 
   -- Re-order to previous/next
   map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", opts)
@@ -83,8 +85,8 @@ return {
     'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
     'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
   },
-  init = function() 
-    vim.g.barbar_auto_setup = false 
+  init = function()
+    vim.g.barbar_auto_setup = false
     setup()
   end,
   opts = {
