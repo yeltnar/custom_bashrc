@@ -1,4 +1,5 @@
 return {
+  -- change with TSContext disable, enable, toggle
   'nvim-treesitter/nvim-treesitter-context',
   opts = {
     enable = true,
