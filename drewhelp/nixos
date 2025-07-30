@@ -157,4 +157,5 @@ nix-store --gc --print-roots
 home-manager expire-generations '-7 days'
 # delete old generations... sometimes run as root
 nix-collect-garbage --delete-older-than 1d
-
+# run sudo nixos-rebuild switch (or boot?) to clear entries from boot menu after the above
+# more boot clean up info https://discourse.nixos.org/t/boot-entry-management/29119/3
