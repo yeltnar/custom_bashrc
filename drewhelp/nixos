@@ -149,6 +149,8 @@ https://nixos.org/manual/nixos/stable/
 https://nixos.org/manual/nixpkgs/stable/ 
 # for learning about using the underlying nix tools
 https://nix.dev/ 
+# list of nix-darwin MacOS activation scripts
+https://github.com/nix-darwin/nix-darwin/blob/e04a388232d9a6ba56967ce5b53a8a6f713cdfcf/modules/system/activation-scripts.nix#L114C1-L114C9
 
 # clean up - https://old.reddit.com/r/NixOS/comments/1l2u3tx/reminder_delete_old_roots/
 # show all roots including lingering builds
