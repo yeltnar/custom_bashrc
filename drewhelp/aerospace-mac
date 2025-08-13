@@ -3,3 +3,6 @@ defaults write com.apple.dock expose-group-apps -bool true && killall Dock
 
 # recommended change
 Desktop & Dock / Displays have seperate Spaces -> off
+
+# change to tiles layout
+aerospace layout tiles
