@@ -7,3 +7,6 @@ mq-ibm-mq.cp4i
 # get ssh access to a node
 # run chroot /host to get host access
 oc debug node/ocpinstall-kw4ff-master-0i
+
+# causes the image stream to pull latest version of the external image
+oc import-image http-filenet-interface:latest
