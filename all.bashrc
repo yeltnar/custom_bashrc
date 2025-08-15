@@ -170,6 +170,11 @@ fi
 export VISUAL=vim
 if [ -n "$(command -v nvim)" ]; then
   export VISUAL=nvim
+  export PAGER="nvim -R"
+  export MANPAGER="nvim +Man!" 
+else
+  export PAGER="vim -R"
+  export MANPAGER="vim +MANPAGER -R"
 fi
 export EDITOR="$VISUAL"
 
