@@ -1,5 +1,5 @@
 # start server 
-podman run -it -p 1883:1883 -p 9001:9001 eclipse-mosquitto:latest
+podman run -it -p 1883:1883 -p 9001:9001 eclipse-mosquitto:latest mosquitto -c /mosquitto-no-auth.conf
 
 # install (with nix)
 nix-shell -p mosquitto 
