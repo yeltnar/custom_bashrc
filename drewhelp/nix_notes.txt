@@ -125,3 +125,5 @@ neofetch
 # fix last command. Will bring up editor
 fc 
 
+# move to different tty
+ctrl+atl+f[0-9]
