@@ -161,3 +161,6 @@ home-manager expire-generations '-7 days'
 nix-collect-garbage --delete-older-than 1d
 # run sudo nixos-rebuild switch (or boot?) to clear entries from boot menu after the above
 # more boot clean up info https://discourse.nixos.org/t/boot-entry-management/29119/3
+
+# search already known package list for neovim... remove offline if needed
+nix search --offline nixpkgs neovim

@@ -1,1 +1,4 @@
 pw-top
+
+# get priority of pipewire shiz
+ps -eo pid,ni,rtprio,comm | head -n1; ps -eo pid,ni,rtprio,comm | grep -E "pipewire|game-process"
