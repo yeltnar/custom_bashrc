@@ -79,9 +79,7 @@ fi
 
 # send message 
 mqtt_location="device_report/$GROUP_NAME-$DEVICE_NAME"
-set -x
 mosquitto_pub -r -h "$mqtt_endpoint" -t $mqtt_location -m "$new_content"
-set +x
 
 if [ -s "/tmp/mqtt_report_curl_error" ];then
 	mv /tmp/mqtt_report_curl_error ~/cron/
