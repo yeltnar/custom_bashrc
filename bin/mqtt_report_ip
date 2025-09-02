@@ -48,12 +48,15 @@ if [ -e $last_file ]; then
     old_nebula_ip="$(cat $last_file | jq -r .nebula_ip)"
 fi
 
+nebula_version=$(nebula --version)
+
 date="$(date)"
 
 new_content="{ \
     \"pub_ip\":\"$pub_ip\", \
     \"lan_ip\":\"$lan_ip\", \
     \"nebula_ip\":\"$nebula_ip\", \
+    \"nebula_version\":\"$nebula_version\", \
     \"date\":\"$date\", \
     \"git_branch\":\"$git_branch\", \
     \"device_name\":\"$device_name\" \
