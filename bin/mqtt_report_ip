@@ -76,7 +76,7 @@ mqtt_location="device_report/status/$GROUP_NAME-$DEVICE_NAME"
 mqtt_location_ok="device_report/ok/$GROUP_NAME-$DEVICE_NAME"
 set -x
 mosquitto_pub -r -h "$mqtt_endpoint" -t $mqtt_location -m "$new_content"
-mosquitto_pub -r -h "$mqtt_endpoint" -t $mqtt_location_ok -m "ok"
+mosquitto_pub -x 60 -h "$mqtt_endpoint" -t $mqtt_location_ok -m "ok"
 set +x
 
 if [ -s "/tmp/mqtt_report_curl_error" ];then
