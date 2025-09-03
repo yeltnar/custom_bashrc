@@ -3,11 +3,13 @@ if [ ! -e $bashrc_folder ]; then
     exit;
 fi
 
-mqtt_endpoint_location=$bashrc_folder/gitignore/mqtt_endpoint
+if [ -z "$NO_SOURCE" ]; then
+  source $bashrc_folder/gitignore/mqtt_report_ip.env
+fi
 
-if [ ! -e $mqtt_endpoint_location ]; then
-    echo "$mqtt_endpoint_location is not set" 1>&2;
-    exit -1;
+if [ -z "$mqtt_endpoint" ]; then
+  echo "\$mqtt_endpoint is not set; Check $bashrc_folder/gitignore/mqtt_report_ip.env" 1>&2;
+  exit 1;
 fi
 
 # export token=$(cat $bashrc_folder/gitignore/mqtt_token);
@@ -15,13 +17,6 @@ fi
     # echo 'token is not set' 1>&2;
     # exit -1;
 # fi
-
-mqtt_endpoint=$(cat $mqtt_endpoint_location)
-
-if [ ! -e $mqtt_endpoint_location ]; then
-    echo "$mqtt_endpoint_location is not set; Check $bashrc_folder/gitignore/mqtt_endpoint" 1>&2;
-    exit;
-fi
 
 cat ~/.bashrc | grep 'export' | grep NAME > /tmp/device_name && source /tmp/device_name
 echo bashrc_folder is $bashrc_folder
@@ -76,10 +71,13 @@ if [ -z "$EXTRA_HEADER" ]; then
     EXTRA_HEADER="";
 fi
 
-
 # send message 
-mqtt_location="device_report/$GROUP_NAME-$DEVICE_NAME"
+mqtt_location="device_report/status/$GROUP_NAME-$DEVICE_NAME"
+mqtt_location_ok="device_report/ok/$GROUP_NAME-$DEVICE_NAME"
+set -x
 mosquitto_pub -r -h "$mqtt_endpoint" -t $mqtt_location -m "$new_content"
+mosquitto_pub -r -h "$mqtt_endpoint" -t $mqtt_location_ok -m "ok"
+set +x
 
 if [ -s "/tmp/mqtt_report_curl_error" ];then
 	mv /tmp/mqtt_report_curl_error ~/cron/
