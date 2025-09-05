@@ -47,8 +47,20 @@ WantedBy=multi-user.target
 dig @10.10.10.1 +short mini A
 # get cert info
 dig @10.10.10.1 +short 10.10.10.1 TXT
-dns_address="10.10.10.1"
 
+dns_address="10.10.10.14"
+for i in {1..16}; do
+  address="10.10.10.$i"
+	r=$(dig "@$dns_address" +short "$address" TXT) 
+	if [ -n "$r" ]; then
+		echo "$address:"
+		echo "$r"
+		ping -c1 "$address"
+		echo
+	fi
+done
+
+dns_address="10.10.10.14"
 for i in {1..16}; do
   address="10.10.10.$i"
 	r=$(dig "@$dns_address" +short "$address" TXT) 
