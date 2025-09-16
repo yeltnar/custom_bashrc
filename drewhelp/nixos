@@ -164,3 +164,10 @@ nix-collect-garbage --delete-older-than 1d
 
 # search already known package list for neovim... remove offline if needed
 nix search --offline nixpkgs neovim
+
+# view produced config
+cd $config_dir
+nix repl
+nix-repl> :lf . 
+nix-repl> outputs.nixosConfigurations.my-host.config
+
