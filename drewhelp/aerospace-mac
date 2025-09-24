@@ -6,3 +6,8 @@ Desktop & Dock / Displays have seperate Spaces -> off
 
 # change to tiles layout
 aerospace layout tiles
+
+# switch to service mode
+alt+shift+;
+    # toggle between floating and tiling layout
+    , f
