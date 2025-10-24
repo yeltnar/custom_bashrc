@@ -66,3 +66,6 @@ ssh-keygen -f ~/.ssh/id_rsa -y
 
 # change for termux... make sure to adjust for username too
 TrustedUserCaKeys /data/data/com.termux/files/usr/etc/ssh/user_ca.pub
+
+# remove bad known hosts file
+ssh-keygen -R ADDRESS
