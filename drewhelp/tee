@@ -1,2 +1,5 @@
 ansible-playbook -Ki inventory.yml nebula-playbook.yml | tee ansible-nebula.log
 
+# redirect stdout and stderr to seperate places
+command 1> >(tee stdout.log) 2> >(tee stderr.log)
+
