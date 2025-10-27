@@ -17,7 +17,7 @@ export git_remote=$(git remote -v | grep fetch | $filter_function | awk '{print 
 if [[ $git_remote =~ ^http ]]; then
     http_remote="$git_remote";
 else
-    http_remote=$(_git_to_http)
+    http_remote=$(_ssh_to_http)
 fi
 
 $browser $http_remote
