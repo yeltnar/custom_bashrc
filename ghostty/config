@@ -3,3 +3,5 @@ click-repeat-interval = 500
 auto-update-channel = stable
 font-size = 18
 font-feature=-calt, -liga, -dlig # disable font ligatures (ie replacing != with =/=)
+
+keybind = global:alt+t=new_window
