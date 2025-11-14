@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# ----------------------------------------------------------------------
+# AWK Pipe Input Script
+# Reads content piped from STDIN and prints every line using the 'awk' utility.
+# ----------------------------------------------------------------------
+
+# Check if the script is receiving input via a pipe (or redirection).
+# The '-t 0' flag checks if standard input (file descriptor 0) is a terminal.
+if [ -t 0 ]; then
+    echo "Error: This script is designed to receive piped input (STDIN)." >&2
+    echo "Usage example:" >&2
+    echo "  echo 'Line 1\nLine 2\nLine 3' | ./print_pipe.sh" >&2
+    echo "  cat input_file.txt | ./print_pipe.sh" >&2
+    exit 1
+fi
+
+# AWK automatically processes standard input (STDIN) if no file argument is given.
+# The '1' is the most concise way to print the entire line ($0) in AWK,
+# as it evaluates to true, triggering the default action, which is 'print'.
+start_script=$(awk -F'=' '/ExecStart=/{print $2}')
+
+if [ "$1" = "cat" ]; then
+  echo "$start_script" | xargs cat
+elif [ "$1" = "bat" ]; then
+  echo "$start_script" | xargs bat
+elif [ "$1" = "vim" ]; then
+  echo "$start_script" | xargs vim
+else
+  echo "$start_script"
+fi
+
+# Alternatively, you could use the more explicit command:
+# awk '{ print $0 }'
+# But 'awk 1' is typically preferred for this simple task.
