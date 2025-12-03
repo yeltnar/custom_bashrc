@@ -1,0 +1,5 @@
+bash -c '
+  hyprlock & 
+  systemctl suspend & 
+  exit
+' > /dev/null 2>&1
