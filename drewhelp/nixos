@@ -8,6 +8,8 @@
 # https://search.nixos.org/packages 
 # _home-manager_
 # https://mynixos.com/home-manager/option/programs.bash.sessionVariables
+# list of packages and how to find specific versions
+https://www.nixhub.io/packages/nodejs
 
 releases typically in May and November (check Wikipedia)
 
