@@ -173,3 +173,5 @@ nix repl
 nix-repl> :lf . 
 nix-repl> outputs.nixosConfigurations.my-host.config
 
+# env var to set experimental features
+export NIX_CONFIG="experimental-features = nix-command flakes"
