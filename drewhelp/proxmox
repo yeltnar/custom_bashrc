@@ -9,3 +9,7 @@ qm set 804 -usb0 host=058f:6387
 
 # delete added usb device 
 qm set VMID -delete 'usbX'
+
+# notes on uefi boot
+# might need to DISABLE the EFI disk
+# then, use the boot order to actually boot
