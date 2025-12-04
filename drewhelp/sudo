@@ -17,3 +17,5 @@ vivek ALL = NOPASSWD: /bin/systemctl restart httpd.service, /bin/kill
 USERNAME HOST_NAME = (root) NOPASSWORD: /path/to/file
 drew ALL= (root) NOPASSWD: /usr/bin/whoami
 
+# will copy current environment variables... helpful if neet to pass through display info like for hyprland
+sudo -E
