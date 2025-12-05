@@ -25,6 +25,7 @@ sudo nix-collect-garbage -d
 
 # list old generations 
 nix-env --list-generations
+nixos-rebuild list-generations
 
 nix-collect-garbage --delete-old
 
