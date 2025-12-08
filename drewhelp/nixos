@@ -176,3 +176,5 @@ nix-repl> outputs.nixosConfigurations.my-host.config
 
 # env var to set experimental features
 export NIX_CONFIG="experimental-features = nix-command flakes"
+
+# can make default password with mkpasswd and setting initialHashedPassword
