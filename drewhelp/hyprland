@@ -3,3 +3,6 @@ hyprlock -q --immediate
 pkill hyprlock 
 hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
 hyprctl --instance 0 'dispatch exec hyprlock'
+
+# run program as root with GUI 
+pkexec env WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR baobab
