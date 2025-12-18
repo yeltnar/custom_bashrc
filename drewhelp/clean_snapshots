@@ -1,0 +1,31 @@
+# this should not be blindly run
+exit
+
+# Define the snapshots directory and the relative path of the file to delete
+SNAP_DIR="$PWD"
+FILE_TO_DELETE="drew/.local/share/containers/"
+
+for snap in "$SNAP_DIR"/*; do
+
+    # echo "Processing: $snap"
+    # echo "$snap/$FILE_TO_DELETE"
+    # continue
+    # exit
+
+    # 1. Set snapshot to Read-Write
+    sudo btrfs property set -ts "$snap" ro false
+    
+    # 2. Delete the file if it exists
+    if [ -e "$snap/$FILE_TO_DELETE" ]; then
+        echo "   $(date) will delete: $snap/$FILE_TO_DELETE"
+        sudo rm -rf "$snap/$FILE_TO_DELETE"
+        echo "  $(date) Deleted: $snap/$FILE_TO_DELETE"
+        sudo btrfs property set -ts "$snap" ro true
+        # exit 
+    else
+        echo "   File not found in this snapshot. $snap"
+    fi
+    
+    # 3. Revert to Read-Only
+    sudo btrfs property set -ts "$snap" ro true
+done
