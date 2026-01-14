@@ -22,6 +22,7 @@ P12_PASSWORD="clientpassword" # Change this for real use
 echo "Setting up in $TMP_DIR"
 mkdir -p "$CA_DIR" "$CLIENT_DIR"
 
+# to only generate client cert, remove this block and copy ca into the CA_DIR directory
 echo "--- Creating Certificate Authority ---"
 cd "$CA_DIR"
 echo "Generating CA private key ($CA_KEY)..."
