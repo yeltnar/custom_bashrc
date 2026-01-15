@@ -1,4 +1,4 @@
-# with nix-shell -p mutagen
+# with nix-shell -p python313Packages.mutagen
 mid3v2 --artist="New Artist Name" song.mp3
 
 # with nix-shell -p flac
