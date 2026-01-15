@@ -1,0 +1,5 @@
+# with nix-shell -p mutagen
+mid3v2 --artist="New Artist Name" song.mp3
+
+# with nix-shell -p flac
+metaflac --remove-tag=ARTIST --set-tag=ARTIST="New Artist Name" "song.flac"
