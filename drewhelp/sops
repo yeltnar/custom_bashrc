@@ -26,3 +26,6 @@ sops secrets/secrets.yaml
 # series of steps to replace key 
 sops --decrypt ./secrets/secrets.yaml | yq '.yeltnar_nebula_id_rsa = "t"'  > ./secrets/.working.secrets.yaml ;
 sops --encrypt --in-place ./secrets/.working.secrets.yaml ; mv ./secrets/.working.secrets.yaml ./secrets/secrets.yaml 
+
+# update how a file is encrypted after .sops.yaml is updated
+sops updatekeys ./.env.enc
