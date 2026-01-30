@@ -1,0 +1,2 @@
+# when mounting fat file systems, can use this to avoid the permission issues that come from fat not doing permissions
+sudo mount -o rw,users,uid=$(id -u yourusername),gid=$(id -g yourusername),umask=000 /dev/sdb1 /mnt/your_mount_point
