@@ -126,5 +126,8 @@ ctrl+w shows options
 :mks[ession][!] [file]
 vim -S [file]
 
+# capture groups
+:%s/\(pattern\)/\1/g
+
 # this will remove all nvim cache and saved settings 
 rm -rf ~/.local/share/nvim* ; rm -rf ~/.local/state/nvim* ; rm -rf ~/.config/nvim/lazy-lock.json 
