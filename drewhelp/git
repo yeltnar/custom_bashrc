@@ -52,5 +52,8 @@ git log --show-signature
 git config --global pull.rebase true
 git config --global pull.ff true
 
+# clean up git repo and remove dead refs
+git gc --prune=now --aggressiv
+
 # different push and pull branch # instead of setting pull, change this first then change push
 git remote set-url --push origin <your-push-url-here>

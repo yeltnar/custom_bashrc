@@ -178,3 +178,6 @@ nix-repl> outputs.nixosConfigurations.my-host.config
 export NIX_CONFIG="experimental-features = nix-command flakes"
 
 # can make default password with mkpasswd and setting initialHashedPassword
+
+# can be used to view system in columns and see what was taking up space
+nix-tree 
