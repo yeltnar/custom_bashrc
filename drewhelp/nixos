@@ -182,6 +182,9 @@ export NIX_CONFIG="experimental-features = nix-command flakes"
 # can be used to view system in columns and see what was taking up space
 nix-tree 
 
+# list current flake registries on the system
+nix registry list
+
 # nix run is the flake way of running nix packages (nix-shell --command)
 # nix shell gives you shell in the environment with the programs in the path 
 # the 'nixpkgs#' says we're using the nixpkgs flake and finding the vim program. It would use the default nixpkgs program if #vim was not provided
