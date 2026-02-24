@@ -122,6 +122,10 @@ ctrl+w shows options
 # incriment and decrement 
 <C-a> and <C-x>
 
+# move up and down without moving cursor
+Ctrl-y # up
+Ctrl-e # down
+
 # save and open session file
 :mks[ession][!] [file]
 vim -S [file]
