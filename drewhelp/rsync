@@ -1,1 +1,10 @@
+# will show a progress bar
+-P
+# If a file already exists at the destination, rsync won't even check if it needs updating. It only copies truly "new" files.
+-ignore-existing
+-n or --dry-run
+
+# this coppies source files to destination files, non destructively
+rsync -av /path/to/source/ /path/to/destination/
+
 rsync -v -a --delete --log-file="$log_dir/$(date).log" -e 'ssh -p 23' pi@$(piip):'/media/pi/TOSHIBA\ EXT/*' /media/pi/TOSHIBA\ EXT/exposed_pi/
