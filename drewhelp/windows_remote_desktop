@@ -1,0 +1,10 @@
+# make sure to remove 'drives_to_redirect:s:*' from the rdpw file
+# make sure to remove 'usbdevicestoredirect:s:*' from the rdpw file
+# make sure to remove 'camerastoredirect:s:*' from the rdpw file
+# make sure to remove 'devicestoredirect:s:*' from the rdpw file
+
+nix shell nixpkgs#freerdp -c xfreerdp \
+  ./devbox.rdpw \
+  /gateway:type:arm \
+  /sec:aad \
+  /drive:drew,"$HOST_MOUNT_DIR"
