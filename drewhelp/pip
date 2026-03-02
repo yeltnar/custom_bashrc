@@ -1,0 +1,14 @@
+# create the env
+python3 -m venv .venv
+
+# switch to the env
+source .venv/bin/activate
+
+# you then can install packages 
+pip install requests
+
+# save your packages
+pip freeze > requirements.txt
+
+# to leave, 
+deactivate
