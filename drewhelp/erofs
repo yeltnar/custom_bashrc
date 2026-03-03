@@ -1,0 +1,8 @@
+# https://docs.kernel.org/filesystems/erofs.html
+# nix shell nixpkgs#erofs-utils
+
+mkdir to_erofs
+echo 'hi, from erofs' >> to_erofs/hi.txt
+mkfs.erofs ./to_erofs.erofs ./to_erofs
+mkdir erofs_mnt
+sudo mount -t erofs -o loop ./to_erofs.erofs erofs_mnt
