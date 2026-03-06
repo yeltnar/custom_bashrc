@@ -1,9 +1,9 @@
-docker run \
 # consider -x for audio and --add-metadata
 # the directory should have the g+w flag for this to work
 echo "consider -x for audio and --add-metadata"
+podman run \
 --rm -it \
--e PGID=$(id -g) \
--e PUID=$(id -u) \
 -v "$(pwd)":/workdir:rw \
-mikenye/youtube-dl $@
+mikenye/youtube-dl "$@"
+# -e PGID=$(id -g) \
+# -e PUID=$(id -u) \
