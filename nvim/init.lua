@@ -191,21 +191,22 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+--
 -- zz will not go very center... looks nicer to me
--- vim.keymap.set("n", "zz", "zz5<C-e>")
 vim.keymap.set("n", "zz", function()
-    -- added vim.o.scrolloff to not bounce at the top of the file
-    -- Calculate how many lines are actually above us
     local lines_above = vim.fn.line(".") - 1 - vim.o.scrolloff
-    print("lines_above " .. tostring(lines_above))
-    -- We want 5 lines of padding, but cap it at what's available
-    local offset = math.min(lines_above, 5)
-    -- 1. Center the screen on the current line
-    vim.cmd("normal! zz")
-    if offset > 0 then
-      vim.api.nvim_input(offset .. "<C-e>")
+    local offset = math.max(0, math.min(lines_above, 5))
+    -- Build the raw key sequence
+    local keys = "zz"
+    if offset >= 5 then
+        keys = keys .. offset .. "<C-e>"
     end
-      print(offset .. "<C-e>")
+    -- Use nvim_feedkeys to send the keys. 
+    -- The 'n' flag prevents the mapping from calling itself (no-remap).
+    -- The 'x' flag is not used here so it happens immediately.
+    local termcodes = vim.api.nvim_replace_termcodes(keys, true, false, true)
+    vim.api.nvim_feedkeys(termcodes, "n", false)
+    print(termcodes.." "..offset.." "..lines_above.." "..vim.fn.line('.'))
 end, { desc = "Center cursor with 5-line top offset" })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
