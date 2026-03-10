@@ -59,3 +59,5 @@ git gc --prune=now --aggressiv
 git remote set-url --push origin <your-push-url-here>
 
 # git checkout has been updated to be git restore and git switch
+# create new branch
+git switch -c new_branch
