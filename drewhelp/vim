@@ -135,3 +135,8 @@ vim -S [file]
 
 # this will remove all nvim cache and saved settings 
 rm -rf ~/.local/share/nvim* ; rm -rf ~/.local/state/nvim* ; rm -rf ~/.config/nvim/lazy-lock.json 
+
+# search case sensitive
+/\CSearchTerm
+# search case insensitive
+/\cSearchTerm
