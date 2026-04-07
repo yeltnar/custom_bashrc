@@ -1,83 +1,20 @@
-if [ ! -e $bashrc_folder ]; then
-    echo "\$bashrc_folder is not set" 1>&2;
-    exit;
-fi
+source "$(dirname "$0")/_report_ip_shared.sh"
 
-ntfy_endpoint_location=$bashrc_folder/gitignore/ntfy_endpoint
-
-if [ ! -e $ntfy_endpoint_location ]; then
+ntfy_endpoint_location="$bashrc_folder/gitignore/ntfy_endpoint"
+if [ ! -e "$ntfy_endpoint_location" ]; then
     echo "$ntfy_endpoint_location is not set" 1>&2;
     exit -1;
 fi
 
-export token=$(cat $bashrc_folder/gitignore/ntfy_token);
-if [ -z $token ]; then
+token=$(cat "$bashrc_folder/gitignore/ntfy_token" 2>/dev/null)
+if [ -z "$token" ]; then
     echo 'token is not set' 1>&2;
     exit -1;
 fi
 
-ntfy_endpoint=$(cat $ntfy_endpoint_location)
+ntfy_endpoint=$(cat "$ntfy_endpoint_location")
 
-if [ ! -e $ntfy_endpoint_location ]; then
-    echo "$ntfy_endpoint_location is not set; Check $bashrc_folder/gitignore/ntfy_endpoint" 1>&2;
-    exit;
-fi
-
-cat ~/.bashrc | grep 'export' | grep NAME > /tmp/device_name && source /tmp/device_name
-source $bashrc_folder/gitignore/device_name.env
-
-cd $bashrc_folder
-
-PATH="/usr/local/bin:/sbin:/usr/bin:/bin:/snap/bin:/data/data/com.termux/files/usr/bin:$PATH"
-
-pub_ip=$(curl -sS https://ip.andbrant.com);
-lan_ip="$(ifconfig | awk '/192\.168/{print $2}' | tr '\n' ' ')";
-nebula_ip=$(ifconfig | awk '/10\.10\.10/{print $2}');
-git_branch=$(git rev-parse HEAD)
-
-last_file="$bashrc_folder/gitignore/last_ntfy_ip_json"
-    
-device_name="$GROUP_NAME-$DEVICE_NAME"
-
-if [ -e $last_file ]; then
-    printf "last time it was"
-    cat $last_file | jq .
-    old_pub_ip="$(cat $last_file | jq -r .pub_ip)"
-    old_lan_ip="$(cat $last_file | jq -r .lan_ip)"
-    old_nebula_ip="$(cat $last_file | jq -r .nebula_ip)"
-fi
-
-nebula_version=$(nebula --version)
-
-date="$(date)"
-
-new_content="{ \
-    \"pub_ip\":\"$pub_ip\", \
-    \"lan_ip\":\"$lan_ip\", \
-    \"nebula_ip\":\"$nebula_ip\", \
-    \"nebula_version\":\"$nebula_version\", \
-    \"date\":\"$date\", \
-    \"git_branch\":\"$git_branch\", \
-    \"device_name\":\"$device_name\" \
-}"
-
-# echo $ntfy_endpoint
-
-fail_file="/tmp/ntfy_report_failure"
-report_failure(){
-    if [ ! -e $fail_file ]; then
-        curl -d "error with device report: $device_name" https://ntfy.sh/drewtest123;
-    fi
-    touch $fail_file
-}
-
-if [ -z "$EXTRA_HEADER" ]; then
-    EXTRA_HEADER="";
-fi
-
-curl_command="-d $new_content $ntfy_endpoint/device_status"
-echo "curl_command -> $curl_command"
-curl -sS -H "Authorization: Bearer $token" -d "$new_content" $ntfy_endpoint/device_status 2> /tmp/ntfy_report_curl_error #&& rm -rf $fail_file || report_failure
+curl -sS -H "Authorization: Bearer $token" -d "$device_report_json" "$ntfy_endpoint/device_status" 2> /tmp/ntfy_report_curl_error
 
 if [ -s "/tmp/ntfy_report_curl_error" ];then
 	mv /tmp/ntfy_report_curl_error ~/cron/
