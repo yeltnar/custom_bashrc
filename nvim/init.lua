@@ -1035,7 +1035,8 @@ require('lazy').setup({
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-    config = function()
+    config = function(_, opts) -- Receive opts table explicitly
+      require('nvim-treesitter.configs').setup(opts) -- Call setup with opts
       -- folds with `z`
       vim.opt.foldmethod = "expr"
       vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -1058,6 +1059,7 @@ require('lazy').setup({
         'python',
         'javascript',
         'typescript',
+        'terraform',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,

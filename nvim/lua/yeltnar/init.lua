@@ -18,19 +18,12 @@ o.incsearch = true
 
 vim.filetype.add({
   extension = {
-    bashrc = 'bash'
+    bashrc = 'bash',
+    tfvar = 'hcl'
   },
   pattern = {
     [os.getenv('HOME') .. '/playin/custom_bashrc/drewhelp/.*'] = 'markdown',
     [os.getenv('HOME') .. '/filedumps/.*'] = 'markdown',
-  },
-});
-
-vim.filetype.add({
-  extension = {
-    bashrc = 'tf'
-  },
-  pattern = {
     ['.*.tfvars'] = 'terraform',
   },
 });
