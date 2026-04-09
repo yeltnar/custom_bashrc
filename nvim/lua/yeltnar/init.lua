@@ -26,6 +26,15 @@ vim.filetype.add({
   },
 });
 
+vim.filetype.add({
+  extension = {
+    bashrc = 'tf'
+  },
+  pattern = {
+    ['.*.tfvars'] = 'terraform',
+  },
+});
+
 o.tabstop = 2         -- Number of spaces a <Tab> counts for
 o.shiftwidth = 2      -- Number of spaces to use for each step of (auto)indent
 o.expandtab = true    -- Use spaces instead of tabs (highly recommended for consistency)
