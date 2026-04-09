@@ -71,4 +71,8 @@ local txt=nil
 local joiner=""
 if txt ~= nil then joiner = "; " else txt="" end
 
+vim.opt.fixeol = false
+-- Optional: if you also want to prevent adding a newline to files that don't have one
+vim.opt.eol = false
+
 print("hello from yeltnar" .. joiner .. txt)
