@@ -184,6 +184,8 @@ nix-tree
 
 # list current flake registries on the system
 nix registry list
+# add a repo to list
+nix registry add $NAME $FLAKE_URI
 
 # nix run is the flake way of running nix packages (nix-shell --command)
 # nix shell gives you shell in the environment with the programs in the path 
