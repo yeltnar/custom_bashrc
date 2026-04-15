@@ -10,4 +10,12 @@ else
 fi
 
 cd "$nix_shells_folder/$flake_shell";
-nix develop .
+
+if [ -z $(nix flake show --json 2>/dev/null | jq 'keys | .[]'  -r | grep 'apps')  ]; then
+  echo develop 
+  nix develop .
+else
+  echo run 
+  nix run .
+fi
+
