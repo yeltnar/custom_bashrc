@@ -187,6 +187,9 @@ nix registry list
 # add a repo to list
 nix registry add $NAME $FLAKE_URI
 
+# show all the nix roots. helps with deleting old packages with collect garbage
+nix-store --gc --print-roots
+
 # nix run is the flake way of running nix packages (nix-shell --command)
 # nix shell gives you shell in the environment with the programs in the path 
 # the 'nixpkgs#' says we're using the nixpkgs flake and finding the vim program. It would use the default nixpkgs program if #vim was not provided

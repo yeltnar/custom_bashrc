@@ -43,6 +43,11 @@ q to stop recording
 :reg # show registers
 "xy # yank into x register... use * or + for system clipboard
 "*p # paste from system clipboard
+/ # used in search, and the default for empty replace
+
+ctrl+r lets you insert from a buffer when in insert mode
+
+ctrl+f lets you edit the command pallet like a buffer
 
 # open Read Only mode
 vim -R $FILE_NAME
