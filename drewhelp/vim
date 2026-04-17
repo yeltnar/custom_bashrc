@@ -127,6 +127,11 @@ ctrl+w shows options
 # incriment and decrement 
 <C-a> and <C-x>
 
+# run command when file is open
+vim -c "normal 64gg" f.txt
+# this allows for chaining
+vim -c "exe \"normal 64ggiHello\e\" | wq" filename.txt
+
 # move up and down without moving cursor
 Ctrl-y # up
 Ctrl-e # down
