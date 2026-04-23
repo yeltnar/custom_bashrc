@@ -1,0 +1,4 @@
+# cd ~/playin/pi_agent
+# bash runit.sh
+
+nix run ~/playin/nixos_files/shells/pi 
