@@ -199,6 +199,8 @@ nix run "github:yeltnar/nixos_files?dir=shells/rustfs" --no-write-lock-file
 nix run nixpkgs#vim
 nix shell nixpkgs#vim
 
+# use nix flake without consideration of git config
+nix run path:.
 
 # use offline flake
 nix run "github:yeltnar/nixos_files?dir=shells/rustfs" --no-write-lock-file --offline --no-substitute
