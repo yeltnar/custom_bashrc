@@ -190,8 +190,23 @@ nix registry add $NAME $FLAKE_URI
 # show all the nix roots. helps with deleting old packages with collect garbage
 nix-store --gc --print-roots
 
+# run nested flake.nix... could use for other things too
+nix run "github:yeltnar/nixos_files?dir=shells/rustfs" --no-write-lock-file
+
 # nix run is the flake way of running nix packages (nix-shell --command)
 # nix shell gives you shell in the environment with the programs in the path 
 # the 'nixpkgs#' says we're using the nixpkgs flake and finding the vim program. It would use the default nixpkgs program if #vim was not provided
 nix run nixpkgs#vim
 nix shell nixpkgs#vim
+
+# use nix flake without consideration of git config
+nix run path:.
+
+# use offline flake
+nix run "github:yeltnar/nixos_files?dir=shells/rustfs" --no-write-lock-file --offline --no-substitute
+
+# get info after nixos-rebuild build
+sudo bash result/bin/switch-to-configuration --help
+
+# buid nixos system with nix build
+nix build .#nixosConfigurations.nixos-testing.config.system.build.toplevel
