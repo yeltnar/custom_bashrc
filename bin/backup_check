@@ -45,7 +45,10 @@ since="24h"
 
 update_endpoint="https://ntfy.sh"
 # update_topic="$status_topic"
-update_topic="drewtest123"
+update_topic="`cat $bashrc_folder/gitignore/backup_report_topic`"
+if [ -z "$update_topic" ]; then
+  echo 'update_topic is not set'
+fi
 update_auth=" "
 
 echo "$status_auth" "$status_endpoint/$status_topic/json?poll=1&since=$since"
