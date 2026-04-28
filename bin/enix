@@ -1,5 +1,7 @@
 nix_shells_folder="$HOME/playin/nixos_files/shells/"
 
+export NIX_CONFIG="extra-experimental-features = flakes nix-command"
+
 flake_shell="";
 
 if [ -z ${1} ]; 
