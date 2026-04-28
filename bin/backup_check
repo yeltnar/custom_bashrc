@@ -56,6 +56,7 @@ echo $res
 echo $res | jq -c | while read -r json; do
     message=`echo $json | jq -r .message`
     good=`echo $message | jq -r .good`
+    end_time=`echo $message | jq -r .end_time`
 
     if [ -z "$good" ]; then
         echo "skipping bad message"
@@ -75,7 +76,7 @@ echo $res | jq -c | while read -r json; do
             # TODO send failures when you find them 
             echo "$good is not true - $BORG_NAME"
             echo "$BORG_NAME" >> $report_check_bad_file
-            _send_update_push "bad report" "$BORG_NAME"
+            _send_update_push "bad report" "$BORG_NAME $end_time"
         fi
     fi
 done
