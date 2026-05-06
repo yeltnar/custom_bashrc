@@ -1,0 +1,1 @@
+rc cli program can change the config dir with the env var RC_CONFIG_DIR
