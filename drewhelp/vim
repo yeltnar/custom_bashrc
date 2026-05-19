@@ -136,6 +136,12 @@ vim -c "exe \"normal 64ggiHello\e\" | wq" filename.txt
 Ctrl-y # up
 Ctrl-e # down
 
+# run current file within vim 
+# Run with Python
+:w | !python3 %
+# Run with Bash/Shell
+:w | !bash %
+
 # save and open session file
 :mks[ession][!] [file]
 vim -S [file]
