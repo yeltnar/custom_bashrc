@@ -61,3 +61,8 @@ git remote set-url --push origin <your-push-url-here>
 # git checkout has been updated to be git restore and git switch
 # create new branch
 git switch -c new_branch
+
+# Compare a single file between two branches or commits:
+git diff branch_1..branch_2 path/to/file
+# Compare different files from the current branch to another branch:
+git diff other_branch:path/to/file2 path/to/file1
