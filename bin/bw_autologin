@@ -1,3 +1,4 @@
+set -x
 lock_dir="/tmp/";
 lock_file_name=".BW_SESSION.lock"
 lock_file="$lock_dir/$lock_file_name"
@@ -6,11 +7,11 @@ run_id="$$"
 
 # must use node 18
 # PATH="$HOME/.nvm/versions/node/v18.7.0/bin:$PATH";
-version="$(node --version)";
-if [[ $version != *"v18"* ]]; then
-	echo "Must use node v18" >&2;
-	exit; 
-fi
+# version="$(node --version)";
+# if [[ $version != *"v18"* ]]; then
+	# echo "Must use node v18" >&2;
+	# exit; 
+# fi
 
 lock_held='true'
 releaseLock(){
