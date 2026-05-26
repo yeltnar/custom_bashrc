@@ -79,3 +79,6 @@ tmux break-pane # or...
 <leader> !
 # join it back
 tmux join-pane -t PANE_TO_JOIN_TO
+
+# print pane at given session/window/pane
+tmux capture-pane -p -t 0:0.0
