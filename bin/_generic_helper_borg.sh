@@ -64,8 +64,13 @@ prune(){
 	borg prune -v --list --keep-daily=7 --keep-weekly="5" --keep-monthly="12" --keep-yearly="2"
 }
 
+compact(){
+  echo "borg compact"
+  borg compact
+}
+
 backup_prune(){
-	backup && prune;
+	backup && prune && compact;
 }
 
 backup_prune_push(){
