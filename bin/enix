@@ -11,13 +11,20 @@ else
   flake_shell=$1 
 fi
 
-cd "$nix_shells_folder/$flake_shell";
+args=""
+if [ -e ${2} ]; then
+  args="${2}"
+fi
+
+flake_dir="$nix_shells_folder/$flake_shell"
+
+# cd "$nix_shells_folder/$flake_shell";
 
 if [ -z $(nix flake show --json 2>/dev/null | jq 'keys | .[]'  -r | grep 'apps')  ]; then
   echo develop 
-  nix develop .
+  nix develop "$flake_dir"
 else
   echo run 
-  nix run .
+  exec nix run "$flake_dir" -- "$args"
 fi
 
