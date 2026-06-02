@@ -210,3 +210,6 @@ sudo bash result/bin/switch-to-configuration --help
 
 # buid nixos system with nix build
 nix build .#nixosConfigurations.nixos-testing.config.system.build.toplevel
+
+# switch to the nixos configuration # install current system to boot
+sudo /run/current-system/bin/switch-to-configuration switch
