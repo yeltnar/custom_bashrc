@@ -57,3 +57,13 @@ fi
 
 alias les="vim -R";
 
+cdworktree(){
+  tocd=$(
+    git worktree list |
+    fzf |
+    awk '{print $1}'
+  )
+
+  [[ -n "$tocd" ]] && cd "$tocd"
+}
+
