@@ -1032,18 +1032,19 @@ require('lazy').setup({
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    branch = 'master', -- TODO migrate to main branch -- sets the branch with major version switch
+    branch = 'main', -- TODO migrate to main branch -- sets the branch with major version switch
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     config = function(_, opts) -- Receive opts table explicitly
-      require('nvim-treesitter.configs').setup(opts) -- Call setup with opts
+      require('nvim-treesitter.config').setup(opts) -- Call setup with opts
       -- folds with `z`
       vim.opt.foldmethod = "expr"
       vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
       vim.opt.foldlevelstart = 99 -- don't fold when start until get really deep 
     end,
     opts = {
+      prefer_git = true,
       ensure_installed = {
         'bash',
         'c',
