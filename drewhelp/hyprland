@@ -1,4 +1,7 @@
 # reset hyprlock
+# with new version
+hyprctl --instance 0 eval 'hl.exec_cmd("hyprlock")'
+# old
 hyprlock -q --immediate
 pkill hyprlock 
 hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
