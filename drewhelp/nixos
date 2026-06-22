@@ -34,6 +34,8 @@ nix-collect-garbage --delete-generations 1 2 3
 sudo nix-collect-garbage --delete-older-than 14d
 # find out what roots reference this asset 
 nix-store --query --roots /var/store/XXX
+# find what is keeping a nixos closure
+nix-store --gc --print-roots
 # when in /nix/store/XXX... 
 # list what this asset uses  
 nix-store --query --references $PWD
