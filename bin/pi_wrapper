@@ -1,4 +1,15 @@
-# cd ~/playin/pi_agent
-# bash runit.sh
+#!/usr/bin/env bash
+set -euo pipefail
 
-nix run ~/playin/nixos_files/shells/pi 
+COMMAND="${1:-pi}"
+
+case "$COMMAND" in
+  pi|bash)
+    ;;
+  *)
+    echo "Usage: $0 [pi|bash]" >&2
+    exit 1
+    ;;
+esac
+
+nix run ~/playin/nixos_files/shells/pi -- "$COMMAND"
